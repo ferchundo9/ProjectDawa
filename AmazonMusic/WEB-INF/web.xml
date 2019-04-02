@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app>
+
+<web-app
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
+    <display-name>Practicas DAW</display-name>
+    <description>
+      Practicas DAW.
+    </description>
+
+	<servlet>
+        <servlet-name>Formulario Post</servlet-name>
+        <servlet-class>pbi.formParametros</servlet-class>
+    </servlet>
+	<servlet>
+        <servlet-name>Crear Tienda</servlet-name>
+        <servlet-class>pbi.CrearTienda</servlet-class>
+    </servlet>
+	<servlet>
+        <servlet-name>Crear Carrito</servlet-name>
+        <servlet-class>pbi.CrearCarrito</servlet-class>
+    </servlet>
+	<servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>pbi.Login</servlet-class>
+    </servlet>
+	<servlet>
+        <servlet-name>Pagar</servlet-name>
+        <servlet-class>pbi.Pagar</servlet-class>
+    </servlet>
+	<context-param>
+        <param-name>Email</param-name>
+        <param-value>pedropicapiedra@gmail.com</param-value>
+    </context-param>
+    <context-param>
+        <param-name>Telefono</param-name>
+        <param-value>Teléfono:666666666</param-value>
+    </context-param>
+
+<servlet-mapping>
+        <servlet-name>Formulario Post</servlet-name>
+        <url-pattern>/Formulario</url-pattern>
+    </servlet-mapping>
+	<servlet-mapping>
+        <servlet-name>Crear Tienda</servlet-name>
+        <url-pattern>/CrearTienda</url-pattern>
+    </servlet-mapping>
+	<servlet-mapping>
+        <servlet-name>Crear Carrito</servlet-name>
+        <url-pattern>/CrearCarrito</url-pattern>
+    </servlet-mapping>
+	<servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+	<servlet-mapping>
+        <servlet-name>Pagar</servlet-name>
+        <url-pattern>/Pagar</url-pattern>
+    </servlet-mapping>
+    
+</web-app>
