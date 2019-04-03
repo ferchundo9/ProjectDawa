@@ -1,4 +1,5 @@
-package pbi;
+package database;
+
 
 public class DAOUsuarios{
 }

@@ -1,4 +1,4 @@
-package pbi;
+package database;
 
 public class DAOPedidos{
 }

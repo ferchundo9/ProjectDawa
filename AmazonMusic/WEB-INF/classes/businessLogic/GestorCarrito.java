@@ -1,3 +1,5 @@
+package businessLogic;
+import database.FachadaDAO;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -12,10 +14,14 @@ public class GestorCarrito{
       this.fdao = new FachadaDAO(request,response);
    }
    public void ObtenerCarrito(){
+      //IMPLEMENTACION
    }
    public void AnadirAlCarrito(){
+      //IMPLEMENTACION
    }
    public void EliminarDelCarrito(){
+      //IMPLEMENTACION
    }
    public void ConfirmarCompra(){
+      fdao.ConfirmarCompra();
    }

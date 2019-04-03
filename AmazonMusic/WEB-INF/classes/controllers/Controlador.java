@@ -1,3 +1,4 @@
+package controllers;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -58,4 +59,60 @@ public class Controlador extends HttpServlet{
          HelperProductos hp = new HelperProductos(request, response);
          hp.VerCatalogo();
      }
+     public void VerProducto(){
+         HelperProductos hp = new HelperProductos(request, response);
+         hp.VerProducto();
+     }
+     public void FiltrarProductos(){
+         HelperProductos hp = new HelperProductos(request, response);
+         hp.FiltrarProductos();
+     }
+     public void VerCarrito(){
+         HelperCarrito hc = new HelperCarrito(request, response);
+         hc.VerCarrito();
+     }
+     public void AdministrarTienda(){
+         //LLEVA A LA VISTA DE ADMINISTRADOR
+     }
+     public void AnadirAlCarrito(){
+         HelperCarrito hc = new HelperCarrito(request, response);
+         hc.AnadirAlCarrito();
+     }
+     public void ConfirmarCompra(){
+         HelperCarrito hc = new HelperCarrito(request, response);
+         hc.ConfirmarCompra();
+     }
+     public void EliminarDelCarrito(){
+         HelperCarrito hc = new HelperCarrito(request, response);
+         hc.EliminarDelCarrito();
+     }
+     public void ConfirmarRegistro(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.ConfirmarRegistro();
+     }
+     public void IniciarSesion(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.IniciarSesion();
+     }
+     public void IntroducirProducto(){
+         HelperProductos hp = new HelperProductos(request, response);
+         hp.IntroducirProducto();
+     }
+     public void ActualizarInventario(){
+         HelperProductos hp = new HelperProductos(request, response);
+         hp.ActualizarInventario();
+     }
+     public void MostrarUsuarios(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.MostrarUsuarios();
+     }
+     public void EliminarUsuario(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.EliminarUsuario();
+     }
+     public void ActualizarContrasena(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.ActualizarContrasena();
+     }
+
  }

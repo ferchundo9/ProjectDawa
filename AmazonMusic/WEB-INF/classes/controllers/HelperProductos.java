@@ -1,3 +1,5 @@
+package controllers;
+import businessLogic.FachadaModelo;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -12,12 +14,17 @@ public class HelperProductos{
       this.fm = new FachadaModelo(request,response);
    }
    public void VerCatalogo(){
+      fm.VerCatalogo();
    }
    public void VerProducto(){
+      fm.VerProducto();
    }
    public void FiltrarProductos(){
+      fm.FiltrarProductos();
    }
    public void IntroducirProducto(){
+      fm.IntroducirProducto();
    }
    public void ActualizarInventario(){
+      fm.ActualizarInventario();
    }

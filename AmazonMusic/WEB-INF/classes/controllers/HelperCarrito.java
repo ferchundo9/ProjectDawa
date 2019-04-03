@@ -1,3 +1,5 @@
+package controllers;
+import businessLogic.FachadaModelo;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -12,10 +14,14 @@ public class HelperCarrito{
       this.fm = new FachadaModelo(request,response);
    }
    public void VerCarrito(){
+      fm.VerCarrito();
    }
    public void AnadirAlCarrito(){
+      fm.AnadirAlCarrito();
    }
    public void EliminarDelCarrito(){
+      fm.EliminarDelCarrito();
    }
    public void ConfirmarCompra(){
+      fm.ConfirmarCompra();
    }
