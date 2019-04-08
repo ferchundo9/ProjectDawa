@@ -18,6 +18,29 @@
 					});
 			});
 		</script>
+	
+		<!--- PLUGUIN PARA EL ZOOOM DE LA IMAGEN ---->
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
+		<script>
+		$(function(){  
+			  $("#zoom").elevateZoom({
+				
+				scrollZoom: true,
+				lensShape: "square",
+				tint: true,
+				tintColour: '#F90', tintOpacity: 0.2,
+				 zoomWindowFadeIn: 500,
+				zoomWindowFadeOut: 500,
+				lensFadeIn: 500,
+				lensFadeOut: 500,
+				zoomWindowWidth: 680,
+				zoomWindowHeight: 500
+		  });
+		});
+		</script>
+		<!---------------------------------------------->
+
     </head>
 	<!-- ------------------------------------------------------------------ -->
 	
@@ -47,14 +70,15 @@
 	<!-- ------------------------------------------------------------------ -->
 
 	<!-------------------------   CUERPO -------------------------------------->
-	<!-- info del item en si -->
 	<div class=itemGrid>
-		<div class=columna1>
-			<form method="POST" action="Controlador" class="Controlador">
-				<img class=imagenItemUd src="./img/cd1.jpg" data-zoom-image="./img/cd1.jpg">
+		
+			<!-- info del item en si -->
+			<div class=columna1>
+			
+				<img class=imagenItemUd id="zoom" src="./img/cd1.jpg">
 				<p class=tituloItem> Queen Greatest Hits Vol I </p>
 				<p>
-					<img class=estrellaItem src="img/iconoEstrellaCompleta.png" />
+					<img class=estrellaItem src="./img/iconoEstrellaCompleta.png" />
 					<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
 					<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
 					<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
@@ -62,17 +86,24 @@
 				</p>
 				<p class=autorItem > de Queen (1999)</p>
 				<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR 19,90€ </span></p> 
-		</div>	
+			</div>	
+			<!--------------------------->
 			<!-- cuadro de la derecha para añadir al carrito --------->
-			<div class=cuadroCompra >
-				<p class=precioItem> EUR 19,90€ </p>
-				<img class=imagenEnvio src="img/imagenEnvio.png" />
-				<p class=enStock> En Stock </p>
-				<p> Cantidad : 
-				<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
-				<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png" /> Comprar ya</button>
-			</div>
+			<form method="POST" action="Controlador" class="Controlador">
+				<div class=cuadroCompra >
+					<!-- Aqui poner campos ocultos con los datos del cd para el formulario jeje -->
+					<p class=precioItem> EUR 19,90€ </p>
+					<img class=imagenEnvio src="img/imagenEnvio.png" />
+					<p class=enStock> En Stock </p>
+					<p> Cantidad : </p>
+					<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
+					<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png" /> Comprar ya</button>
+				</div>
+			</form>
 			<!-------------------------->
+		
+		<br>
+		<br>
 	</div>
 	
 	
