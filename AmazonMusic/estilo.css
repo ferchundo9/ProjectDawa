@@ -234,6 +234,7 @@ nav form button img{
 	margin-left: 5vw;
 	padding: 10px;
 	grid-template-columns: 70vw 20vw;
+	text-align: left;
 }
 
 .columna1{
@@ -241,11 +242,12 @@ nav form button img{
 	grid-row-end: 1;
 }
 .imagenItemUd{
-	width: 22vw;
-	height: 22vw;
+	width: 23vw;
+	height: 23vw;
 	float: left;
 	margin-left: 10px;
 	margin-right: 30px;
+	cursor: pointer;
 }
 
 .tituloItem{
@@ -284,6 +286,14 @@ nav form button img{
 	float: left;
 	width: 30vw;
 	text-align: left;
+}
+
+.notaZoom{
+	color: #9F9F9F;
+	font-size: 0.75em;
+	float: left;
+	text-align: left;
+	margin-left: 15px;
 }
 
 
@@ -345,3 +355,14 @@ nav form button img{
 .botonComprar{background-image: linear-gradient(#F2A25B, #C56916);}
 
 .botonComprar:hover{background-image: linear-gradient(#E58937, #B76216);}
+
+.cantidad{width: 5vw;}
+
+
+/*-------------------Formato de los comentarios -------------------------*/
+.comentarios{grid-column-start:1;}
+.opinion{margin-left: 3vw;display: grid; grid-template-rows: 7vh 4vh 12vh;}
+.opinion img{display: block; width: 3vw;float: left;}
+.usuario{display: block; width: 15vw; float: left; font-weight: bold;margin-left: 10px;text-align: left; grid-row: 1;}
+.opinion .estrellaItem{width: 1vw;height: 1vw; grid-row: 2;}
+.opinion .texto{width: 45vw; display: block; text-align: left; color: #737373; font-size: 0.9em; grid-row: 3;}
