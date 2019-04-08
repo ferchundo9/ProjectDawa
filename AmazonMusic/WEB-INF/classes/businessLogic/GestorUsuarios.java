@@ -11,7 +11,7 @@ public class GestorUsuarios{
    public GestorUsuarios(HttpServletRequest request, HttpServletResponse response){
       this.request = request;
       this.response = response;
-      this.fdao = new FachadaDAO(request,response);
+      this.fdao = new FachadaDAO(request, response);
    }
    public void ConfirmarRegistro(){
       fdao.RegistrarUsuario();

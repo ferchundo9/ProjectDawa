@@ -11,7 +11,7 @@ public class GestorProductos{
    public GestorProductos(HttpServletRequest request, HttpServletResponse response){
       this.request = request;
       this.response = response;
-      this.fdao = new FachadaDAO();
+      this.fdao = new FachadaDAO(request, response);
    }
    public void VerCatalogo(){
       fdao.ObtenerProductos();
