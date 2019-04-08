@@ -8,7 +8,7 @@
 }
 
 body{
-	background-color: ;
+	background-color:#EEEEEE ;
 	text-align: center;
 	color: black;
 	font-family: sans-serif;
@@ -52,6 +52,10 @@ body{
 	align-self: center;
 	padding: 10px;
 	margin: 20px;
+}
+
+header{
+	height: 18vh;
 }
 
 /*-------------------Modificadores para la barra de navegacion-------------*/
@@ -124,6 +128,7 @@ nav form{
 	margin-left: 2vw;
 	border-radius: 5px;
 	display: none;
+	z-index: 999;
 }
 .otrasOpciones label{
 	display: block;
@@ -168,3 +173,63 @@ nav form button img{
 }
 
 /*------------------------------------------------------------------------------*/
+
+
+
+/* Formato items catalogo*/
+.item{
+	z-index: -99;
+	background-color: white;
+	margin: 20px;
+	width: 15vw;
+	max-height: 20vw;
+	display: block;
+	float: left;
+	padding: 15px;
+	cursor: pointer;
+}
+.mas{
+	text-decoration: underline;
+	display: block;
+	width: 15vw;
+	margin: 0px;
+}
+
+.mas:hover{
+	color:#DC780E;
+}
+
+.imagenItem{
+	max-width: 14vw;
+	max-height: 14vw;
+	align-self: center;
+	margin: auto;
+}
+
+.estrella{
+	width: 1vw;
+	height: 1vw;
+	float: left;
+}
+
+.precio{
+	display: block;
+	float: left;
+	align-self: left;
+	font-size: 1.5em;
+	width: 15vw;
+	margin: 0px;
+}
+
+.titulo{font-weight: bold;align-self: left;text-align: left;height:1vw;margin: 0px;}
+.autor{color:#606060;text-align: left;height:1vw;margin: 0px;}
+
+
+/*-----Formato de item individual al clicar en el catalogo---------------*/
+
+.imagenItemUd{
+	width: 20vw;
+	height: 20vw;
+	float: left;
+	margin-left: 5vw;
+}

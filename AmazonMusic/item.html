@@ -1,7 +1,7 @@
   <html>
 	<!-- ---------------------   METADATOS  ------------------------------ -->
     <head>
-		<title>AmazonMusic[Catalogo]</title>
+		<title>AmazonMusic[Item]</title>
 		<meta charset="utf-8"> 
 		<meta name="description" content="Página de venta de productos">
 		<meta name="keywords" content="CD, musica, comprar, tienda">
@@ -10,6 +10,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico">
 		<script type="text/javascript" src="jquery-2.2.4.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/igorlino/elevatezoom-plus@1.2.3/src/jquery.ez-plus.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function()   {
 				$("#boton").on( "click", function() {	 
@@ -47,8 +48,7 @@
 
 	<!-------------------------   CUERPO -------------------------------------->
 	<center class=items>
-		<div class=item>
-			<img class=imagenItem src="./img/cd1.jpg">
+			<img class=imagenItemUd src="./img/cd1.jpg" data-zoom-image="./img/cd1.jpg">
 			<p class=titulo> Queen Greatest Hits Vol I </p>
 			<p class=autor> de Queen (1999)</p>
 			<img class=estrella src="img/iconoEstrellaCompleta.png" />
@@ -57,60 +57,7 @@
 			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
 			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
 			<p class=precio> 19,90€ </p>
-			<p class=mas> Ver CD </p>
-		</div>
-		
-		<div class=item>
-			<img class=imagenItem src="./img/cd1.jpg">
-			<p class=titulo> Queen Greatest Hits Vol I </p>
-			<p class=autor> de Queen (1999)</p>
-			<img class=estrella src="img/iconoEstrellaCompleta.png" />
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<p class=precio> 19,90€ </p>
-			<p class=mas> Ver CD </p>
-		</div>
-		
-		<div class=item>
-			<img class=imagenItem src="./img/cd1.jpg">
-			<p class=titulo> Queen Greatest Hits Vol I </p>
-			<p class=autor> de Queen (1999)</p>
-			<img class=estrella src="img/iconoEstrellaCompleta.png" />
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<p class=precio> 19,90€ </p>
-			<p class=mas> Ver CD </p>
-		</div>
-		
-		<div class=item>
-			<img class=imagenItem src="./img/cd1.jpg">
-			<p class=titulo> Queen Greatest Hits Vol I </p>
-			<p class=autor> de Queen (1999)</p>
-			<img class=estrella src="img/iconoEstrellaCompleta.png" />
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<p class=precio> 19,90€ </p>
-			<p class=mas> Ver CD </p>
-		</div>
-		
-		<div class=item>
-			<img class=imagenItem src="./img/cd1.jpg">
-			<p class=titulo> Queen Greatest Hits Vol I </p>
-			<p class=autor> de Queen (1999)</p>
-			<img class=estrella src="img/iconoEstrellaCompleta.png" />
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<p class=precio> 19,90€ </p>
-			<p class=mas> Ver CD </p>
-		</div>
+			<p class=mas> Ver CD </p>		
 	</center>
      
     </body>
