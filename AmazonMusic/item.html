@@ -47,18 +47,35 @@
 	<!-- ------------------------------------------------------------------ -->
 
 	<!-------------------------   CUERPO -------------------------------------->
-	<center class=items>
-			<img class=imagenItemUd src="./img/cd1.jpg" data-zoom-image="./img/cd1.jpg">
-			<p class=titulo> Queen Greatest Hits Vol I </p>
-			<p class=autor> de Queen (1999)</p>
-			<img class=estrella src="img/iconoEstrellaCompleta.png" />
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-			<p class=precio> 19,90€ </p>
-			<p class=mas> Ver CD </p>		
-	</center>
+	<!-- info del item en si -->
+	<div class=itemGrid>
+		<div class=columna1>
+			<form method="POST" action="Controlador" class="Controlador">
+				<img class=imagenItemUd src="./img/cd1.jpg" data-zoom-image="./img/cd1.jpg">
+				<p class=tituloItem> Queen Greatest Hits Vol I </p>
+				<p>
+					<img class=estrellaItem src="img/iconoEstrellaCompleta.png" />
+					<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
+					<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
+					<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
+					<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
+				</p>
+				<p class=autorItem > de Queen (1999)</p>
+				<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR 19,90€ </span></p> 
+		</div>	
+			<!-- cuadro de la derecha para añadir al carrito --------->
+			<div class=cuadroCompra >
+				<p class=precioItem> EUR 19,90€ </p>
+				<img class=imagenEnvio src="img/imagenEnvio.png" />
+				<p class=enStock> En Stock </p>
+				<p> Cantidad : 
+				<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
+			</div>
+			<!-------------------------->
+	</div>
+	
+	
+	
      
     </body>
 </html>
