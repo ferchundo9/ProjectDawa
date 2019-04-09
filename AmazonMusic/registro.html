@@ -1,7 +1,7 @@
  <html>
 	<!-- ---------------------   METADATOS  ------------------------------ -->
     <head>
-		<title>AmazonMusic[login]</title>
+		<title>AmazonMusic[registro]</title>
 		<meta charset="utf-8"> 
 		<meta name="description" content="Página de venta de productos">
 		<meta name="keywords" content="CD, musica, comprar, tienda">
@@ -25,15 +25,22 @@
 	<!-------------------------   CUERPO -------------------------------------->
 	<center >
 		<div class=iniciarSesion>
-			<h2>Iniciar sesión</h2>
-			<p>Dirección de e-mail o número de teléfono móvil </p>
-			<input class=input  type=email></input>
+			<h2>Crear cuenta</h2>
+			<p>Nombre</p>
+			<input class="registro input" type=text></input>
+			<p>Correo electrónico</p>
+			<input class="input registro" type=text></input>
+			<p>Dirección de envio</p>
+			<input class="input registro" type=text></input>
 			<p>Contraseña</p>
-			<input class=input type=password></input>
-			<input class=botonLogin type=submit value="Iniciar sesión"></input>
-			<p class=nuevo>¿Eres nuevo en Amazon Music?</p>
-			<input class=botonCrear type=submit value="Crea tu cuenta de AmazonMusic"</p>
-		</div>
+			<input class="input registro" type=password></input>
+			<fieldset>
+				<legend>Información de tarjeta</legend>
+				Numero: <input class="input registro"  name='nombre' type='text' tabindex='1'>
+				Fecha vencimiento: <input class="input registro"  name='apellidos' type='date' tabindex='2'>
+			</fieldset>
+			<input class=botonLogin type=submit value="Crea tu cuenta de Amazon Music"></input>
+			</div>
 	</center>
     </body>
 	<footer>

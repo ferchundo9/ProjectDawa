@@ -369,6 +369,8 @@ nav form button img{
 
 
 /*---------------------Formato de login ----------------------------------*/
+.bodyLogin{background-color: white;}
+
 .logoLogin{
 	display: block;
 	text-align: center;
@@ -376,6 +378,7 @@ nav form button img{
 	margin: auto;
 	max-width: 15vw;
 	max-height: 20vh;
+	margin-top: -4vh;
 	
 }
 
@@ -401,6 +404,7 @@ nav form button img{
 	height: 5vh;
 }
 .iniciarSesion .input{background-color: #D8E6DC;}
+.iniciarSesion .input:focus{box-shadow: 0px 0px 8px 1px #E58225;}
 
 .iniciarSesion .botonLogin{
 	background-image: linear-gradient(#F8E4A9, #D8A132);
@@ -420,3 +424,19 @@ nav form button img{
 }
 
 .iniciarSesion .botonCrear:hover{	background-image: linear-gradient(#E5E5E5, #CECECE);}
+
+footer{text-align: center;background-image: linear-gradient(#FBFBFB, #FFFFFF);}
+footer img{ width: 25vw;margin-top: 2vh;}
+
+.iniciarSesion fieldset{
+	border-radius: 5px;
+	border: 1px solid #B95A00;
+	margin-top: 3vh;
+	margin-left: -1vw;
+}
+.iniciarSesion .registro{background-color: white;}
+
+
+fieldset .input{margin-bottom: 2vh;height: 4vh;}
+fieldset{font-size: 0.8em;}
+legend{font-size: 1.2em; font-weight: bold;}
