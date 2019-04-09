@@ -440,3 +440,44 @@ footer img{ width: 25vw;margin-top: 2vh;}
 fieldset .input{margin-bottom: 2vh;height: 4vh;}
 fieldset{font-size: 0.8em;}
 legend{font-size: 1.2em; font-weight: bold;}
+
+
+/*----------------Formato de la vista carrito -----------------*/
+
+.carritoGrid{
+	display: grid;
+	background-color: white;
+	width: 95vw;
+	align-self: center;
+	margin: auto;
+	grid-template-columns: 70vw 25vw;
+}
+
+.tablaCarrito{
+	display: grid;
+	grid-template-columns: 10vw 32vw 12vw 5vw 10vw;
+	grid-gap: 1vw;
+	text-align: left;
+	padding: 10px;
+	box-sizing: content-box;
+	align-items: stretch;
+}
+
+.c1{grid-column-start:1; grid-column-end: 1; display: block; float: left;max-height: 10vw;}
+.c2{grid-column-start:2; grid-column-end: 2; display: block; float: left;}
+.c3{grid-column-start:3; grid-column-end: 3; display: block; float: left;}
+.c4{grid-column-start:4; grid-column-end: 4; display: block; float: left;}
+.c5{grid-column-start:5; grid-column-end: 5; display: block; float: left;}
+
+.titulo{
+	font-size: 0.8em;
+	color: #A5A5A5;
+	font-weight: lighter;
+	display: block;
+	vertical-align: sub;
+}
+
+.imagenCarrito{	width: 10vw;}
+.precio{color:#943221;margin: 0px;}
+.tituloCarrito{ font-weight: bold; color:#35759F; font-size: 1.3em;margin: 0px;}
+.cantidad{margin: 0px;text-align: center;}
