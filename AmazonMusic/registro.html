@@ -18,7 +18,12 @@
     <body class=bodyLogin>
 	<!-- ---------------------   ENCABEZADO  ------------------------------ -->
 		<header>
-			<img class=logoLogin src="./img/logo.png">
+			<center>
+			<form method="POST" action="Controlador" class="Controlador">
+					<input type="hidden" name="VolverHome" value=1></input>
+					<button class="botonInvisibleLogin" ><img class=logoLogin src="./img/logo.png" /></button>
+			</form>
+			</center>
 		</header>
 	<!-- ------------------------------------------------------------------ -->
 
@@ -45,6 +50,6 @@
     </body>
 	<footer>
 		<hr>
-		<img src="./img/politica.png"/>
+		<img src="./img/politica.PNG"/>
 	</footer>
 </html>

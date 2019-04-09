@@ -18,6 +18,13 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("VerProducto") != null){
          this.VerProducto();
       }
+      if(request.getParameter("VolverHome") != null){
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("index.html");
+            vista.forward(request,response);
+         }catch(Exception e){
+         }  
+      }
       if(request.getParameter("FiltrarProductos") != null){
          this.FiltrarProductos();
       }
@@ -40,8 +47,21 @@ public class Controlador extends HttpServlet{
          this.ConfirmarRegistro();
       }
       if(request.getParameter("IniciarSesion") != null){
-         this.IniciarSesion();
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("login.html");
+            vista.forward(request,response);
+         }catch(Exception e){
+         }  
       }
+      
+      if(request.getParameter("Registrarse") != null){
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("registro.html");
+            vista.forward(request,response);
+         }catch(Exception e){
+         }  
+      }
+      
       if(request.getParameter("IntroducirProducto") != null){
          this.IntroducirProducto();
       }
@@ -59,6 +79,8 @@ public class Controlador extends HttpServlet{
       }
            
      }
+     
+     
      public void VerCatalogo(){
          HelperProductos hp = new HelperProductos(request, response);
          hp.VerCatalogo();

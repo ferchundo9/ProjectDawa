@@ -4,6 +4,7 @@ import javax.servlet.http.*;
 import java.sql.*;
 import java.util.*;
 import businessLogic.Item;
+import businessLogic.Cd;
 
 public class FachadaDAO{
    private java.sql.Connection conexion;
@@ -35,7 +36,17 @@ public class FachadaDAO{
    }
    public Item ObtenerProducto(String referencia){
       DAOInventario daoI = new DAOInventario(conexion);
-      return daoI.ObtenerProducto(referencia);
+      //return daoI.ObtenerProducto(referencia);
+         Cd cd =new Cd();
+         cd.setTitulo("holiii");
+         cd.setAutor("Carlitoosososoosos");
+         cd.setAno("1999");
+         
+         Item it = (Item ) cd;
+         it.setPrecio(12.56);
+         it.setUrlImagen("cd1.jpg");
+         it.setReferencia(referencia);
+      return it;
    }
    public void ObtenerProductosFiltrados(){
       DAOInventario daoI = new DAOInventario(conexion);

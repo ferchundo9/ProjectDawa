@@ -24,7 +24,7 @@ public class GestorProductos{
    }
    public void VerProducto(){
       Item producto = fdao.ObtenerProducto(request.getParameter("Referencia"));
-      request.setAtributte("producto", producto);
+      request.setAttribute("producto", producto);
       try{
          RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
          vista.forward(request,response);

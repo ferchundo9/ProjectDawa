@@ -4,6 +4,7 @@ public class Item{
    private String urlImagen;
    private Double precio;
    private String referencia;
+   
    public Item(){
    }
    public String getUrlImagen(){

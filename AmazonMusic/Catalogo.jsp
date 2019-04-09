@@ -37,11 +37,26 @@
 		<header>
 			<!-- Barra superior de navegacion -->
 			<nav>
-				<img src="./img/logoBlanco.png" />
-				<span> Iniciar Sesion </span>
-				<span> Registrarse </span>
-				
+				<!-- logo de amazon que redirige al index -->
 				<form method="POST" action="Controlador" class="Controlador">
+					<input type="hidden" name="VolverHome" value=1></input>
+					<button class=botonInvisible ><img src="./img/logoBlanco.png" /></button>
+				</form>
+				<!-- ..................................... -->
+				
+				 <!-- iniciar sesion que redirige a login.html -->
+				<form method="POST" action="Controlador" class="Controlador">
+					<input type="hidden" name="IniciarSesion" value=1></input>
+					<button class="botonInvisible derecha" ><span>Iniciar Sesion</span></button>
+				</form>
+				<!-- ..................................... -->
+				<form method="POST" action="Controlador" class="Controlador">
+					<input type="hidden" name="Registrarse" value=1></input>
+					<button class="botonInvisible derecha" ><span>Registrarse</span></button>
+				</form>
+				<!-- ..................................... -->
+				
+				<form class=form method="POST" action="Controlador" class="Controlador">
 					<div id=boton class=opcionesBusqueda><img src="./img/iconoDesplegar.png" />Opciones busqueda </div>
 					<input type="text" name="nombreCD">
 					
@@ -54,26 +69,35 @@
 				</form>
 			</nav>
 		</header>
-	<!-- ------------------------------------------------------------------ -->
+	<!--....................................................................-->
 
 	<!-------------------------   CUERPO -------------------------------------->
 	<center class=items>
+		<!-- Bucle que recorre el hash de elementos del catalgo --->
 		<c:forEach items="${catalogo}" var="entry">
 			<div class=item>
 				<form method="POST" action="Controlador" class="Controlador">
 					<img class=imagenItem src="./img/cd1.jpg">
 					<p class=titulo> ${entry.value.titulo} </p>
 					<p class=autor> de ${entry.value.autor}(${entry.value.ano})</p>
+					<!-- Falta asociar una valoracion al item -->
 					<img class=estrella src="img/iconoEstrellaCompleta.png" />
 					<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
 					<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
 					<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
 					<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
 					<p class=precio> ${entry.value.precio} € </p>
-					<p class=mas> Ver CD </p>
+					
+					<!-- Campos ocultos para enviar datos al servlet -->
+					<input type="hidden" name="VerProducto" value=1></input>
+					<input type="hidden" name="Referencia" value=${entry.value.referencia}></input>
+					<!-- ............................................ -->
+					
+					<input type="submit" class=mas value="Ver CD"> </input>
 				</form>
 			</div>
 		</c:forEach>
+		<!-- ...................................................... -->
 	</center>
      
     </body>
