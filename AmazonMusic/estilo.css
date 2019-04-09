@@ -43,6 +43,7 @@ body{
 }
 
 .divIndex{
+	display: block;
 	background-color: black;
 	color: white;
 	border-radius: 15px;
@@ -52,6 +53,7 @@ body{
 	align-self: center;
 	padding: 10px;
 	margin: 20px;
+	margin-top: 40vh;
 }
 
 header{
@@ -481,3 +483,5 @@ legend{font-size: 1.2em; font-weight: bold;}
 .precio{color:#943221;margin: 0px;}
 .tituloCarrito{ font-weight: bold; color:#35759F; font-size: 1.3em;margin: 0px;}
 .cantidad{margin: 0px;text-align: center;}
+
+.linea{grid-column-start:1; grid-column-end: 6; background-color: black; height: 2px;}
