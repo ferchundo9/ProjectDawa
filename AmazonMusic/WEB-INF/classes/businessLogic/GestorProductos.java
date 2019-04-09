@@ -23,7 +23,13 @@ public class GestorProductos{
       }
    }
    public void VerProducto(){
-      fdao.ObtenerProducto();
+      Item producto = fdao.ObtenerProducto(request.getParameter("Referencia"));
+      request.setAtributte("producto", producto);
+      try{
+         RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
+         vista.forward(request,response);
+      }catch(Exception e){
+      }
    }
    public void FiltrarProductos(){
       fdao.ObtenerProductosFiltrados();

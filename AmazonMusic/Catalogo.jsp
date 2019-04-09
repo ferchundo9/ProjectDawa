@@ -31,14 +31,13 @@
 			</form>
 		</div>
 		<div>
-			<c:forEach var="i" catalogo="${request.catalogo}">
-				<% Cd itemCD = (Cd) i.value; %>
-				<p> <c:out value ="${itemCD.referencia}"/> </p>
-				<p> <c:out value ="${itemCD.precio}"/> </p>
-				<p> <c:out value ="${itemCD.titulo}"/> </p>
-				<p> <c:out value ="${itemCD.autor}"/> </p>
-				<p> <c:out value ="${itemCD.ano}"/> </p>
-			</c:forEach>
+			<c:forEach items="${catalogo}" var="entry">
+					<p> <c:out value ="${entry.value.referencia}"/> </p>
+					<p> <c:out value ="${entry.value.precio}"/> </p>
+					<p> <c:out value ="${entry.value.titulo}"/> </p>
+					<p> <c:out value ="${entry.value.autor}"/> </p>
+					<p> <c:out value ="${entry.value.ano}"/> </p>
+				</c:forEach>
 		</div>
 	</center>
      

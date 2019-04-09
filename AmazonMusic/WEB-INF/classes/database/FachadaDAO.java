@@ -33,9 +33,9 @@ public class FachadaDAO{
       DAOInventario daoI = new DAOInventario(conexion);
       return daoI.ObtenerProductos();
    }
-   public void ObtenerProducto(){
+   public Item ObtenerProducto(String referencia){
       DAOInventario daoI = new DAOInventario(conexion);
-      daoI.ObtenerProducto();
+      return daoI.ObtenerProducto(referencia);
    }
    public void ObtenerProductosFiltrados(){
       DAOInventario daoI = new DAOInventario(conexion);
@@ -43,10 +43,11 @@ public class FachadaDAO{
    }
    public void IntroducirProducto(){
       DAOInventario daoI = new DAOInventario(conexion);
+      daoI.IntroducirProducto();
    }
    public void ActualizarInventario(){
       DAOInventario daoI = new DAOInventario(conexion);
-      daoI.IntroducirProducto();
+      daoI.ActualizarInventario();
    }
    //////////////////////////////////////////
    public void ConfirmarCompra(){
