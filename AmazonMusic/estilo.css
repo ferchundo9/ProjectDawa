@@ -366,3 +366,57 @@ nav form button img{
 .usuario{display: block; width: 15vw; float: left; font-weight: bold;margin-left: 10px;text-align: left; grid-row: 1;}
 .opinion .estrellaItem{width: 1vw;height: 1vw; grid-row: 2;}
 .opinion .texto{width: 45vw; display: block; text-align: left; color: #737373; font-size: 0.9em; grid-row: 3;}
+
+
+/*---------------------Formato de login ----------------------------------*/
+.logoLogin{
+	display: block;
+	text-align: center;
+	align-self: center;
+	margin: auto;
+	max-width: 15vw;
+	max-height: 20vh;
+	
+}
+
+.iniciarSesion{
+	border-radius: 4px;
+	border: solid 1px #CECECE;
+	display: block;
+	background-color: white;
+	width: 20vw;
+	align-self: center;
+	margin: auto;
+	box-sizing: content-box;
+	padding: 3vw;
+	text-align: left;
+}
+
+.iniciarSesion h2{font-size: 2em;margin-top: -1.5vh;}
+.iniciarSesion p{font-size: 0.9em; font-weight: bold;}
+.iniciarSesion input{
+	width: 20vw; 
+	border-radius: 5px; 
+	border: 1px solid #A1A1A1;
+	height: 5vh;
+}
+.iniciarSesion .input{background-color: #D8E6DC;}
+
+.iniciarSesion .botonLogin{
+	background-image: linear-gradient(#F8E4A9, #D8A132);
+	cursor: pointer;
+	border: 1px solid #9A7938;
+	margin-top: 3vh;
+}
+.iniciarSesion .botonLogin:hover{background-image: linear-gradient(#FACF7C, #BE8F2F);}
+
+.iniciarSesion .nuevo{ color: #8D8D8D; text-align: center;font-size: 0.8em; font-weight: normal; margin-top: 3vh;}
+
+.iniciarSesion .botonCrear{
+	background-image: linear-gradient(#F7F7F7, #D6D6D6);
+	cursor: pointer;
+	border: 1px solid #969696;
+	margin-top: 3vh;
+}
+
+.iniciarSesion .botonCrear:hover{	background-image: linear-gradient(#E5E5E5, #CECECE);}
