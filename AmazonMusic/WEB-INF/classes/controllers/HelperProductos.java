@@ -28,3 +28,4 @@ public class HelperProductos{
    public void ActualizarInventario(){
       fm.ActualizarInventario();
    }
+}

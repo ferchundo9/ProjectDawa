@@ -2,17 +2,19 @@ package database;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
+import java.util.*;
+import businessLogic.Item;
 
-public class FachadoDAO{
+public class FachadaDAO{
    private java.sql.Connection conexion;
    private HttpServletRequest request;
-   private HttpServlerResponse response;
+   private HttpServletResponse response;
    private ServletContext context;
    public FachadaDAO(HttpServletRequest request, HttpServletResponse response){
       this.request = request;
       this.response = response;
       this.context = request.getServletContext();
-      try {
+      /*try {
          Properties credenciales = new Properties();
          String gestor = context.getInitParameter("gestor");
          String servidor = context.getInitParameter("servidor");
@@ -22,46 +24,54 @@ public class FachadoDAO{
          credenciales.setProperty("usuario", context.getInitParameter("usuario"););
          credenciales.setProperty("password", context.getInitParameter("password"););
          this.conexion = java.sql.DriverManager.getConnection("jdbc:" + gestor + "://" + servidor + ":" + puerto + "/" + baseDatos , credenciales);
+      }
+      */
+      this.conexion = null;
    }
    //////////////////////////////////////////
-   public void ObtenerProductos(){
-      DAOInventario daoI = new DAOInventario();
-      daoI.ObtenerProductos();
+   public HashMap<String, Item> ObtenerProductos(){
+      DAOInventario daoI = new DAOInventario(conexion);
+      return daoI.ObtenerProductos();
    }
    public void ObtenerProducto(){
-      DAOInventario daoI = new DAOInventario();
+      DAOInventario daoI = new DAOInventario(conexion);
       daoI.ObtenerProducto();
    }
    public void ObtenerProductosFiltrados(){
-      DAOInventario daoI = new DAOInventario();
+      DAOInventario daoI = new DAOInventario(conexion);
       daoI.ObtenerProductosFiltrados();
    }
    public void IntroducirProducto(){
-      DAOInventario daoI = new DAOInventario();
+      DAOInventario daoI = new DAOInventario(conexion);
    }
    public void ActualizarInventario(){
-      DAOInventario daoI = new DAOInventario();
+      DAOInventario daoI = new DAOInventario(conexion);
       daoI.IntroducirProducto();
    }
    //////////////////////////////////////////
    public void ConfirmarCompra(){
-      DAOPedidos daoP = new DAOPedidos();
+      DAOPedidos daoP = new DAOPedidos(conexion);
       daoP.ConfirmarCompra();
    }
    //////////////////////////////////////////
    public void RegistrarUsuario(){
-      DAOUsuarios daoU = new DAOUsuarios();
+      DAOUsuarios daoU = new DAOUsuarios(conexion);
       daoU.RegistrarUsuario();
    }
+   public void ObtenerUsuarios(){
+      DAOUsuarios daoU = new DAOUsuarios(conexion);
+      daoU.ObtenerUsuarios();
+   }
    public void ValidarInicioSesion(){
-      DAOUsuarios daoU = new DAOUsuarios();
+      DAOUsuarios daoU = new DAOUsuarios(conexion);
       daoU.ValidarInicioSesion();
    }
    public void EliminarUsuario(){
-      DAOUsuarios daoU = new DAOUsuarios();
+      DAOUsuarios daoU = new DAOUsuarios(conexion);
       daoU.EliminarUsuario();
    }
    public void ActualizarContrasena(){
-      DAOUsuarios daoU = new DAOUsuarios();
-      daoUActualizarContrasena();
+      DAOUsuarios daoU = new DAOUsuarios(conexion);
+      daoU.ActualizarContrasena();
    }
+}

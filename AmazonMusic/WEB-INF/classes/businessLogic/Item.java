@@ -2,14 +2,14 @@ package businessLogic;
 
 public class Item{
    private String urlImagen;
-   private Float precio;
+   private Double precio;
    private String referencia;
    public Item(){
    }
    public String getUrlImagen(){
       return this.urlImagen;
    }
-   public Float getPrecio(){
+   public Double getPrecio(){
       return this.precio;
    }
    public String getReferencia(){
@@ -18,7 +18,7 @@ public class Item{
    public void setUrlImagen(String urlImagen){
       this.urlImagen = urlImagen;
    }
-   public void setPrecio(Float precio){
+   public void setPrecio(Double precio){
       this.precio = precio;
    }
    public void setReferencia(String referencia){

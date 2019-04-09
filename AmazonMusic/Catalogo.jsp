@@ -17,15 +17,28 @@
 			<img class=logo src="img/logoBlanco.png" />
 		</header>
 	<!-- ------------------------------------------------------------------ -->
-
+	<%@ page language="java" import="java.util.*" %>
+	<%@ page language="java" import="businessLogic.*" %>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@page isELIgnored="false" %>
 	<!-------------------------   CUERPO -------------------------------------->
 	<center>
 		<div>
 			<p> Bienvenido al mayor portal de venta de CDs online </p>
 			<form  method="POST" action="Controlador" class="Controlador" >
-				<input type="hidden" name="verCatalogo" value="1"><!-- campo hiden para que el controlador vea el atributo verCatalogo != null !-->
+				<input type="hidden" name="VerCatalogo" value="1"><!-- campo hiden para que el controlador vea el atributo verCatalogo != null !-->
 				<input class=boton type="submit" value="Ver catalogo">
 			</form>
+		</div>
+		<div>
+			<c:forEach var="i" catalogo="${request.catalogo}">
+				<% Cd itemCD = (Cd) i.value; %>
+				<p> <c:out value ="${itemCD.referencia}"/> </p>
+				<p> <c:out value ="${itemCD.precio}"/> </p>
+				<p> <c:out value ="${itemCD.titulo}"/> </p>
+				<p> <c:out value ="${itemCD.autor}"/> </p>
+				<p> <c:out value ="${itemCD.ano}"/> </p>
+			</c:forEach>
 		</div>
 	</center>
      

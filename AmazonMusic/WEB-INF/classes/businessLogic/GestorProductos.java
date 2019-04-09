@@ -2,7 +2,7 @@ package businessLogic;
 import database.FachadaDAO;
 import javax.servlet.*;
 import javax.servlet.http.*;
-
+import java.util.*;
 
 public class GestorProductos{
    private HttpServletRequest request;
@@ -14,7 +14,13 @@ public class GestorProductos{
       this.fdao = new FachadaDAO(request, response);
    }
    public void VerCatalogo(){
-      fdao.ObtenerProductos();
+      HashMap<String, Item> catalogo = fdao.ObtenerProductos();
+      request.setAttribute("catalogo", catalogo);
+      try{
+         RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
+         vista.forward(request,response);
+      }catch(Exception e){
+      }
    }
    public void VerProducto(){
       fdao.ObtenerProducto();
@@ -28,3 +34,4 @@ public class GestorProductos{
    public void ActualizarInventario(){
       fdao.ActualizarInventario();
    }
+}

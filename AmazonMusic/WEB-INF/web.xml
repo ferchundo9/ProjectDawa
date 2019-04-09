@@ -12,54 +12,39 @@
       Practicas DAW.
     </description>
 
-	<servlet>
-        <servlet-name>Formulario Post</servlet-name>
-        <servlet-class>pbi.formParametros</servlet-class>
-    </servlet>
-	<servlet>
-        <servlet-name>Crear Tienda</servlet-name>
-        <servlet-class>pbi.CrearTienda</servlet-class>
-    </servlet>
-	<servlet>
-        <servlet-name>Crear Carrito</servlet-name>
-        <servlet-class>pbi.CrearCarrito</servlet-class>
-    </servlet>
-	<servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>pbi.Login</servlet-class>
-    </servlet>
-	<servlet>
-        <servlet-name>Pagar</servlet-name>
-        <servlet-class>pbi.Pagar</servlet-class>
-    </servlet>
 	<context-param>
-        <param-name>Email</param-name>
-        <param-value>pedropicapiedra@gmail.com</param-value>
-    </context-param>
-    <context-param>
-        <param-name>Telefono</param-name>
-        <param-value>Teléfono:666666666</param-value>
-    </context-param>
+		<param-name>gestor</param-name>
+		<param-value>mysql</param-value>
+	</context-param>
+	<context-param>
+		<param-name>servidor</param-name>
+		<param-value>localhost</param-value>
+	</context-param>
+	<context-param>
+		<param-name>puerto</param-name>
+		<param-value>8080</param-value>
+	</context-param>
+	<context-param>
+		<param-name>baseDatos</param-name>
+		<param-value>projectdawa</param-value>
+	</context-param>
+	<context-param>
+		<param-name>usuario</param-name>
+		<param-value>usuariobase</param-value>
+	</context-param>
+	<context-param>
+		<param-name>password</param-name>
+		<param-value>pass</param-value>
+	</context-param>
 
-<servlet-mapping>
+	<servlet>
+        <servlet-name>Controlador Post</servlet-name>
+        <servlet-class>controllers.Controlador</servlet-class>
+    </servlet>
+	<servlet-mapping>
         <servlet-name>Formulario Post</servlet-name>
         <url-pattern>/Formulario</url-pattern>
     </servlet-mapping>
-	<servlet-mapping>
-        <servlet-name>Crear Tienda</servlet-name>
-        <url-pattern>/CrearTienda</url-pattern>
-    </servlet-mapping>
-	<servlet-mapping>
-        <servlet-name>Crear Carrito</servlet-name>
-        <url-pattern>/CrearCarrito</url-pattern>
-    </servlet-mapping>
-	<servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/Login</url-pattern>
-    </servlet-mapping>
-	<servlet-mapping>
-        <servlet-name>Pagar</servlet-name>
-        <url-pattern>/Pagar</url-pattern>
-    </servlet-mapping>
+
     
 </web-app>

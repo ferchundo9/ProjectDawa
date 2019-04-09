@@ -6,7 +6,7 @@ public class Cd extends Item{
    private String ano;
    
    public Cd(){
-      super();
+      
    }
    public String getTitulo(){
       return this.titulo;
