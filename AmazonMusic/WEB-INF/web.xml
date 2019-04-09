@@ -8,9 +8,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 	version="2.4">
     <display-name>Practicas DAW</display-name>
-    <description>
-      Practicas DAW.
-    </description>
+    <description>Practicas DAW.</description>
 
 	<context-param>
 		<param-name>gestor</param-name>
@@ -42,8 +40,8 @@
         <servlet-class>controllers.Controlador</servlet-class>
     </servlet>
 	<servlet-mapping>
-        <servlet-name>Formulario Post</servlet-name>
-        <url-pattern>/Formulario</url-pattern>
+        <servlet-name>Controlador Post</servlet-name>
+        <url-pattern>/Controlador</url-pattern>
     </servlet-mapping>
 
     
