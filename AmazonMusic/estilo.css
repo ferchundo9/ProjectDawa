@@ -90,6 +90,7 @@ nav img{
 
 .derecha{float: right;margin-right: 15px;}
 .centro{align-self: center; margin: auto;}
+.izquierda{float: left; margin-left: 15px;}
 
 
 nav span{
@@ -520,3 +521,49 @@ legend{font-size: 1.2em; font-weight: bold;}
 .cantidad{margin: 0px;text-align: center;}
 
 .linea{grid-column-start:1; grid-column-end: 6; background-color: black; height: 2px;}
+
+
+/* Formato para notificaciones */
+
+.notificacionFondo{
+	width: 100vw;
+	height: 100vh;
+	margin: 0px;
+	position: absolute;
+	z-index: 999999;
+	top:0;
+	left: 0;
+	background-color: rgb(0,0,0,0.55);
+}
+
+.cuadroNotificacion{
+	width:31vw;
+	height: 20vh;
+	top:40vh;
+	left: 30vw;
+	margin: 0px;
+	position: absolute;
+	z-index: 999999;
+	background-color: white;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.cuadroNotificacion button{
+	width: 20vw;
+	height: 5vh;
+	border-radius: 5px;
+	border: 1px solid #C15609;
+	background-color: #E78D2F;
+	cursor: pointer;
+}
+
+.cuadroNotificacion button:hover{background-color: #C9741C;}
+
+.cuadroNotificacion img{
+	width: 7vw;
+	float: left;
+	display: block;
+}
