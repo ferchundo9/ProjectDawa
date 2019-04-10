@@ -15,7 +15,7 @@ public class FachadaDAO{
       this.request = request;
       this.response = response;
       this.context = request.getServletContext();
-      /*try {
+      try {
          Properties credenciales = new Properties();
          String gestor = context.getInitParameter("gestor");
          String servidor = context.getInitParameter("servidor");
@@ -31,8 +31,6 @@ public class FachadaDAO{
          try{ vista.forward(request,response);
          }catch(Exception er){}
       }
-      */
-      this.conexion = null;
    }
    //////////////////////////////////////////
    public HashMap<String, Item> ObtenerProductos(){
