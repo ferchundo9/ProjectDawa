@@ -22,9 +22,14 @@ public class FachadaDAO{
          String puerto = context.getInitParameter("puerto");
          String baseDatos = context.getInitParameter("baseDatos");
 
-         credenciales.setProperty("usuario", context.getInitParameter("usuario"););
-         credenciales.setProperty("password", context.getInitParameter("password"););
+         credenciales.setProperty("user", context.getInitParameter("usuario"));
+         credenciales.setProperty("password", context.getInitParameter("password"));
+
          this.conexion = java.sql.DriverManager.getConnection("jdbc:" + gestor + "://" + servidor + ":" + puerto + "/" + baseDatos , credenciales);
+      }catch(Exception e){
+         RequestDispatcher  vista = request.getRequestDispatcher("index.html");
+         try{ vista.forward(request,response);
+         }catch(Exception er){}
       }
    }
    //////////////////////////////////////////

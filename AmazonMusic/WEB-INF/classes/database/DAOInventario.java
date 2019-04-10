@@ -8,34 +8,31 @@ public class DAOInventario{
    private ResultSet consulta;
    public DAOInventario(java.sql.Connection conexion){
       this.conexion = conexion;
-      this.consulta = null;
+
       this.sentencia = null;
    }
    
    public HashMap<String, Item> ObtenerProductos(){
       HashMap<String, Item> catalogo = new HashMap<>();
       try {
-            sentencia = conexion.prepareStatement("SELECT * FROM cd " + 
-                                                  "LEFT JOIN item " +
-                                                  "ON cd.Referencia = item.Referencia;");
+            sentencia = conexion.prepareStatement("SELECT * FROM cd LEFT JOIN item ON cd.Referencia = item.Referencia");
             consulta = sentencia.executeQuery();
             while (consulta.next()) {
                 Cd cd1 = new Cd();
                 cd1.setReferencia(consulta.getString("Referencia"));
-                cd1.setPrecio(consulta.getFloat("Precio"));
-                cd1.setImagen(consulta.getString("imagen"));
+                cd1.setPrecio(consulta.getDouble("Precio"));
+                cd1.setUrlImagen(consulta.getString("imagen"));
                 cd1.setTitulo(consulta.getString("Titulo"));
                 cd1.setAutor(consulta.getString("Autor"));
                 cd1.setAno(consulta.getString("Ano"));
                 catalogo.put(cd1.getReferencia(),(Item) cd1);
             }
+            
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
         } finally {
             try {
-                stm.close();
+                sentencia.close();
             } catch (SQLException e) {
                 System.out.println("Imposible cerrar cursores");
             }
