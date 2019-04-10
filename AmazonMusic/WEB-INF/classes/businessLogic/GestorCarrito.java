@@ -2,6 +2,7 @@ package businessLogic;
 import database.FachadaDAO;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import java.util.*;
 
 
 public class GestorCarrito{
@@ -17,7 +18,20 @@ public class GestorCarrito{
       //IMPLEMENTACION
    }
    public void AnadirAlCarrito(){
-      //IMPLEMENTACION
+      try{
+         if(request.getSession(false) != null){
+         
+            request.setAttribute("itemAnadido", "correcto");
+                  
+            HashMap<String, Item> catalogo = fdao.ObtenerProductos();
+            request.setAttribute("catalogo", catalogo);
+            RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
+            vista.forward(request,response);
+         }else{
+            RequestDispatcher  vista = request.getRequestDispatcher("login.jsp");
+            vista.forward(request,response);
+         }
+      }catch(Exception e){}
    }
    public void EliminarDelCarrito(){
       //IMPLEMENTACION

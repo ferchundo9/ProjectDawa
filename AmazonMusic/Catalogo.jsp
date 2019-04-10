@@ -45,7 +45,7 @@
 				<!-- ..................................... -->
 				
 				<!-- SI EL USUARIO NO SE HA LOGUEADO -->
-				<c:if test="${not empty sessionScope.usuarioN}">
+				<c:if test="${empty sessionScope.usuarioSesion}">
 					 <!-- iniciar sesion que redirige a login.html -->
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type="hidden" name="goIniciarSesion" value=1></input>
@@ -59,13 +59,13 @@
 					<!-- ..................................... -->
 				</c:if> 
 				<!-- SI EL USUARIO YA INICIO SESION -->
-				<c:if test="${empty sessionScope.usuarioN}">
+				<c:if test="${not empty sessionScope.usuarioSesion}">
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type="hidden" name="Registrarse" value=1></input>
 						<button class="botonInvisible derecha" ><span>Ver Carrito</span></button>
 					</form>
 					<form method="POST" action="Controlador" class="Controlador">
-						<input type="hidden" name="Registrarse" value=1></input>
+						<input type="hidden" name="CerrarSesion" value=1></input>
 						<button class="botonInvisible derecha" ><span>Cerrar Sesion</span></button>
 					</form>
 				</c:if>

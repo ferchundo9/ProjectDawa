@@ -69,7 +69,7 @@
 				<!-- ..................................... -->
 				
 				<!-- SI EL USUARIO NO SE HA LOGUEADO -->
-				<c:if test="${not empty sessionScope.usuarioN}">
+				<c:if test="${empty sessionScope.usuarioSesion}">
 					 <!-- iniciar sesion que redirige a login.html -->
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type="hidden" name="goIniciarSesion" value=1></input>
@@ -83,13 +83,13 @@
 					<!-- ..................................... -->
 				</c:if> 
 				<!-- SI EL USUARIO YA INICIO SESION -->
-				<c:if test="${empty sessionScope.usuarioN}">
+				<c:if test="${not empty sessionScope.usuarioSesion}">
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type="hidden" name="Registrarse" value=1></input>
 						<button class="botonInvisible derecha" ><span>Ver Carrito</span></button>
 					</form>
 					<form method="POST" action="Controlador" class="Controlador">
-						<input type="hidden" name="Registrarse" value=1></input>
+						<input type="hidden" name="CerrarSesion" value=1></input>
 						<button class="botonInvisible derecha" ><span>Cerrar Sesion</span></button>
 					</form>
 				</c:if>
@@ -133,15 +133,21 @@
 			</div>	
 			<!--------------------------->
 			<!-- cuadro de la derecha para añadir al carrito --------->
-			<form method="POST" action="Controlador" class="Controlador">
 				<div class=cuadroCompra >
-					<!-- Aqui poner campos ocultos con los datos del cd para el formulario jeje -->
 					<p class=precioItem> EUR ${producto.precio}€ </p>
 					<img class=imagenEnvio src="./img/imagenEnvio.PNG" />
 					<p class=enStock> En Stock </p>
-					<label> Cantidad : <input class=cantidad type=number /></label>
-					<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
-					<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png" /> Comprar ya</button>
+					<!-- Formulario para añadir al carrito  -->
+					<form method="POST" action="Controlador" class="Controlador">
+						<input type="hidden" name="AnadirAlCarrito" value=1></input>
+						<label> Cantidad : <input class=cantidad type=number /></label>
+						<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
+					</form>
+					<!-- Formulario para añadir al carrito y ir al carrito directamente --->
+					<form method="POST" action="Controlador" class="Controlador">
+						<input type="hidden" name="ComprarYa" value=1></input>
+						<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png" /> Comprar ya</button>
+					</form>
 				</div>
 			</form>
 			<!-------------------------->

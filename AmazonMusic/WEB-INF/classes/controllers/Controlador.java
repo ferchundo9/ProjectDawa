@@ -52,7 +52,9 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("Registrarse") != null){
          this.Registrarse();
       }
-      
+      if(request.getParameter("CerrarSesion") != null){
+         this.CerrarSesion();
+      }
       if(request.getParameter("IntroducirProducto") != null){
          this.IntroducirProducto();
       }
@@ -135,20 +137,35 @@ public class Controlador extends HttpServlet{
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.IniciarSesion();
      }
+     /*Metodo para eliminar la sesion actual que se creo cuando el usuario se logueo*/
+     public void CerrarSesion(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.CerrarSesion();
+     }
      
      //..................................................................................//
      
-     public void VerCarrito(){
-         HelperCarrito hc = new HelperCarrito(request, response);
-         hc.VerCarrito();
-     }
-     public void AdministrarTienda(){
-         //LLEVA A LA VISTA DE ADMINISTRADOR
-     }
+     
+     //---------------------------------------------------------------------------------//
+     //-----------------METODOS DE GESTION DEL CARRITO- --------------------------------//
+     /*Metodo que añade el item seleccionado al carrito del usuario; tiene que comprobar 
+     si el usuario ha iniciado sesion; si lo ha hecho añade el item al carrito y lo 
+     redirige al catalogo; añade un atributo "itemAnadido" con valor "correcto" o "incorrecto"
+     para mostrar un mensaje al usuario.*/
      public void AnadirAlCarrito(){
          HelperCarrito hc = new HelperCarrito(request, response);
          hc.AnadirAlCarrito();
      }
+      public void VerCarrito(){
+         HelperCarrito hc = new HelperCarrito(request, response);
+         hc.VerCarrito();
+     }
+     //.................................................................................//
+    
+     public void AdministrarTienda(){
+         //LLEVA A LA VISTA DE ADMINISTRADOR
+     }
+     
      public void ConfirmarCompra(){
          HelperCarrito hc = new HelperCarrito(request, response);
          hc.ConfirmarCompra();

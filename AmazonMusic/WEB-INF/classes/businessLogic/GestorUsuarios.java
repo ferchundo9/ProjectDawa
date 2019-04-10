@@ -38,6 +38,21 @@ public class GestorUsuarios{
          }
         }catch(Exception e){}
    }
+   
+   public void CerrarSesion(){
+      try{
+          HttpSession session = request.getSession(true);
+          session.invalidate();
+          
+          //obtencion de datos del catalogo 
+           HashMap<String, Item> catalogo = fdao.ObtenerProductos();
+           request.setAttribute("catalogo", catalogo);
+            
+           RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
+           vista.forward(request,response);
+          
+      }catch(Exception e){}
+   }
    public void MostrarUsuarios(){
       fdao.ObtenerUsuarios();
    }

@@ -37,6 +37,10 @@ public class FachadaModelo{
       GestorUsuarios gu = new GestorUsuarios(request,response);
       gu.IniciarSesion();
    }
+   public void CerrarSesion(){
+      GestorUsuarios gu = new GestorUsuarios(request,response);
+      gu.CerrarSesion();
+   }
    public void MostrarUsuarios(){
       GestorUsuarios gu = new GestorUsuarios(request,response);
       gu.MostrarUsuarios();

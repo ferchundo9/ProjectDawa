@@ -19,6 +19,10 @@ public class HelperUsuarios{
    public void IniciarSesion(){
       fm.IniciarSesion();
    }
+   
+   public void CerrarSesion(){
+      fm.CerrarSesion();
+   }
    public void MostrarUsuarios(){
       fm.MostrarUsuarios();
    }
