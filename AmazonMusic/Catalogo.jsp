@@ -46,7 +46,7 @@
 				
 				 <!-- iniciar sesion que redirige a login.html -->
 				<form method="POST" action="Controlador" class="Controlador">
-					<input type="hidden" name="IniciarSesion" value=1></input>
+					<input type="hidden" name="goIniciarSesion" value=1></input>
 					<button class="botonInvisible derecha" ><span>Iniciar Sesion</span></button>
 				</form>
 				<!-- ..................................... -->
@@ -56,17 +56,20 @@
 				</form>
 				<!-- ..................................... -->
 				
+				<!-- Formuario para filtrar productos del catalogo -->
 				<form class=form method="POST" action="Controlador" class="Controlador">
 					<div id=boton class=opcionesBusqueda><img src="./img/iconoDesplegar.png" />Opciones busqueda </div>
-					<input type="text" name="nombreCD">
-					
+					<input height="5vh" type="text" name="nombreCD">
+					<input type="hidden" name="FiltrarProductos" value=1></input>
 					<button type="submit"> <img src="./img/iconoBuscar.png" /> </button>
 					<div id=target class=otrasOpciones>
-						<label><p>Precio Máximo</p><input type="number" name="precioMax"></label>
+						<label><p>Precio Máximo</p><input type="number" name="precioMaxCD"></label>
 						<label><p>Autor</p><input type="text" name="autorCD"></label>
-						<label><p>Año</p><input type="number" name="añoCD"></label>
+						<label><p>Año</p><input type="number" name="anoCD"></label>
 					</div>
 				</form>
+				<!-- ............................................... -->
+				
 			</nav>
 		</header>
 	<!--....................................................................-->

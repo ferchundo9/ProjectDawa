@@ -32,8 +32,15 @@ public class GestorProductos{
       }
    }
    public void FiltrarProductos(){
-      fdao.ObtenerProductosFiltrados();
+    HashMap<String, Item> catalogo = fdao.ObtenerProductosFiltrados();
+      request.setAttribute("catalogo", catalogo);
+      try{
+         RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
+         vista.forward(request,response);
+      }catch(Exception e){
+      }
    }
+   
    public void IntroducirProducto(){
       fdao.IntroducirProducto();
    }

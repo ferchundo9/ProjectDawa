@@ -12,8 +12,18 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		
     </head>
-	<!-- ------------------------------------------------------------------ -->
+	<!-- .................................................................. -->
+
+	<!-- Codificacion en UTF-8 con Tomcat -->
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<!--................................  -->
 	
+	<!-- Librerias para manejo de datos del servlet --------------------------->
+	<%@ page language="java" import="java.util.*" %>
+	<%@ page language="java" import="businessLogic.*" %>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@page isELIgnored="false" %>
+	<!-- .....................................................................-->
 	
     <body class=bodyLogin>
 	<!-- ---------------------   ENCABEZADO  ------------------------------ -->
@@ -31,13 +41,22 @@
 	<center >
 		<div class=iniciarSesion>
 			<h2>Iniciar sesión</h2>
-			<p>Dirección de e-mail o número de teléfono móvil </p>
-			<input class=input  type=email></input>
-			<p>Contraseña</p>
-			<input class=input type=password></input>
-			<input class=botonLogin type=submit value="Iniciar sesión"></input>
+			<form method="POST" action="Controlador" class="Controlador">
+				<p>Dirección de e-mail o número de teléfono móvil </p>
+				<input class=input  type=email name="emailLogin" ></input>
+				<p>Contraseña</p>
+				<input class=input type=password name="passwordLogin" ></input>
+				<input type="hidden" name="IniciarSesion" value=1></input>
+				<input class=botonLogin type=submit value="Iniciar sesión"></input>
+			</form>
 			<p class=nuevo>¿Eres nuevo en Amazon Music?</p>
-			<input class=botonCrear type=submit value="Crea tu cuenta de AmazonMusic"</p>
+			<form method=POST action=Controlador class=Controlador>
+				<input type="hidden" name="Registrarse" value=1></input>
+				<input class=botonCrear type=submit value="Crea tu cuenta de AmazonMusic"</p>
+			</form>
+			<c:if test="${login == 'incorrecto'}">
+				<p > No existe ninguna cuenta con esos datos</p>
+			</c:if>
 		</div>
 	</center>
     </body>

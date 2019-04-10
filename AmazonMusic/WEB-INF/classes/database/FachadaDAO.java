@@ -48,9 +48,9 @@ public class FachadaDAO{
          it.setReferencia(referencia);
       return it;
    }
-   public void ObtenerProductosFiltrados(){
+   public HashMap<String, Item> ObtenerProductosFiltrados(){
       DAOInventario daoI = new DAOInventario(conexion);
-      daoI.ObtenerProductosFiltrados();
+      return daoI.ObtenerProductosFiltrados();
    }
    public void IntroducirProducto(){
       DAOInventario daoI = new DAOInventario(conexion);
@@ -74,9 +74,9 @@ public class FachadaDAO{
       DAOUsuarios daoU = new DAOUsuarios(conexion);
       daoU.ObtenerUsuarios();
    }
-   public void ValidarInicioSesion(){
+   public boolean ValidarInicioSesion(String email, String password){
       DAOUsuarios daoU = new DAOUsuarios(conexion);
-      daoU.ValidarInicioSesion();
+      return daoU.ValidarInicioSesion(email, password);
    }
    public void EliminarUsuario(){
       DAOUsuarios daoU = new DAOUsuarios(conexion);

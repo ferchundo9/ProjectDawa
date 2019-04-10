@@ -17,8 +17,8 @@ public class DAOUsuarios{
    public void ObtenerUsuarios(){
    
    }
-   public void ValidarInicioSesion(){
-      
+   public boolean ValidarInicioSesion(String email, String password){
+      return (email.equals("carlitos@carlitos.com") && password.equals("carlitos"));
    }
    public void EliminarUsuario(){
       
