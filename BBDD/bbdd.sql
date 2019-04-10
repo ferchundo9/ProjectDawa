@@ -79,6 +79,7 @@ DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `Referencia` int(11) NOT NULL,
   `Precio` decimal(18,2) DEFAULT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Referencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -89,7 +90,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,3.50),(2,3.50),(3,4.60),(4,13.20);
+INSERT INTO `item` VALUES (1,3.50,NULL),(2,3.50,NULL),(3,4.60,NULL),(4,13.20,NULL);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,4 +243,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-10 17:51:38
+-- Dump completed on 2019-04-10 17:57:00
