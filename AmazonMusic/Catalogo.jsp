@@ -18,6 +18,14 @@
 					});
 			});
 		</script>
+		<script>
+		$(document).ready(function(){
+            /* Si se pulsa sobre el div "button" */
+            $("#botonNotificacion").click(function(){
+                $("#notificacionFondo").hide();
+            });
+        });
+		</script>
     </head>
 	<!-- .................................................................. -->
 	
@@ -118,5 +126,14 @@
 		<!-- ...................................................... -->
 	</center>
      
+	<c:if test="${not empty itemAnadido && itemAnadido=='correcto'}">
+		<div id=notificacionFondo class=notificacionFondo>
+			<div class=cuadroNotificacion>
+				<img src="./img/iconoExito.png">
+				<p> El item se ha añadido con éxito al carrito </p>
+				<button id="botonNotificacion"> Aceptar </button>
+			</div>
+		</div>
+	</c:if>
     </body>
 </html>
