@@ -16,11 +16,11 @@
 	</context-param>
 	<context-param>
 		<param-name>servidor</param-name>
-		<param-value>localhost</param-value>
+		<param-value>amazonmusic.cts9kyi5zluv.eu-west-3.rds.amazonaws.com</param-value>
 	</context-param>
 	<context-param>
 		<param-name>puerto</param-name>
-		<param-value>8080</param-value>
+		<param-value>3306</param-value>
 	</context-param>
 	<context-param>
 		<param-name>baseDatos</param-name>
@@ -28,11 +28,11 @@
 	</context-param>
 	<context-param>
 		<param-name>usuario</param-name>
-		<param-value>usuariobase</param-value>
+		<param-value>AmazonMusic</param-value>
 	</context-param>
 	<context-param>
 		<param-name>password</param-name>
-		<param-value>pass</param-value>
+		<param-value>AmazonMusic</param-value>
 	</context-param>
 
 	<servlet>
