@@ -44,22 +44,37 @@
 				</form>
 				<!-- ..................................... -->
 				
-				 <!-- iniciar sesion que redirige a login.html -->
-				<form method="POST" action="Controlador" class="Controlador">
-					<input type="hidden" name="goIniciarSesion" value=1></input>
-					<button class="botonInvisible derecha" ><span>Iniciar Sesion</span></button>
-				</form>
-				<!-- ..................................... -->
-				<form method="POST" action="Controlador" class="Controlador">
-					<input type="hidden" name="Registrarse" value=1></input>
-					<button class="botonInvisible derecha" ><span>Registrarse</span></button>
-				</form>
+				<!-- SI EL USUARIO NO SE HA LOGUEADO -->
+				<c:if test="${not empty sessionScope.usuarioN}">
+					 <!-- iniciar sesion que redirige a login.html -->
+					<form method="POST" action="Controlador" class="Controlador">
+						<input type="hidden" name="goIniciarSesion" value=1></input>
+						<button class="botonInvisible derecha" ><span>Iniciar Sesion</span></button>
+					</form>
+					<!-- ..................................... -->
+					<form method="POST" action="Controlador" class="Controlador">
+						<input type="hidden" name="Registrarse" value=1></input>
+						<button class="botonInvisible derecha" ><span>Registrarse</span></button>
+					</form>
+					<!-- ..................................... -->
+				</c:if> 
+				<!-- SI EL USUARIO YA INICIO SESION -->
+				<c:if test="${empty sessionScope.usuarioN}">
+					<form method="POST" action="Controlador" class="Controlador">
+						<input type="hidden" name="Registrarse" value=1></input>
+						<button class="botonInvisible derecha" ><span>Ver Carrito</span></button>
+					</form>
+					<form method="POST" action="Controlador" class="Controlador">
+						<input type="hidden" name="Registrarse" value=1></input>
+						<button class="botonInvisible derecha" ><span>Cerrar Sesion</span></button>
+					</form>
+				</c:if>
 				<!-- ..................................... -->
 				
 				<!-- Formuario para filtrar productos del catalogo -->
 				<form class=form method="POST" action="Controlador" class="Controlador">
 					<div id=boton class=opcionesBusqueda><img src="./img/iconoDesplegar.png" />Opciones busqueda </div>
-					<input height="5vh" type="text" name="nombreCD">
+					<input class="barraBusqueda" type="text" name="nombreCD">
 					<input type="hidden" name="FiltrarProductos" value=1></input>
 					<button type="submit"> <img src="./img/iconoBuscar.png" /> </button>
 					<div id=target class=otrasOpciones>

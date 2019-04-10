@@ -88,7 +88,7 @@ nav img{
 	cursor: pointer;
 }
 
-.derecha{float: right;}
+.derecha{float: right;margin-right: 15px;}
 .centro{align-self: center; margin: auto;}
 
 
@@ -112,6 +112,8 @@ nav .form{
 	padding: -5vh;
 	margin-left:  15vw;
 }
+
+.barraBusqueda{height:5vh;}
 
 .opcionesBusqueda{
 	box-sizing: content-box;
