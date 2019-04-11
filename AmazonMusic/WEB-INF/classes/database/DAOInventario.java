@@ -68,6 +68,30 @@ public class DAOInventario{
            return null;
         }
         
+        public ArrayList<Valoracion> ObtenerValoraciones(String referencia){
+         ArrayList<Valoracion> valoraciones = new ArrayList<>();
+         try {
+            sentencia = conexion.prepareStatement("SELECT u.Nombre, v.valoracion, v.comentario FROM valoracion as v LEFT JOIN usuario as u ON v.email = u.email WHERE referencia=?");
+            sentencia.setInt(1, Integer.parseInt(referencia));
+            consulta = sentencia.executeQuery();
+            while (consulta.next()) {
+                Valoracion valoracion = new Valoracion();
+                valoracion.setCliente(consulta.getString("Nombre"));
+                valoracion.setComentario(consulta.getString("comentario"));
+                valoracion.setValoracion(consulta.getInt("valoracion"));
+                valoraciones.add(valoracion);
+            }
+           } catch (SQLException e) {
+           } finally {
+               try {
+                   sentencia.close();
+               } catch (SQLException e) {
+                   System.out.println("Imposible cerrar cursores");
+               }
+           }
+           return valoraciones;
+        }
+        
         public  HashMap<String, Item>  ObtenerProductosFiltrados(){
                 Cd cd1 = new Cd();
                 HashMap<String, Item> catalogo = new HashMap<>();
