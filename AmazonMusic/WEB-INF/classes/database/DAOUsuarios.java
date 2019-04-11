@@ -13,7 +13,7 @@ public class DAOUsuarios{
    }
    public boolean RegistrarUsuario(Cliente cliente){ 
       try {
-            sentencia = conexion.prepareStatement("INSERT INTO usuario VALUES('"+cliente.getNombre()+"', '"+cliente.getEmail() + "', '"+cliente.getContrasena()+"', '"+cliente.getDireccion()+"')");
+            sentencia = conexion.prepareStatement("INSERT INTO usuario VALUES('"+cliente.getNombre()+"', '"+cliente.getEmail() + "', MD5('"+cliente.getContrasena()+"'), '"+cliente.getDireccion()+"')");
             sentencia.executeUpdate();
             
             sentencia = conexion.prepareStatement("INSERT INTO tarjeta VALUES('"+cliente.getTarjeta().getNumero()+"', '"+cliente.getTarjeta().getVencimiento()+"')");
@@ -28,7 +28,21 @@ public class DAOUsuarios{
    
    }
    public boolean ValidarInicioSesion(String email, String password){
-      return (email.equals("carlitos@carlitos.com") && password.equals("carlitos"));
+      String contrasena;
+      try{
+         sentencia = conexion.prepareStatement("SELECT Contrasena FROM usuario WHERE Email=? AND Contrasena=MD5(?)");
+         sentencia.setString(1, email);
+         sentencia.setString(2, password);
+         
+         consulta = sentencia.executeQuery();
+         if  (consulta.next()) {
+            return true;
+         }else{
+            return false;
+         }
+  
+      }catch(Exception e){}
+      return false;
    }
    public void EliminarUsuario(){
       

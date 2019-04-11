@@ -22,7 +22,7 @@ public class GestorUsuarios{
          String password=request.getParameter("passwordLogin");
          if(fdao.ValidarInicioSesion(email,password)){
             HttpSession session = request.getSession(true);//usa la sesion si existe o ccrea una nueva sesion si no existe
-            session.setAttribute("usuarioSesion", "Carlitos");
+            session.setAttribute("usuarioSesion", email);
             
             //obtencion de datos del catalogo 
             HashMap<String, Item> catalogo = fdao.ObtenerProductos();
