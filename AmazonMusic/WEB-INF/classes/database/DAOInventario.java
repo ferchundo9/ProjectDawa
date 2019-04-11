@@ -25,6 +25,7 @@ public class DAOInventario{
                 cd1.setTitulo(consulta.getString("Titulo"));
                 cd1.setAutor(consulta.getString("Autor"));
                 cd1.setAno(consulta.getString("Ano"));
+                cd1.setValoracion(consulta.getInt("valoracion"));
                 catalogo.put(cd1.getReferencia(),(Item) cd1);
             }
             
@@ -41,10 +42,32 @@ public class DAOInventario{
         }
         
         public Item ObtenerProducto(String referencia){
-            Item producto = new Item();
-            producto.setReferencia(referencia);
-            return producto;
+            try {
+            sentencia = conexion.prepareStatement("SELECT * FROM cd LEFT JOIN item ON cd.Referencia = item.Referencia WHERE cd.Referencia=?");
+            sentencia.setInt(1, Integer.parseInt(referencia));
+            consulta = sentencia.executeQuery();
+            while (consulta.next()) {
+                Cd cd1 = new Cd();
+                cd1.setReferencia(consulta.getString("Referencia"));
+                cd1.setPrecio(consulta.getDouble("Precio"));
+                cd1.setUrlImagen(consulta.getString("imagen"));
+                cd1.setTitulo(consulta.getString("Titulo"));
+                cd1.setAutor(consulta.getString("Autor"));
+                cd1.setAno(consulta.getString("Ano"));
+                cd1.setValoracion(consulta.getInt("valoracion"));
+                return (Item) cd1;
+            }
+           } catch (SQLException e) {
+           } finally {
+               try {
+                   sentencia.close();
+               } catch (SQLException e) {
+                   System.out.println("Imposible cerrar cursores");
+               }
+           }
+           return null;
         }
+        
         public  HashMap<String, Item>  ObtenerProductosFiltrados(){
                 Cd cd1 = new Cd();
                 HashMap<String, Item> catalogo = new HashMap<>();

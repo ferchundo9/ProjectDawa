@@ -121,13 +121,12 @@
 			
 				<img class=imagenItemUd id="zoom" src="./img/cd1.jpg">
 				<p class=tituloItem> ${producto.titulo} </p>
-				<p>
-					<img class=estrellaItem src="./img/iconoEstrellaCompleta.png" />
-					<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
-					<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
-					<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
-					<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
-				</p>
+				<c:forEach begin="0" end="${producto.valoracion - 1}" var="i">
+						<img class=estrellaItem src="img/iconoEstrellaCompleta.png" />
+				</c:forEach>
+				<c:forEach begin="${producto.valoracion}" end="4" var="i">
+						<img class=estrellaItem src="img/iconoEstrellaVacia.png" />
+				</c:forEach>
 				<p class=autorItem > de ${producto.autor} (${producto.ano})</p>
 				<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR ${producto.precio}€ </span></p> 
 			</div>	

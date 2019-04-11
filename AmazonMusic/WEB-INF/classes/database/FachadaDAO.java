@@ -3,8 +3,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 import java.util.*;
-import businessLogic.Item;
-import businessLogic.Cd;
+import businessLogic.*;
 
 public class FachadaDAO{
    private java.sql.Connection conexion;
@@ -39,18 +38,12 @@ public class FachadaDAO{
    }
    public Item ObtenerProducto(String referencia){
       DAOInventario daoI = new DAOInventario(conexion);
-      //return daoI.ObtenerProducto(referencia);
-         Cd cd =new Cd();
-         cd.setTitulo("holiii");
-         cd.setAutor("Carlitoosososoosos");
-         cd.setAno("1999");
-         
-         Item it = (Item ) cd;
-         it.setPrecio(12.56);
-         it.setUrlImagen("cd1.jpg");
-         it.setReferencia(referencia);
-      return it;
+      return daoI.ObtenerProducto(referencia); 
    }
+   /*public ArrayList<Valoracion> ObtenerValoraciones(String referencia){
+      DAOInventario daoI = new DAOInventario(conexion);
+      return daoI.ObtenerValoraciones(referencia);
+   }*/
    public HashMap<String, Item> ObtenerProductosFiltrados(){
       DAOInventario daoI = new DAOInventario(conexion);
       return daoI.ObtenerProductosFiltrados();
