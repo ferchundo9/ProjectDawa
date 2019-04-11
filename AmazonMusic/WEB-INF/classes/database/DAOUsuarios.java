@@ -19,7 +19,7 @@ public class DAOUsuarios{
             sentencia = conexion.prepareStatement("INSERT INTO tarjeta VALUES('"+cliente.getTarjeta().getNumero()+"', '"+cliente.getTarjeta().getVencimiento()+"')");
             sentencia.executeUpdate();
             
-            sentencia = conexion.prepareStatement("INSERT INTO cliente VALUES('"+cliente.getEmail() + "', '"+cliente.getTarjeta().getNumero()+"')");
+            sentencia = conexion.prepareStatement("INSERT INTO cliente(email,tarjeta) VALUES('"+cliente.getEmail() + "', '"+cliente.getTarjeta().getNumero()+"')");
             sentencia.executeUpdate();
             return true;
       }catch(Exception e ){return false;}

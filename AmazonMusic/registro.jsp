@@ -38,17 +38,17 @@
 			<div class=iniciarSesion>
 				<h2>Crear cuenta</h2>
 				<p>Nombre</p>
-				<input class="registro input" type=text name="nombreRegistro" ></input>
+				<input class="registro input" type=text name="nombreRegistro" required ></input>
 				<p>Correo electrónico</p>
-				<input class="input registro" type=email name="emailRegistro" ></input>
+				<input class="input registro" type=email name="emailRegistro" required></input>
 				<p>Dirección de envio</p>
-				<input class="input registro" type=text  name="direccionRegistro"></input>
+				<input class="input registro" type=text  name="direccionRegistro" required></input>
 				<p>Contraseña</p>
-				<input class="input registro" type=password name="contrasenaRegistro"></input>
+				<input class="input registro" type=password name="contrasenaRegistro" required></input>
 				<fieldset>
 					<legend>Información de tarjeta</legend>
-					Numero: <input class="input registro"  name='numeroTarjeta' type='text' tabindex='1'>
-					Fecha vencimiento: <input class="input registro"  name='fechaTarjeta' type='date' tabindex='2'>
+					Numero: <input class="input registro"  name='numeroTarjeta' type='text' tabindex='1' required>
+					Fecha vencimiento: <input class="input registro"  name='fechaTarjeta' type='date' tabindex='2' required>
 				</fieldset>
 				<input type="hidden" name="CrearCuenta" value=1></input>
 				<c:if test="${registro == 'incorrecto'}">
