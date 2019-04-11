@@ -16,6 +16,8 @@ public class FachadaDAO{
       this.response = response;
       this.context = request.getServletContext();
       try {
+      
+      
          Properties credenciales = new Properties();
          String gestor = context.getInitParameter("gestor");
          String servidor = context.getInitParameter("servidor");
@@ -25,7 +27,8 @@ public class FachadaDAO{
          credenciales.setProperty("user", context.getInitParameter("usuario"));
          credenciales.setProperty("password", context.getInitParameter("password"));
 
-         this.conexion = java.sql.DriverManager.getConnection("jdbc:" + gestor + "://" + servidor + ":" + puerto + "/" + baseDatos , credenciales);
+         Class.forName("com.mysql.jdbc.Driver"); 
+         this.conexion = java.sql.DriverManager.getConnection("jdbc:" + gestor + "://" + servidor + ":" + puerto + "/" + baseDatos , "AmazonMusic", "AmazonMusic");
       }catch(Exception e){
          RequestDispatcher  vista = request.getRequestDispatcher("index.html");
          try{ vista.forward(request,response);
