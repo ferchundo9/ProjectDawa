@@ -25,6 +25,8 @@ public class GestorProductos{
    public void VerProducto(){
       Item producto = fdao.ObtenerProducto(request.getParameter("Referencia"));
       request.setAttribute("producto", producto);
+      //ArrayList<Valoracion> valoraciones = fdao.ObtenerValoraciones(request.getParameter("Referencia"));
+      //request.setAttribute("valoraciones", valoraciones);
       try{
          RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
          vista.forward(request,response);

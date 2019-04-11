@@ -106,14 +106,14 @@
 					<img class=imagenItem src="./img/cd1.jpg">
 					<p class=titulo> ${entry.value.titulo} </p>
 					<p class=autor> de ${entry.value.autor}(${entry.value.ano})</p>
-					<!-- Falta asociar una valoracion al item -->
-					<img class=estrella src="img/iconoEstrellaCompleta.png" />
-					<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-					<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-					<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
-					<img class=estrella src="./img/iconoEstrellaCompleta.png"/>
+					<!-- Valoracion del item -->
+					<c:forEach begin="0" end="${entry.value.valoracion - 1}" var="i">
+						<img class=estrella src="img/iconoEstrellaCompleta.png" />
+					</c:forEach>
+					<c:forEach begin="1" end="${5 - entry.value.valoracion}" var="i">
+						<img class=estrella src="img/iconoEstrellaVacia.png" />
+					</c:forEach>
 					<p class=precio> ${entry.value.precio} € </p>
-					
 					<!-- Campos ocultos para enviar datos al servlet -->
 					<input type="hidden" name="VerProducto" value=1></input>
 					<input type="hidden" name="Referencia" value=${entry.value.referencia}></input>
