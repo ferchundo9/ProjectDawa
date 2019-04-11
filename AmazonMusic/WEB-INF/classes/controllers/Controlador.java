@@ -182,8 +182,13 @@ public class Controlador extends HttpServlet{
          hc.AnadirAlCarrito();
      }
       public void VerCarrito(){
-         HelperCarrito hc = new HelperCarrito(request, response);
-         hc.VerCarrito();
+         /*HelperCarrito hc = new HelperCarrito(request, response);
+         hc.VerCarrito();*/
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("carrito.jsp");
+            vista.forward(request,response);
+         }catch(Exception e){
+         }
      }
      //.................................................................................//
     

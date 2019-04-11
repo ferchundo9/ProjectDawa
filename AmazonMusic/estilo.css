@@ -484,6 +484,7 @@ legend{font-size: 1.2em; font-weight: bold;}
 
 .carritoGrid{
 	display: grid;
+	padding: 1vw;
 	background-color: white;
 	width: 95vw;
 	align-self: center;
@@ -491,9 +492,23 @@ legend{font-size: 1.2em; font-weight: bold;}
 	grid-template-columns: 70vw 25vw;
 }
 
-.tablaCarrito{
+.fondoBlanco{
 	display: grid;
-	grid-template-columns: 10vw 32vw 12vw 5vw 10vw;
+	background-color: white;
+	width: 95vw;
+	align-self: center;
+	margin: auto;
+}
+
+.block{
+	display: block;
+}
+
+.tablaCarrito{
+	width: 65vw;
+	float: left;
+	display: block;
+	grid-template-columns: 9vw 26vw 4vw 15vw 4vw ;
 	grid-gap: 1vw;
 	text-align: left;
 	padding: 10px;
@@ -503,7 +518,12 @@ legend{font-size: 1.2em; font-weight: bold;}
 	align-items: center;
 	margin: auto;
 }
-
+.tabla5Columnas{
+	display: grid;
+	grid-template-columns: 10vw 25vw 5vw 10vw 10vw 20vw;
+	float: left;
+	width: 90vw;
+}
 
 
 .c1{grid-column-start:1; grid-column-end: 1; display: block; float: left;max-height: 10vw;}
@@ -521,11 +541,12 @@ legend{font-size: 1.2em; font-weight: bold;}
 }
 
 
-.precio{color:#943221;margin: 0px;}
+.precio{color:#943221;margin: 0px;text-align: left;font-weight: bold;}
 .tituloCarrito{ font-weight: bold; color:#35759F; font-size: 1.3em;margin: 0px;}
 .cantidad{margin: 0px;text-align: center;}
+.precioDer{color:#943221;margin: 0px;font-weight: bold;}
 
-.linea{grid-column-start:1; grid-column-end: 6; background-color: black; height: 2px;}
+.linea{width: 70vw; display: block; float: left; color: #F2F2F2;}
 
 .eliminar{
 	width: 4vw;
@@ -543,6 +564,32 @@ legend{font-size: 1.2em; font-weight: bold;}
 }
 
 .imagenCarrito{	width: 10vw;}
+
+.cuadroDerecha{
+	display: block;
+	border-radius: 10px;
+	border: 1px solid #BABABA;
+	background-color: #E6E6E6;
+	float: right;
+	width: 17vw;
+	padding: 1vw;
+	box-sizing: content-box;
+	height: 26vh;
+	margin: 20px;
+}
+.cuadroDerecha h2{
+	font-size: 1.3em;
+}
+.botonLogin{
+	background-image: linear-gradient(#F8E4A9, #D8A132);
+	cursor: pointer;
+	border: 1px solid #9A7938;
+	margin-top: 3vh;
+	width: 18vw;
+	height: 5vh;
+	border-radius: 5px;
+}
+.botonLogin:hover{background-image: linear-gradient(#FACF7C, #BE8F2F);}
 
 /* Formato para notificaciones */
 
