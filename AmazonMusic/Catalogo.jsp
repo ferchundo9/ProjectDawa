@@ -103,7 +103,7 @@
 		<c:forEach items="${catalogo}" var="entry">
 			<div class=item>
 				<form method="POST" action="Controlador" class="Controlador">
-					<img class=imagenItem src="./img/cd1.jpg">
+					<img class=imagenItem src=./img/${entry.value.urlImagen}>
 					<p class=titulo> ${entry.value.titulo} </p>
 					<p class=autor> de ${entry.value.autor}(${entry.value.ano})</p>
 					<!-- Valoracion del item -->

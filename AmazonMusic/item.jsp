@@ -119,7 +119,7 @@
 			<!-- info del item en si -->
 			<div class=columna1>
 			
-				<img class=imagenItemUd id="zoom" src="./img/cd1.jpg">
+				<img class=imagenItemUd id="zoom" src=./img/${producto.urlImagen}>
 				<p class=tituloItem> ${producto.titulo} </p>
 				<c:forEach begin="0" end="${producto.valoracion - 1}" var="i">
 						<img class=estrellaItem src="img/iconoEstrellaCompleta.png" />
