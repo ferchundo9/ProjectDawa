@@ -16,7 +16,7 @@
 	</context-param>
 	<context-param>
 		<param-name>servidor</param-name>
-		<param-value>35.181.42.108</param-value>
+		<param-value>amazonmusic.cts9kyi5zluv.eu-west-3.rds.amazonaws.com</param-value>
 	</context-param>
 	<context-param>
 		<param-name>puerto</param-name>
