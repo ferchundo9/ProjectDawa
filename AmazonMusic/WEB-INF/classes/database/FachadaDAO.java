@@ -3,8 +3,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 import java.util.*;
-import businessLogic.Item;
-import businessLogic.Cd;
+import businessLogic.*;
+
 
 public class FachadaDAO{
    private java.sql.Connection conexion;
@@ -72,9 +72,9 @@ public class FachadaDAO{
       daoP.ConfirmarCompra();
    }
    //////////////////////////////////////////
-   public void RegistrarUsuario(){
+   public boolean RegistrarUsuario(Cliente cliente){
       DAOUsuarios daoU = new DAOUsuarios(conexion);
-      daoU.RegistrarUsuario();
+      return daoU.RegistrarUsuario(cliente);
    }
    public void ObtenerUsuarios(){
       DAOUsuarios daoU = new DAOUsuarios(conexion);
