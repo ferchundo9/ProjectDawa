@@ -158,31 +158,28 @@
 				<hr/>
 				<h2> Opiniones de clientes</h2>
 				<!----- Comentario Individual -------->
-				<div class=opinion>
+				<div class=comentarios>
+				<hr/>
+				<h2> Opiniones de clientes</h2>
+				<!----- Comentario Individual -------->
+				<c:forEach items="${valoraciones}" var="val">
+					<div class=opinion>
 					
-					<p > <img src="./img/iconoUsuario.png" /> <span class=usuario> Raquel Vilas </span></p>
-					<p>
-						<img class=estrellaItem src="./img/iconoEstrellaCompleta.png" />
-						<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
-						<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
-						<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
-						<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
-					</p>
-					<p class=texto> Muy buen CD llego a tiempo jjejejejeje super contenta flipas y todo genial por aca queen lo mejor pero daddyyanke tambn esta guai que flipas </p>
-				</div>
+						<p > <img src="./img/iconoUsuario.png" /> <span class=usuario> ${val.cliente} </span></p>
+						<p>
+							<c:forEach begin="0" end="${val.valoracion - 1}" var="i">
+								<img class=estrellaItem src="img/iconoEstrellaCompleta.png" />
+							</c:forEach>
+							<c:forEach begin="${val.valoracion}" end="4" var="i">
+								<img class=estrellaItem src="img/iconoEstrellaVacia.png" />
+							</c:forEach>
+						</p>
+					<p class=texto> ${val.comentario}  </p>	
+					</div>
+				</c:forEach>
 				
-				<div class=opinion>
-					
-					<p > <img src="./img/iconoUsuario.png" /> <span class=usuario> Carlitos </span></p>
-					<p>
-						<img class=estrellaItem src="./img/iconoEstrellaCompleta.png" />
-						<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
-						<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
-						<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
-						<img class=estrellaItem src="./img/iconoEstrellaCompleta.png"/>
-					</p>
-					<p class=texto> kva vaya miedrjahGshajgakjhwgedjhgqwhejdbjasbvhkgqewgfdmbjs,hkwjgewvdbnsahvebdnshvfnbac dsnvn </p>
-				</div>
+
+			</div>
 			</div>
 	</div>
 	
