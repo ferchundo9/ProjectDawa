@@ -2,7 +2,7 @@ package controllers;
 import businessLogic.FachadaModelo;
 import javax.servlet.*;
 import javax.servlet.http.*;
-
+import businessLogic.*;
 
 public class HelperUsuarios{
    private HttpServletRequest request;
@@ -18,6 +18,10 @@ public class HelperUsuarios{
    }
    public void IniciarSesion(){
       fm.IniciarSesion();
+   }
+   
+   public void CrearCuenta(){
+      fm.CrearCuenta();
    }
    
    public void CerrarSesion(){

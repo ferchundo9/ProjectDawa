@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.*;
 import businessLogic.*;
 
+
 public class FachadaDAO{
    private java.sql.Connection conexion;
    private HttpServletRequest request;
@@ -65,9 +66,9 @@ public class FachadaDAO{
       daoP.ConfirmarCompra();
    }
    //////////////////////////////////////////
-   public void RegistrarUsuario(){
+   public boolean RegistrarUsuario(Cliente cliente){
       DAOUsuarios daoU = new DAOUsuarios(conexion);
-      daoU.RegistrarUsuario();
+      return daoU.RegistrarUsuario(cliente);
    }
    public void ObtenerUsuarios(){
       DAOUsuarios daoU = new DAOUsuarios(conexion);

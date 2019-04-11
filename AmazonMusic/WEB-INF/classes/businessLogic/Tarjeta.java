@@ -5,6 +5,10 @@ public class Tarjeta{
    private String vencimiento;
    public Tarjeta(){
    }
+   public Tarjeta(String numero, String vencimiento){
+      this.numero = numero;
+      this.vencimiento = vencimiento;
+   }
    public String getNumero(){
       return this.numero;
    }

@@ -52,6 +52,10 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("Registrarse") != null){
          this.Registrarse();
       }
+      if(request.getParameter("CrearCuenta") != null){
+         this.CrearCuenta();
+      }
+     
       if(request.getParameter("CerrarSesion") != null){
          this.CerrarSesion();
       }
@@ -93,7 +97,7 @@ public class Controlador extends HttpServlet{
      //idem para el registro (no hace falta enviarle ningun dato)
      public void Registrarse(){
          try{
-            RequestDispatcher  vista = request.getRequestDispatcher("registro.html");
+            RequestDispatcher  vista = request.getRequestDispatcher("registro.jsp");
             vista.forward(request,response);
          }catch(Exception e){
          }  
@@ -141,6 +145,15 @@ public class Controlador extends HttpServlet{
      public void CerrarSesion(){
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.CerrarSesion();
+     }
+     /*Metodo que inserta los datos del usuario en la BD. Comprueba que el email no este ya
+     registrado y redirige al catalogo si crea la cuenta con exito (con la sesion ya iniciada)
+     o vuelve al registro si no se pudo registrar.
+     Entradas: "nombreRegistro","emailRegistro","direccionRegistro","numeroTarjeta","fechaTarjeta"
+     Salidas: "registro" que puede ser "correcto" o "incorrecto" si se ha creado bien la cuenta.*/
+     public void CrearCuenta(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.CrearCuenta();
      }
      
      //..................................................................................//

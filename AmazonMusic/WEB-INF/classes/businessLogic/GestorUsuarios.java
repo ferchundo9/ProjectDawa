@@ -15,7 +15,6 @@ public class GestorUsuarios{
       this.fdao = new FachadaDAO(request, response);
    }
    public void ConfirmarRegistro(){
-      fdao.RegistrarUsuario();
    }
    public void IniciarSesion(){
       try{
@@ -51,6 +50,36 @@ public class GestorUsuarios{
            RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
            vista.forward(request,response);
           
+      }catch(Exception e){}
+   }
+   
+   public void CrearCuenta(){
+      try{
+         String nombreUsuario = request.getParameter("nombreRegistro");
+         String email = request.getParameter("emailRegistro");
+         String direccion = request.getParameter("direccionRegistro");
+         String contrasena = request.getParameter("contrasenaRegistro");
+         String numTarjeta = request.getParameter("numeroTarjeta");
+         String fechaVencimiento = request.getParameter("fechaTarjeta");
+         Cliente nuevoCliente = new Cliente(nombreUsuario, email, direccion, contrasena, numTarjeta, fechaVencimiento);
+         if(fdao.RegistrarUsuario(nuevoCliente)){
+            //Iniciar sesion con la nueva cuenta
+            HttpSession session = request.getSession(true);//usa la sesion si existe o ccrea una nueva sesion si no existe
+            session.setAttribute("usuarioSesion", nombreUsuario);
+            
+            //obtencion de datos del catalogo 
+            HashMap<String, Item> catalogo = fdao.ObtenerProductos();
+            request.setAttribute("catalogo", catalogo);
+            
+            RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
+            vista.forward(request,response);
+            
+         }else{
+            request.setAttribute("registro", "incorrecto");
+            
+            RequestDispatcher  vista = request.getRequestDispatcher("registro.jsp");
+            vista.forward(request,response);
+         }
       }catch(Exception e){}
    }
    public void MostrarUsuarios(){
