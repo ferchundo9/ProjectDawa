@@ -11,7 +11,7 @@ public class DAOInventario{
 
       this.sentencia = null;
    }
-   
+
    public HashMap<String, Item> ObtenerProductos(){
       HashMap<String, Item> catalogo = new HashMap<>();
       try {
@@ -28,7 +28,7 @@ public class DAOInventario{
                 cd1.setValoracion(consulta.getInt("valoracion"));
                 catalogo.put(cd1.getReferencia(),(Item) cd1);
             }
-            
+
 
         } catch (SQLException e) {
         } finally {
@@ -40,7 +40,7 @@ public class DAOInventario{
         }
         return catalogo;
         }
-        
+
         public Item ObtenerProducto(String referencia){
             try {
             sentencia = conexion.prepareStatement("SELECT * FROM cd LEFT JOIN item ON cd.Referencia = item.Referencia WHERE cd.Referencia=?");
@@ -67,10 +67,11 @@ public class DAOInventario{
            }
            return null;
         }
-        
+
+
         //################################## OBTENER PRODUCTOS FILTRADOS ###########################################3
         public  HashMap<String, Item>  ObtenerProductosFiltrados(String precioMax,String autor,String ano){
-                HashMap<String, Item> catalogo = new HashMap<>();       
+                HashMap<String, Item> catalogo = new HashMap<>();
                  try{
                      if(precioMax==null || precioMax==""){
                         precioMax="9999999999999999";
@@ -86,7 +87,7 @@ public class DAOInventario{
                      sentencia.setString(2,autor);
                      sentencia.setDouble(3,Double.valueOf(precioMax.replace(",",".")));
                      consulta=sentencia.executeQuery();
-                     
+
                      while (consulta.next()) {
                          Item item1;
                          Cd cd1 = new Cd();
@@ -99,19 +100,45 @@ public class DAOInventario{
                          cd1.setValoracion(consulta.getInt("valoracion"));
                          item1=(Item) cd1;
                          catalogo.put(cd1.getReferencia(),item1);
-                     }                  
-                 
-                 }catch(Exception e){
-                  
-                 }
-                 
-                 return catalogo;   
+                     }
+                   }catch(Exception e){
+
+                   }
+
+                   return catalogo;
+          }
+
+        public ArrayList<Valoracion> ObtenerValoraciones(String referencia){
+         ArrayList<Valoracion> valoraciones = new ArrayList<>();
+         try {
+            sentencia = conexion.prepareStatement("SELECT u.Nombre, v.valoracion, v.comentario FROM valoracion as v LEFT JOIN usuario as u ON v.email = u.email WHERE referencia=?");
+            sentencia.setInt(1, Integer.parseInt(referencia));
+            consulta = sentencia.executeQuery();
+            while (consulta.next()) {
+                Valoracion valoracion = new Valoracion();
+                valoracion.setCliente(consulta.getString("Nombre"));
+                valoracion.setComentario(consulta.getString("comentario"));
+                valoracion.setValoracion(consulta.getInt("valoracion"));
+                valoraciones.add(valoracion);
+            }
+           } catch (SQLException e) {
+           } finally {
+               try {
+                   sentencia.close();
+               } catch (SQLException e) {
+                   System.out.println("Imposible cerrar cursores");
+               }
+           }
+           return valoraciones;
         }
-        
+
+
+
+
         public void IntroducirProducto(){
-            
+
         }
         public void ActualizarInventario(){
-            
+
         }
 }

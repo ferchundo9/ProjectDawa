@@ -16,8 +16,8 @@ public class FachadaDAO{
       this.response = response;
       this.context = request.getServletContext();
       try {
-      
-      
+
+
          Properties credenciales = new Properties();
          String gestor = context.getInitParameter("gestor");
          String servidor = context.getInitParameter("servidor");
@@ -27,7 +27,7 @@ public class FachadaDAO{
          credenciales.setProperty("user", context.getInitParameter("usuario"));
          credenciales.setProperty("password", context.getInitParameter("password"));
 
-         Class.forName("com.mysql.jdbc.Driver"); 
+         Class.forName("com.mysql.jdbc.Driver");
          this.conexion = java.sql.DriverManager.getConnection("jdbc:" + gestor + "://" + servidor + ":" + puerto + "/" + baseDatos , "AmazonMusic", "AmazonMusic");
       }catch(Exception e){
          RequestDispatcher  vista = request.getRequestDispatcher("index.html");
@@ -42,9 +42,9 @@ public class FachadaDAO{
    }
    public Item ObtenerProducto(String referencia){
       DAOInventario daoI = new DAOInventario(conexion);
-      return daoI.ObtenerProducto(referencia); 
+      return daoI.ObtenerProducto(referencia);
    }
-   /*public ArrayList<Valoracion> ObtenerValoraciones(String referencia){
+   public ArrayList<Valoracion> ObtenerValoraciones(String referencia){
       DAOInventario daoI = new DAOInventario(conexion);
       return daoI.ObtenerValoraciones(referencia);
    }*/
