@@ -158,10 +158,6 @@
 				<hr/>
 				<h2> Opiniones de clientes</h2>
 				<!----- Comentario Individual -------->
-				<div class=comentarios>
-				<hr/>
-				<h2> Opiniones de clientes</h2>
-				<!----- Comentario Individual -------->
 				<c:forEach items="${valoraciones}" var="val">
 					<div class=opinion>
 					
