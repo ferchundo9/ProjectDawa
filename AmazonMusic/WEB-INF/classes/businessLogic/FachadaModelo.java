@@ -1,6 +1,7 @@
 package businessLogic;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import java.util.*;
 
 
 public class FachadaModelo{
@@ -11,7 +12,7 @@ public class FachadaModelo{
       this.request = request;
       this.response = response;
    }
-   ////////////////////////////////////
+   //////////////////////////////////// CARRITO ////////////////////////////////////
    public void VerCarrito(){
       GestorCarrito gc = new GestorCarrito(request,response);
       gc.ObtenerCarrito();
@@ -28,7 +29,7 @@ public class FachadaModelo{
       GestorCarrito gc = new GestorCarrito(request,response);
       gc.ConfirmarCompra();
    }
-   ////////////////////////////////////
+   //////////////////////////////////// REGISTRO ////////////////////////////////////
    public void ConfirmarRegistro(){
       GestorUsuarios gu = new GestorUsuarios(request,response);
       gu.ConfirmarRegistro();
@@ -58,7 +59,7 @@ public class FachadaModelo{
       GestorUsuarios gu = new GestorUsuarios(request,response);
       gu.EliminarUsuario();
    }
-   ////////////////////////////////////
+   //////////////////////////////////// PRODUCTOS ////////////////////////////////////
    public void VerCatalogo(){
       GestorProductos gp = new GestorProductos(request,response);
       gp.VerCatalogo();
@@ -67,9 +68,9 @@ public class FachadaModelo{
       GestorProductos gp = new GestorProductos(request,response);
       gp.VerProducto();
    }
-   public void FiltrarProductos(){
+   public HashMap<String, Item> FiltrarProductos(String precioMax,String autor,String ano){
       GestorProductos gp = new GestorProductos(request,response);
-      gp.FiltrarProductos();
+      return gp.FiltrarProductos(precioMax,autor,ano);
    }
    public void IntroducirProducto(){
       GestorProductos gp = new GestorProductos(request,response);
