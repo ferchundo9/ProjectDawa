@@ -21,6 +21,9 @@
 	
 	
     <body class=bodyLogin>
+	<!-- Gif que se muestra mientras carga la pagina -->
+	<script type="text/javascript">$(window).load(function() {$(".loader").fadeOut("slow");});</script>
+	<div class="loader"></div>
 	<!-- ---------------------   ENCABEZADO  ------------------------------ -->
 		<header>
 			<center>

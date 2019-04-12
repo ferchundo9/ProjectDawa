@@ -34,6 +34,9 @@
 	<!-- .....................................................................-->
 	
     <body>
+	<!-- Gif que se muestra mientras carga la pagina -->
+	<script type="text/javascript">$(window).load(function() {$(".loader").fadeOut("slow");});</script>
+	<div class="loader"></div>
 	<!-- ---------------------   ENCABEZADO  ------------------------------ -->
 		<header>
 			<!-- Barra superior de navegacion -->
@@ -109,23 +112,16 @@
 						<p class="c2 tituloCarrito"> ${entry.value.item.titulo} </p>
 						<p class="c3 cantidad" >x${entry.value.cantidad}uds </p>
 						<p class="c4 precio"> EUR ${entry.value.item.precio} </p>
-						<input type=hidden name=Referencia value="${entry.value.item.referencia}">
+						<input type=hidden name=Referencia value=${entry.value.item.referencia}>
 						<input type=hidden name=EliminarDelCarrito value=1></input>
 						<button class=botonInvisible type=submit><img class="c5 botonEliminar" src="./img/iconoEliminar.png"/> </button>
 				</form>
 			</c:forEach>
-			<!--<hr class=linea>
-			<div class=tablaCarrito >
-					<img class="c1 imagenCarrito" src="./img/cds/cd1.jpg">
-					<p class="c2 tituloCarrito"> Queen Greatest Hits Vol I </p>
-					<p class="c3 cantidad" >x3uds </p>
-					<p class="c4 precio"> EUR 19,80 </p>
-					<img class="c5 botonEliminar" src="./img/iconoEliminar.png"/> 
-			</div>-->
+			
 			<!-- Suma final de la compra -->
 			<hr class=linea>
 			<div class=tablaCarrito >
-				<p class=derecha> Subtotal(2 productos): <span class=precioDer> EUR 23,40 </span></p>
+				<p class=derecha> Subtotal(${sessionScope.carrito.numItems} productos): <span class=precioDer> EUR ${sessionScope.carrito.precio} </span></p>
 			</div>
 		</div>
 	</center>

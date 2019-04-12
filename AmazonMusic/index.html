@@ -8,11 +8,15 @@
 		<meta name="author" content="Raquel Vilas, Fernando Rodríguez, Miguel Martinez, Carlos Rial">
 		<link type="text/css" rel="stylesheet" href="./estilo.css" >
 		<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico">
+	
     </head>
 	<!-- ------------------------------------------------------------------ -->
 	
 	
     <body class=bodyIndex>
+	<!-- Gif que se muestra mientras carga la pagina -->
+	<script type="text/javascript">$(window).load(function() {$(".loader").fadeOut("slow");});</script>
+	<div class="loader"></div>
 	<!-- ---------------------   ENCABEZADO  ------------------------------ -->
 		<header>
 			<img class=logo src="img/logoBlanco.png" />
@@ -24,7 +28,7 @@
 			<p> Bienvenido al mayor portal de venta de CDs online </p>
 			<form  method="POST" action="Controlador" class="Controlador" >
 				<input type="hidden" name="VerCatalogo" value="1"><!-- campo hiden para que el controlador vea el atributo verCatalogo != null !-->
-				<input class=boton type="submit" value="Ver catalogo">
+				<input id=boton class=boton type="submit" value="Ver catalogo">
 			</form>
 		</div>
 

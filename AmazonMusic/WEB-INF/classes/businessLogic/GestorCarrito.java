@@ -41,7 +41,19 @@ public class GestorCarrito{
       }catch(Exception e){}
    }
    public void EliminarDelCarrito(){
-      //IMPLEMENTACION
+      try{
+          HttpSession sesion = request.getSession();
+          if(sesion.getAttribute("carrito")!=null){
+               HttpSession session = request.getSession(true); 
+               Carrito carrito = (Carrito) session.getAttribute("carrito");
+               carrito.eliminarItem(request.getParameter("Referencia"));
+               RequestDispatcher  vista = request.getRequestDispatcher("carrito.jsp");
+               vista.forward(request,response);
+          }else{
+               RequestDispatcher  vista = request.getRequestDispatcher("login.jsp");
+               vista.forward(request,response);
+          }
+      }catch(Exception e){}
    }
    public void ConfirmarCompra(){
       fdao.ConfirmarCompra();
