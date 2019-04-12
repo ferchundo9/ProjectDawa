@@ -132,6 +132,7 @@
 				</c:forEach>
 				<p class=autorItem > de ${producto.autor} (${producto.ano})</p>
 				<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR ${producto.precio}€ </span></p> 
+				<p class=StockItem > Stock disponible: ${stock} uds</p>
 			</div>	
 			<!--------------------------->
 			<!-- cuadro de la derecha para añadir al carrito --------->
@@ -143,7 +144,7 @@
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type=hidden name=Referencia value=${producto.referencia}></input>
 						<input type="hidden" name="AnadirAlCarrito" value=1></input>
-						<label> Cantidad : <input class=cantidad name=Cantidad type=number required min=1/></label>
+						<label> Cantidad : <input class=cantidad name=Cantidad type=number required min=1 max=${stock} value=1/></label>
 						<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
 					</form>
 					<!-- Formulario para añadir al carrito y ir al carrito directamente --->

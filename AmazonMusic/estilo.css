@@ -323,6 +323,12 @@ nav .form button img{
 	text-align: left;
 }
 
+.StockItem{
+	float: left;
+	width: 30vw;
+	text-align: left;
+}
+
 .notaZoom{
 	color: #9F9F9F;
 	font-size: 0.75em;

@@ -117,12 +117,20 @@
 						<button class=botonInvisible type=submit><img class="c5 botonEliminar" src="./img/iconoEliminar.png"/> </button>
 				</form>
 			</c:forEach>
-			
+			<c:if test="${empty sessionScope.carrito.items}">
+			<div class=noComentarios>
+				<hr class=linea>
+				<img src="./img/iconoJake.png">
+				<p> No tienes nada en el carrito </p>
+			</div>
+			</c:if>
+			<c:if test="${not empty sessionScope.carrito.items}">
 			<!-- Suma final de la compra -->
 			<hr class=linea>
 			<div class=tablaCarrito >
 				<p class=derecha> Subtotal(${sessionScope.carrito.numItems} productos): <span class=precioDer> EUR ${sessionScope.carrito.precio} </span></p>
 			</div>
+			</c:if>
 		</div>
 	</center>
      

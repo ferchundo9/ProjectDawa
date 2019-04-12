@@ -76,9 +76,6 @@ public class FachadaModelo{
       GestorProductos gp = new GestorProductos(request,response);
       gp.IntroducirProducto();
    }
-   public void ActualizarInventario(){
-      GestorProductos gp = new GestorProductos(request,response);
-      gp.ActualizarInventario();
-   }
+
 }
    

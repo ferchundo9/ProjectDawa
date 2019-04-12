@@ -52,7 +52,5 @@ public class GestorProductos{
    public void IntroducirProducto(){
       fdao.IntroducirProducto();
    }
-   public void ActualizarInventario(){
-      fdao.ActualizarInventario();
-   }
+
 }

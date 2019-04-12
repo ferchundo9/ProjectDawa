@@ -149,12 +149,46 @@ public class DAOInventario{
             }catch(Exception e){}
             return stock;
        }
+       
+       public synchronized boolean RestarStock(String referencia, int cantidad){
+            boolean stockSuficiente = false;
+            try{
+               sentencia = conexion.prepareStatement("SELECT Stock FROM inventario WHERE Referencia=?");
+               sentencia.setInt(1, Integer.parseInt(referencia));
+               consulta = sentencia.executeQuery();
+               if(consulta.next()){
+                  int StockOriginal = consulta.getInt("Stock");
+                  if(StockOriginal >=cantidad){//Si hay stock suficiente
+                     int StockActualizado = StockOriginal - cantidad;
+                     sentencia = conexion.prepareStatement("UPDATE inventario SET Stock=? WHERE Referencia=?");
+                     sentencia.setInt(1, StockActualizado);
+                     sentencia.setInt(2, Integer.parseInt(referencia));
+                     sentencia.executeUpdate();
+                     return true;
+                  }
+               }
+            }catch(Exception e){}
+            return stockSuficiente;
+       }
 
 
         public void IntroducirProducto(){
 
         }
-        public void ActualizarInventario(){
-
+        
+        public void ActualizarInventario(String referencia, int cantidad){
+            try{
+               sentencia = conexion.prepareStatement("SELECT Stock FROM inventario WHERE Referencia=?");
+               sentencia.setInt(1, Integer.parseInt(referencia));
+               consulta = sentencia.executeQuery();
+               if(consulta.next()){
+                  int stockOriginal = consulta.getInt("Stock");
+                  int stockActualizado = stockOriginal+cantidad;
+                  sentencia = conexion.prepareStatement("UPDATE inventario SET Stock=? WHERE Referencia=?");
+                  sentencia.setInt(1, stockActualizado);
+                  sentencia.setInt(2, Integer.parseInt(referencia));
+                  sentencia.executeUpdate();
+               }
+            }catch(Exception e){}
         }
 }
