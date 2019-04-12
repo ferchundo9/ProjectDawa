@@ -125,18 +125,8 @@ public class Controlador extends HttpServlet{
      los atributos que recibe del formulario son "nombreCD","autorCD","precioMaxCD", 
      "anoCD" y pueden ser nulos*/
      public void FiltrarProductos(){
-         HashMap<String, Item> catalogo=null;
-         String precioMax=request.getParameter("precioMaxCD");
-         String autor=request.getParameter("autorCD");
-         String ano=request.getParameter("anoCD");
          HelperProductos hp = new HelperProductos(request, response);
-         catalogo=hp.FiltrarProductos(precioMax,autor,ano);
-         request.setAttribute("catalogo", catalogo);
-         try{
-            RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
-            vista.forward(request,response);
-         }catch(Exception e){
-         }
+         hp.FiltrarProductos();
      }
      
      //..................................................................................//

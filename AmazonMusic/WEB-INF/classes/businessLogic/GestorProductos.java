@@ -33,9 +33,18 @@ public class GestorProductos{
       }catch(Exception e){
       }
    }
-   public HashMap<String, Item> FiltrarProductos(String precioMax,String autor,String ano){
-      HashMap<String, Item> catalogo = fdao.ObtenerProductosFiltrados(precioMax,autor,ano);
-      return catalogo;
+   public void FiltrarProductos(){
+      String precioMax=request.getParameter("precioMaxCD");
+      String autor=request.getParameter("autorCD");
+      String ano=request.getParameter("anoCD");
+      String titulo=request.getParameter("nombreCD");
+      HashMap<String, Item> catalogo = fdao.ObtenerProductosFiltrados(precioMax,autor,ano, titulo);
+      request.setAttribute("catalogo", catalogo);
+      try{
+         RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
+         vista.forward(request,response);
+      }catch(Exception e){
+         }
    }
    
    public void IntroducirProducto(){

@@ -68,9 +68,9 @@ public class FachadaModelo{
       GestorProductos gp = new GestorProductos(request,response);
       gp.VerProducto();
    }
-   public HashMap<String, Item> FiltrarProductos(String precioMax,String autor,String ano){
+   public void FiltrarProductos(){
       GestorProductos gp = new GestorProductos(request,response);
-      return gp.FiltrarProductos(precioMax,autor,ano);
+      gp.FiltrarProductos();
    }
    public void IntroducirProducto(){
       GestorProductos gp = new GestorProductos(request,response);

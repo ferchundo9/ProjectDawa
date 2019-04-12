@@ -70,7 +70,7 @@ public class DAOInventario{
 
 
         //################################## OBTENER PRODUCTOS FILTRADOS ###########################################3
-        public  HashMap<String, Item>  ObtenerProductosFiltrados(String precioMax,String autor,String ano){
+        public  HashMap<String, Item>  ObtenerProductosFiltrados(String precioMax,String autor,String ano, String titulo){
                 HashMap<String, Item> catalogo = new HashMap<>();
                  try{
                      if(precioMax==null || precioMax==""){
@@ -79,13 +79,18 @@ public class DAOInventario{
                      if(autor=="" || autor==null){
                         autor="%";
                      }
+                     if(autor=="" || autor==null){
+                        titulo="%";
+                     }
                      if(ano==null || ano=="" ){
                         ano="%";
                      }
-                     sentencia = conexion.prepareStatement("select * from  cd join item on cd.Referencia=item.Referencia where cd.ano like ? and cd.Autor like ? and item.precio < ?");
+                     titulo = "%" + titulo + "%";
+                     sentencia = conexion.prepareStatement("select * from  cd join item on cd.Referencia=item.Referencia where cd.ano like ? and cd.Autor like ? and item.precio < ? and cd.Titulo like ?");
                      sentencia.setString(1,ano);
                      sentencia.setString(2,autor);
                      sentencia.setDouble(3,Double.valueOf(precioMax.replace(",",".")));
+                     sentencia.setString(4,titulo);
                      consulta=sentencia.executeQuery();
 
                      while (consulta.next()) {
