@@ -96,29 +96,32 @@
 					<h2 class="c1"> Carrito </h2>
 			</div>
 			<div class=cuadroDerecha>
-				<h2> Subtotal (2 productos): </h2>
-				<p class=precio>   EUR 23,40 </p>
+				<h2> Subtotal (${sessionScope.carrito.numItems} productos): </h2>
+				<p class=precio>   EUR ${sessionScope.carrito.precio} </p>
 				<input type=hidden name=ConfirmarCompra value=1></input>
 				<input class=botonLogin type=submit value="Proceder a la compra"></input>
 			</div>
-				<!----------- ITEM INDIVIDUAL DEL  CARRITO ----------->
-			<hr class=linea>
-			<form class=tablaCarrito method="POST" action="Controlador" class="Controlador">
-					<img class="c1 imagenCarrito" src="./img/cds/cd1.jpg">
-					<p class="c2 tituloCarrito"> Queen Greatest Hits Vol I </p>
-					<p class="c3 cantidad" >x3uds </p>
-					<p class="c4 precio"> EUR 19,80 </p>
-					<input type=hidden name=EliminarDelCarrito value=1></input>
-					<button class=botonInvisible type=submit><img class="c5 botonEliminar" src="./img/iconoEliminar.png"/> </button>
-			</form>
-			<hr class=linea>
+				<!----------- ITEM INDIVIDUAL DEL  CARRITO ---------->
+			<c:forEach items="${sessionScope.carrito.items}" var="entry">
+				<hr class=linea>
+				<form class=tablaCarrito method="POST" action="Controlador" class="Controlador">
+						<img class="c1 imagenCarrito" src="./img/${entry.item.urlImagen}">
+						<p class="c2 tituloCarrito"> ${entry.item.titulo} </p>
+						<p class="c3 cantidad" >x${entry.cantidad}uds </p>
+						<p class="c4 precio"> EUR ${entry.item.precio} </p>
+						<input type=hidden name=Referencia value="${entry.item.referencia}">
+						<input type=hidden name=EliminarDelCarrito value=1></input>
+						<button class=botonInvisible type=submit><img class="c5 botonEliminar" src="./img/iconoEliminar.png"/> </button>
+				</form>
+			</c:forEach>
+			<!--<hr class=linea>
 			<div class=tablaCarrito >
 					<img class="c1 imagenCarrito" src="./img/cds/cd1.jpg">
 					<p class="c2 tituloCarrito"> Queen Greatest Hits Vol I </p>
 					<p class="c3 cantidad" >x3uds </p>
 					<p class="c4 precio"> EUR 19,80 </p>
 					<img class="c5 botonEliminar" src="./img/iconoEliminar.png"/> 
-			</div>
+			</div>-->
 			<!-- Suma final de la compra -->
 			<hr class=linea>
 			<div class=tablaCarrito >

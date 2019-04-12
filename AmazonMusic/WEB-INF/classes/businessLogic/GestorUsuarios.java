@@ -23,8 +23,9 @@ public class GestorUsuarios{
          if(fdao.ValidarInicioSesion(email,password)){
             HttpSession session = request.getSession(true);//usa la sesion si existe o ccrea una nueva sesion si no existe
             session.setAttribute("usuarioSesion", email);
-            HashMap<String, Item> carrito = new HashMap<>();
-            session.setAttribute("carrito", carrito);
+
+            session.setAttribute("carrito", new Carrito());
+        
             //obtencion de datos del catalogo 
             HashMap<String, Item> catalogo = fdao.ObtenerProductos();
             request.setAttribute("catalogo", catalogo);
