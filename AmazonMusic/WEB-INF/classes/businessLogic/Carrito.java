@@ -41,6 +41,9 @@ public class Carrito{
    
    public void eliminarItem(String referencia){
       if(items.containsKey(referencia)){
+         ItemPedido itemViejo = items.get(referencia);
+         numItems-= itemViejo.getCantidad();
+         precio -= itemViejo.getPrecio();
          items.remove(referencia);
       }
    }
