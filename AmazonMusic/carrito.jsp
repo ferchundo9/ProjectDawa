@@ -105,11 +105,11 @@
 			<c:forEach items="${sessionScope.carrito.items}" var="entry">
 				<hr class=linea>
 				<form class=tablaCarrito method="POST" action="Controlador" class="Controlador">
-						<img class="c1 imagenCarrito" src="./img/${entry.item.urlImagen}">
-						<p class="c2 tituloCarrito"> ${entry.item.titulo} </p>
-						<p class="c3 cantidad" >x${entry.cantidad}uds </p>
-						<p class="c4 precio"> EUR ${entry.item.precio} </p>
-						<input type=hidden name=Referencia value="${entry.item.referencia}">
+						<img class="c1 imagenCarrito" src="./img/${entry.value.item.urlImagen}">
+						<p class="c2 tituloCarrito"> ${entry.value.item.titulo} </p>
+						<p class="c3 cantidad" >x${entry.value.cantidad}uds </p>
+						<p class="c4 precio"> EUR ${entry.value.item.precio} </p>
+						<input type=hidden name=Referencia value="${entry.value.item.referencia}">
 						<input type=hidden name=EliminarDelCarrito value=1></input>
 						<button class=botonInvisible type=submit><img class="c5 botonEliminar" src="./img/iconoEliminar.png"/> </button>
 				</form>
