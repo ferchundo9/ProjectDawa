@@ -138,8 +138,9 @@
 					<p class=enStock> En Stock </p>
 					<!-- Formulario para añadir al carrito  -->
 					<form method="POST" action="Controlador" class="Controlador">
+						<input type=hidden name=Referencia value=${producto.referencia}></input>
 						<input type="hidden" name="AnadirAlCarrito" value=1></input>
-						<label> Cantidad : <input class=cantidad type=number /></label>
+						<label> Cantidad : <input class=cantidad name=Cantidad type=number required /></label>
 						<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
 					</form>
 					<!-- Formulario para añadir al carrito y ir al carrito directamente --->

@@ -24,6 +24,12 @@ public class GestorCarrito{
          
             request.setAttribute("itemAnadido", "correcto");
                   
+            HttpSession session = request.getSession(true); 
+            Carrito carrito = (Carrito) session.getAttribute("carrito");
+            
+            Item item = fdao.ObtenerProducto(request.getParameter("Referencia"));
+            ItemPedido itemPedido = new ItemPedido(item, Integer.parseInt(request.getParameter("Cantidad")));
+            carrito.addItem(itemPedido);
             HashMap<String, Item> catalogo = fdao.ObtenerProductos();
             request.setAttribute("catalogo", catalogo);
             RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");

@@ -16,6 +16,9 @@ public class Carrito{
    public Double getPrecio(){
       return this.precio;
    }
+   public int getNumItems(){
+      return this.numItems;
+   }
    public void setItems(HashMap<String, ItemPedido> items){
       this.items = items;
    }

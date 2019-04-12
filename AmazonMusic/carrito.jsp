@@ -96,7 +96,7 @@
 					<h2 class="c1"> Carrito </h2>
 			</div>
 			<div class=cuadroDerecha>
-				<h2> Subtotal (${sessionScope.carrito.numItems} productos): </h2>
+				<h2> Subtotal ( ${sessionScope.carrito.numItems} productos): </h2>
 				<p class=precio>   EUR ${sessionScope.carrito.precio} </p>
 				<input type=hidden name=ConfirmarCompra value=1></input>
 				<input class=botonLogin type=submit value="Proceder a la compra"></input>
