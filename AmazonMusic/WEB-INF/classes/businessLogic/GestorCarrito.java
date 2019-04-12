@@ -19,7 +19,8 @@ public class GestorCarrito{
    }
    public void AnadirAlCarrito(){
       try{
-         if(request.getSession(false) != null){
+         HttpSession sesion = request.getSession();
+         if(sesion.getAttribute("usuarioSesion")!=null){
          
             request.setAttribute("itemAnadido", "correcto");
                   
