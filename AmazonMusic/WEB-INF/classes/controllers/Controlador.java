@@ -116,7 +116,7 @@ public class Controlador extends HttpServlet{
      }
      /*Este método devuelve la informacion de un producto (cuando el usuario clica en el 
      desde el catalogo) en el atributo "producto" y tiene que devolver tambien un array
-     list con las opiniones asociadas al mismo (FALTA POR IMPLEMENTAR OPINIONES)*/
+     list con las opiniones asociadas al mismo*/
      public void VerProducto(){
          HelperProductos hp = new HelperProductos(request, response);
          hp.VerProducto();
@@ -190,20 +190,20 @@ public class Controlador extends HttpServlet{
          }catch(Exception e){
          }
      }
+     public void EliminarDelCarrito(){
+         HelperCarrito hc = new HelperCarrito(request, response);
+         hc.EliminarDelCarrito();
+     }
+     public void ConfirmarCompra(){
+         HelperCarrito hc = new HelperCarrito(request, response);
+         hc.ConfirmarCompra();
+     }
      //.................................................................................//
     
      public void AdministrarTienda(){
          //LLEVA A LA VISTA DE ADMINISTRADOR
      }
-     
-     public void ConfirmarCompra(){
-         HelperCarrito hc = new HelperCarrito(request, response);
-         hc.ConfirmarCompra();
-     }
-     public void EliminarDelCarrito(){
-         HelperCarrito hc = new HelperCarrito(request, response);
-         hc.EliminarDelCarrito();
-     }
+          
      public void ConfirmarRegistro(){
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.ConfirmarRegistro();
