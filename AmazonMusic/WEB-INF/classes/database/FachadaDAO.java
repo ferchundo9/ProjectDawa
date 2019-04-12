@@ -48,6 +48,10 @@ public class FachadaDAO{
       DAOInventario daoI = new DAOInventario(conexion);
       return daoI.ObtenerValoraciones(referencia);
    }
+   public int ObtenerStock(String referencia){
+      DAOInventario daoI = new DAOInventario(conexion);
+      return daoI.ObtenerStock(referencia);
+   }
    public HashMap<String, Item> ObtenerProductosFiltrados(String precioMax,String autor,String ano, String titulo){
       DAOInventario daoI = new DAOInventario(conexion);
       return daoI.ObtenerProductosFiltrados(precioMax,autor,ano, titulo);

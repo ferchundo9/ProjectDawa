@@ -129,8 +129,9 @@ public class Controlador extends HttpServlet{
          String precioMax=request.getParameter("precioMaxCD");
          String autor=request.getParameter("autorCD");
          String ano=request.getParameter("anoCD");
+         String titulo=request.getParameter("tituloCD");
          HelperProductos hp = new HelperProductos(request, response);
-         catalogo=hp.FiltrarProductos(precioMax,autor,ano);
+         catalogo=hp.FiltrarProductos(precioMax,autor,ano, titulo);
          request.setAttribute("catalogo", catalogo);
          try{
             RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");

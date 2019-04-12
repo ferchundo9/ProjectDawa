@@ -137,7 +137,18 @@ public class DAOInventario{
            return valoraciones;
         }
 
-
+       public int ObtenerStock(String referencia){
+            int stock =0;
+            try{
+               sentencia = conexion.prepareStatement("SELECT Stock FROM inventario WHERE Referencia=?");
+               sentencia.setInt(1, Integer.parseInt(referencia));
+               consulta = sentencia.executeQuery();
+               while(consulta.next()){
+                  stock = consulta.getInt("Stock");
+               }
+            }catch(Exception e){}
+            return stock;
+       }
 
 
         public void IntroducirProducto(){

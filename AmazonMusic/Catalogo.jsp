@@ -127,6 +127,10 @@
 			</div>
 		</c:forEach>
 		<!-- ...................................................... -->
+		<c:if test="${empty catalogo}">
+			<p> No hemos encontrado ningún cd con esas características </p>
+			<img src="./img/iconoTriste.png">
+		</c:if>
 	</center>
      
 	<c:if test="${not empty itemAnadido && itemAnadido=='correcto'}">

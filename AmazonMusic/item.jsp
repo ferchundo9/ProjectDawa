@@ -143,7 +143,7 @@
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type=hidden name=Referencia value=${producto.referencia}></input>
 						<input type="hidden" name="AnadirAlCarrito" value=1></input>
-						<label> Cantidad : <input class=cantidad name=Cantidad type=number required /></label>
+						<label> Cantidad : <input class=cantidad name=Cantidad type=number required min=1/></label>
 						<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
 					</form>
 					<!-- Formulario para añadir al carrito y ir al carrito directamente --->
@@ -178,6 +178,12 @@
 					</div>
 				</c:forEach>
 				
+				<c:if test="${empty valoraciones}">
+				<div class=noComentarios>
+					<img src="./img/iconoCorazon.png">
+					<p> Nadie ha valorado aun este producto </p>
+				</div>
+				</c:if>
 
 			</div>
 			</div>
