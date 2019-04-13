@@ -3,6 +3,7 @@ import database.FachadaDAO;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.util.*;
+import java.text.SimpleDateFormat;
 
 
 public class GestorCarrito{
@@ -60,6 +61,28 @@ public class GestorCarrito{
       }catch(Exception e){}
    }
    public void ConfirmarCompra(){
-      fdao.ConfirmarCompra();
+      //////FALTA MANDARLE EL CORREO AL USUARIO UNA VEZ SE HACE LA COMPRA BIEN//////////
+      HttpSession sesion = request.getSession();
+      Carrito carrito = (Carrito) sesion.getAttribute("carrito");
+      String email = (String) sesion.getAttribute("usuarioSesion");
+      Date fecha = new Date();
+      String fechaCompra = new SimpleDateFormat("dd-MM-yyyy - hh:mm").format(fecha);
+      if(carrito.getNumItems() > 0){
+         fdao.ConfirmarCompra(carrito, email, fechaCompra);
+         request.setAttribute("factura", carrito);
+         request.setAttribute("fecha", fechaCompra);
+         sesion.setAttribute("carrito", new Carrito());
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("factura.jsp");
+            vista.forward(request,response);
+         }catch(Exception e){
+         }
+      }else{
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("carrito.jsp");
+            vista.forward(request,response);
+         }catch(Exception e){
+         }
+      }
    }
 }

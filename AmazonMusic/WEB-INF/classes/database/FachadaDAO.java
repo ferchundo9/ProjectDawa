@@ -64,14 +64,14 @@ public class FachadaDAO{
       DAOInventario daoI = new DAOInventario(conexion);
       daoI.ActualizarInventario(referencia, cantidad);
    }
-   //////////////////////////////////////////
-   public void ConfirmarCompra(){
-      DAOPedidos daoP = new DAOPedidos(conexion);
-      daoP.ConfirmarCompra();
-   }
    public boolean RestarStock(String referencia, int cantidad){
       DAOInventario daoI = new DAOInventario(conexion);
       return daoI.RestarStock(referencia, cantidad);
+   }
+   //////////////////////////////////////////
+   public void ConfirmarCompra(Carrito carrito, String email, String fechaCompra){
+      DAOPedidos daoP = new DAOPedidos(conexion);
+      daoP.ConfirmarCompra(carrito, email, fechaCompra);
    }
    //////////////////////////////////////////
    public boolean RegistrarUsuario(Cliente cliente){

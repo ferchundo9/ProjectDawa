@@ -204,8 +204,8 @@ public class Controlador extends HttpServlet{
          hp.IntroducirProducto();
      }
      public void ActualizarInventario(){
-         HelperProductos hp = new HelperProductos(request, response);
-         hp.ActualizarInventario();
+         /*HelperProductos hp = new HelperProductos(request, response);
+         hp.ActualizarInventario();*/
      }
      public void MostrarUsuarios(){
          HelperUsuarios hu = new HelperUsuarios(request, response);

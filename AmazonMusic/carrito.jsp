@@ -65,7 +65,7 @@
 				<!-- SI EL USUARIO YA INICIO SESION -->
 				<c:if test="${not empty sessionScope.usuarioSesion}">
 					<form method="POST" action="Controlador" class="Controlador">
-						<input type="hidden" name="Registrarse" value=1></input>
+						<input type="hidden" name="VerCarrito" value=1></input>
 						<button class="botonInvisible derecha" ><span>Ver Carrito</span></button>
 					</form>
 					<form method="POST" action="Controlador" class="Controlador">
@@ -101,8 +101,10 @@
 			<div class=cuadroDerecha>
 				<h2> Subtotal ( ${sessionScope.carrito.numItems} productos): </h2>
 				<p class=precio>   EUR ${sessionScope.carrito.precio} </p>
-				<input type=hidden name=ConfirmarCompra value=1></input>
-				<input class=botonLogin type=submit value="Proceder a la compra"></input>
+				<form method="POST" action="Controlador" class="Controlador">
+					<input type=hidden name=ConfirmarCompra value=1></input>
+					<input class=botonLogin type=submit value="Proceder a la compra"></input>
+				</form>
 			</div>
 				<!----------- ITEM INDIVIDUAL DEL  CARRITO ---------->
 			<c:forEach items="${sessionScope.carrito.items}" var="entry">
