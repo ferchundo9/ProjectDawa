@@ -80,7 +80,7 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("AnadirProducto") != null){
          this.AnadirProducto();
       }
-      }
+      
       if(request.getParameter("AnadirComentario") != null){
          this.AnadirComentario();
       }
