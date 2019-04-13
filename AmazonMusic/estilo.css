@@ -725,18 +725,26 @@ legend{font-size: 1.2em; font-weight: bold;}
 
 .botonEnviar{
 	margin-top: 15px;
-	background-image: linear-gradient(#9F9F9F, #E9E9E9);
+	background-image: linear-gradient(#E9E9E9,#9F9F9F);
 	padding: 3px;
 	text-align: center;
 	border-radius: 2px;
 	border: 1px solid #2C3958;
 	color: #2C3958;
-	width: 10vw;
+	width: 13vw;
 	height: 33px;
 	padding: 8px;
 	cursor: pointer;
 }
 
 .botonEnviar:hover{
-	background-image: linear-gradient(#9A9A9A, #D3D3D3);
+	background-image: linear-gradient(#D3D3D3,#9A9A9A);
+}
+.botonEnviar img{
+	border-radius: 2px;
+	width: 29px;
+	height: 29px;
+	float: left;
+	margin-top: -7px;
+	margin-left: -7px;
 }
