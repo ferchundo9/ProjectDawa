@@ -200,13 +200,18 @@
 				<div class=anadirComentario>
 					<h2> Valora este producto </h2>
 					<hr>
-					<div class="ec-stars-wrapper">
-						<a href="#" data-value="1" title="Valorar con 1 estrellas">&#9733;</a>
-						<a href="#" data-value="2" title="Valorar con 2 estrellas">&#9733;</a>
-						<a href="#" data-value="3" title="Valorar con 3 estrellas">&#9733;</a>
-						<a href="#" data-value="4" title="Valorar con 4 estrellas">&#9733;</a>
-						<a href="#" data-value="5" title="Valorar con 5 estrellas">&#9733;</a>
-					</div>
+					<p class="clasificacion">
+						<input id="radio1" type="radio" name="estrellas" value="5">
+						<label for="radio1">★</label>
+						<input id="radio2" type="radio" name="estrellas" value="4">
+						<label for="radio2">★</label>
+						<input id="radio3" type="radio" name="estrellas" value="3">
+						<label for="radio3">★</label>
+						<input id="radio4" type="radio" name="estrellas" value="2">
+						<label for="radio4">★</label>
+						<input id="radio5" type="radio" name="estrellas" value="1">
+						<label for="radio5">★</label>
+					  </p>
 					<textarea name=opinion rows=3 cols=120> ¿Que te ha parecido el producto? ¿Llego bien y a tiempo? </textarea>
 					<input type=submit value="Añadir valoración" class=botonEnviar></input>
 				</div>
