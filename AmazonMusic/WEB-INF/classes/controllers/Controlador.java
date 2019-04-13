@@ -125,18 +125,8 @@ public class Controlador extends HttpServlet{
      los atributos que recibe del formulario son "nombreCD","autorCD","precioMaxCD", 
      "anoCD" y pueden ser nulos*/
      public void FiltrarProductos(){
-         HashMap<String, Item> catalogo=null;
-         String precioMax=request.getParameter("precioMaxCD");
-         String autor=request.getParameter("autorCD");
-         String ano=request.getParameter("anoCD");
          HelperProductos hp = new HelperProductos(request, response);
-         catalogo=hp.FiltrarProductos(precioMax,autor,ano);
-         request.setAttribute("catalogo", catalogo);
-         try{
-            RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
-            vista.forward(request,response);
-         }catch(Exception e){
-         }
+         hp.FiltrarProductos();
      }
      
      //..................................................................................//
@@ -182,17 +172,14 @@ public class Controlador extends HttpServlet{
          hc.AnadirAlCarrito();
      }
       public void VerCarrito(){
-         /*HelperCarrito hc = new HelperCarrito(request, response);
-         hc.VerCarrito();*/
+         HelperCarrito hc = new HelperCarrito(request, response);
+         hc.VerCarrito();
          try{
             RequestDispatcher  vista = request.getRequestDispatcher("carrito.jsp");
             vista.forward(request,response);
          }catch(Exception e){
          }
      }
-     /*Este metodo elimina el itemPedido del carrito de la sesion. Tiene como entrada la 
-     referencia del item a eliminar (elimina todas las unidades que haya de ese item) y
-     redirige al usuario a la vista carrito.jsp*/
      public void EliminarDelCarrito(){
          HelperCarrito hc = new HelperCarrito(request, response);
          hc.EliminarDelCarrito();
