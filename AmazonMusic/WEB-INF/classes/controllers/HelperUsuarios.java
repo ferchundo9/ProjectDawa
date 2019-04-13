@@ -16,8 +16,8 @@ public class HelperUsuarios{
    public void ConfirmarRegistro(){
       fm.ConfirmarRegistro();
    }
-   public void IniciarSesion(){
-      fm.IniciarSesion();
+   public String IniciarSesion(String email,String password){
+      return fm.IniciarSesion(email,password);
    }
    
    public void CrearCuenta(){

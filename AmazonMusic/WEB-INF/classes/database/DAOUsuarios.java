@@ -50,4 +50,20 @@ public class DAOUsuarios{
    public void ActualizarContrasena(){
       
    }
+   
+   public String ValidarClienteAdministrador(String email,String password){
+      try{
+         sentencia = conexion.prepareStatement("SELECT * FROM cliente WHERE Email=?");
+         sentencia.setString(1, email);
+         
+         consulta = sentencia.executeQuery();
+         if  (consulta.next()) {
+            return "cliente";
+         }else{   
+            return "admin";
+         }
+  
+      }catch(Exception e){}
+      return null;
+   }
 }

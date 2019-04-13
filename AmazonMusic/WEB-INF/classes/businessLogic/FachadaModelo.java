@@ -39,9 +39,9 @@ public class FachadaModelo{
       GestorUsuarios gu = new GestorUsuarios(request,response);
       gu.ConfirmarRegistro();
    }
-   public void IniciarSesion(){
+   public String IniciarSesion(String email,String password){
       GestorUsuarios gu = new GestorUsuarios(request,response);
-      gu.IniciarSesion();
+      return gu.IniciarSesion(email,password);
    }
    public void CerrarSesion(){
       GestorUsuarios gu = new GestorUsuarios(request,response);
@@ -81,6 +81,7 @@ public class FachadaModelo{
       GestorProductos gp = new GestorProductos(request,response);
       gp.IntroducirProducto();
    }
+   
 
 }
    

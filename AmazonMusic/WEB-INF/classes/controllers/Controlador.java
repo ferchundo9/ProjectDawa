@@ -75,7 +75,10 @@ public class Controlador extends HttpServlet{
       }
       if(request.getParameter("ActualizarContrasena") != null){
          this.ActualizarContrasena();
-      }    
+      }
+      if(request.getParameter("AnadirProducto") != null){
+         this.AnadirProducto();
+      }  
      }
      
      //-----------------------------------------------------------------------------------------------//
@@ -104,6 +107,15 @@ public class Controlador extends HttpServlet{
          }catch(Exception e){
          }  
      }
+     
+     public void AnadirProducto(){
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("anadirProducto.jsp");
+            vista.forward(request,response);
+         }catch(Exception e){
+         } 
+     }
+     
      //.....................................................................................................//
      
      
@@ -120,7 +132,14 @@ public class Controlador extends HttpServlet{
      public void VerProducto(){
          HelperProductos hp = new HelperProductos(request, response);
          hp.VerProducto();
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
+            vista.forward(request,response);
+         }catch(Exception e){
+         }
      }
+     
+     
      /*Este metodo devuelve un hashmap de productos filtrados de una busqueda de usuario
      los atributos que recibe del formulario son "nombreCD","autorCD","precioMaxCD", 
      "anoCD" y pueden ser nulos*/
@@ -140,8 +159,21 @@ public class Controlador extends HttpServlet{
      Si se ha logueado correctamente crea una sesion con un atributo de sesion con nombre
      "usuarioSesion"*/
      public void IniciarSesion(){
+         String email=request.getParameter("emailLogin");
+         String password=request.getParameter("passwordLogin");
          HelperUsuarios hu = new HelperUsuarios(request, response);
-         hu.IniciarSesion();
+         try{
+            if(hu.IniciarSesion(email,password).equals("cliente")){
+                  RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
+                  vista.forward(request,response);
+            }else if(hu.IniciarSesion(email,password).equals("admin")){
+               RequestDispatcher  vista = request.getRequestDispatcher("CatalogoAdmin.jsp");
+               vista.forward(request,response);
+            }else if(hu.IniciarSesion(email,password).equals("false")){
+               RequestDispatcher  vista = request.getRequestDispatcher("login.jsp");
+               vista.forward(request,response);
+            }
+         }catch(Exception e){}
      }
      /*Metodo para eliminar la sesion actual que se creo cuando el usuario se logueo*/
      public void CerrarSesion(){
@@ -221,6 +253,17 @@ public class Controlador extends HttpServlet{
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.ActualizarContrasena();
      }
+     
+     public void VerProductoAdmin(){ //Abre la ventaja de productos del administrador
+         HelperProductos hp = new HelperProductos(request, response);    
+         hp.VerProducto();
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("itemAdmin.jsp");
+            vista.forward(request,response);  
+         }catch(Exception e){
+         }
+     }
+     
      
 
 

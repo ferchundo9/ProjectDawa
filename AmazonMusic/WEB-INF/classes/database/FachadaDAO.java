@@ -94,4 +94,9 @@ public class FachadaDAO{
       DAOUsuarios daoU = new DAOUsuarios(conexion);
       daoU.ActualizarContrasena();
    }
+   
+   public String ValidarClienteAdministrador(String email,String password){
+      DAOUsuarios daoU = new DAOUsuarios(conexion);
+      return daoU.ValidarClienteAdministrador(email, password);
+   }
 }

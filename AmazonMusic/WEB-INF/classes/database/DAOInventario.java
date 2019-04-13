@@ -85,6 +85,9 @@ public class DAOInventario{
                      if(ano==null || ano=="" ){
                         ano="%";
                      }
+                     if(titulo==null || titulo==""){
+                        titulo="%";
+                     }
                      titulo = "%" + titulo + "%";
                      sentencia = conexion.prepareStatement("select * from  cd join item on cd.Referencia=item.Referencia where cd.ano like ? and cd.Autor like ? and item.precio < ? and cd.Titulo like ?");
                      sentencia.setString(1,ano);

@@ -29,11 +29,6 @@ public class GestorProductos{
       request.setAttribute("valoraciones", valoraciones);
       int stock = fdao.ObtenerStock(request.getParameter("Referencia"));
       request.setAttribute("stock", stock);
-      try{
-         RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
-         vista.forward(request,response);
-      }catch(Exception e){
-      }
    }
    public void FiltrarProductos(){
       String precioMax=request.getParameter("precioMaxCD");
