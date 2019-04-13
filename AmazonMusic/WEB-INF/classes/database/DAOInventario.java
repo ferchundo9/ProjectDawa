@@ -183,14 +183,21 @@ public class DAOInventario{
        
        public void AnadirValoracion(String referencia, Valoracion valoracion){
             try{
+               //Anade el comentario a la BD
                sentencia = conexion.prepareStatement("INSERT INTO valoracion VALUES(?, ?, ?, ?)");
                sentencia.setString(1, valoracion.getCliente());
                sentencia.setString(2, referencia);
                sentencia.setInt(3, valoracion.getValoracion());
                sentencia.setString(4, valoracion.getComentario());
                sentencia.executeUpdate();
+               //Actualiza la puntuacion media del item
+               sentencia = conexion.prepareStatement("UPDATE item SET valoracion=(SELECT AVG(valoracion) FROM valoracion WHERE referencia=?) WHERE Referencia=?");
+               sentencia.setString(1,referencia);
+               sentencia.setString(2,referencia);
+               sentencia.executeUpdate();
             }catch(Exception e){}
        }
+       
 
 
         public void IntroducirProducto(Double precio,String url,Integer valoracion,String titulo,String autor,Integer ano,Integer stock){
