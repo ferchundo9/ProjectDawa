@@ -45,14 +45,13 @@ public class GestorProductos{
    }
    
    public void IntroducirProducto(){
-      Double precio=Double.parseDouble(request.getParameter("precioMaxCD"));
-      String url=request.getParameter("precioMaxCD");
-      Integer valoracion=Integer.parseInt(request.getParameter("precioMaxCD"));
-      String titulo=request.getParameter("precioMaxCD");
-      String autor=request.getParameter("precioMaxCD");
-      Integer ano=Integer.parseInt(request.getParameter("precioMaxCD"));
-      Integer stock=Integer.parseInt(request.getParameter("precioMaxCD"));
-      fdao.IntroducirProducto(precio,url,valoracion,titulo,autor,ano,stock);
+      Double precio=Double.parseDouble(request.getParameter("precioCdNuevo"));
+      String url=request.getParameter("imagenCdNuevo");
+      String titulo=request.getParameter("tituloCdNuevo");
+      String autor=request.getParameter("autorCdNuevo");
+      Integer ano=Integer.parseInt(request.getParameter("anoCdNuevo"));
+      Integer stock=Integer.parseInt(request.getParameter("stockCdNuevo"));
+      fdao.IntroducirProducto(precio,url,titulo,autor,ano,stock);
    }
    
    public void AnadirComentario(){

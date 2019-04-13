@@ -203,18 +203,18 @@ public class DAOInventario{
        
 
 
-        public void IntroducirProducto(Double precio,String url,Integer valoracion,String titulo,String autor,Integer ano,Integer stock){
+        public void IntroducirProducto(Double precio,String url,String titulo,String autor,Integer ano,Integer stock){
             int numero;
             try {
                sentencia = conexion.prepareStatement("SELECT max(Referencia) as Referencia FROM item");
                consulta = sentencia.executeQuery();
                consulta.next();
                numero=consulta.getInt("Referencia");
-               sentencia = conexion.prepareStatement("INSERT INTO item VALUES(?,?,?,?)");
+               numero=numero+1;
+               sentencia = conexion.prepareStatement("INSERT INTO item(Referencia,Precio,imagen) VALUES(?,?,?)");
                sentencia.setInt(1, numero);
                sentencia.setDouble(2, precio);
                sentencia.setString(3, url);
-               sentencia.setInt(4, valoracion);
                sentencia.executeUpdate();
                sentencia = conexion.prepareStatement("INSERT INTO cd VALUES(?,?,?,?)");
                sentencia.setInt(1, numero);

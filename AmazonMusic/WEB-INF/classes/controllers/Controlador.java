@@ -84,6 +84,9 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("AnadirComentario") != null){
          this.AnadirComentario();
       }
+      if(request.getParameter("IntroducirProducto") != null){
+         this.IntroducirProducto();
+      }
 
      }
 
@@ -253,6 +256,11 @@ public class Controlador extends HttpServlet{
      public void IntroducirProducto(){
          HelperProductos hp = new HelperProductos(request, response);
          hp.IntroducirProducto();
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("CatalogoAdmin.jsp");
+            vista.forward(request,response);
+         }catch(Exception e){
+         }
      }
 
      public void MostrarUsuarios(){

@@ -56,9 +56,9 @@ public class FachadaDAO{
       DAOInventario daoI = new DAOInventario(conexion);
       return daoI.ObtenerProductosFiltrados(precioMax,autor,ano, titulo);
    }
-   public void IntroducirProducto(Double precio,String url,Integer valoracion,String titulo,String autor,Integer ano,Integer stock){
+   public void IntroducirProducto(Double precio,String url,String titulo,String autor,Integer ano,Integer stock){
       DAOInventario daoI = new DAOInventario(conexion);
-      daoI.IntroducirProducto(precio,url,valoracion,titulo,autor,ano,stock);
+      daoI.IntroducirProducto(precio,url,titulo,autor,ano,stock);
    }
    public void ActualizarInventario(String referencia, int cantidad){
       DAOInventario daoI = new DAOInventario(conexion);

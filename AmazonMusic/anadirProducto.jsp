@@ -119,12 +119,14 @@
 
 	<!-------------------------   CUERPO -------------------------------------->
 	<div class=itemGrid> <!--Div con el fondo blanco-->
-		<form>
+		<form method="POST" action="Controlador" class="Controlador">
+			<input type="hidden" name="IntroducirProducto" value=1/>
 			<label><p>Titulo</p><input type="text" name="tituloCdNuevo"></input></label>
 			<label><p>Autor</p><input type="text" name="autorCdNuevo"></input></label>
-			<label><p>Precio</p><input type="text" name="precioCdNuevo"></input></label>
-			<label><p>Año</p><input type="text" name="anoCdNuevo"></input></label>
+			<label><p>Precio</p><input type="number" name="precioCdNuevo"></input></label>
+			<label><p>Año</p><input type="number" name="anoCdNuevo"></input></label>
 			<label><p>Imagen</p><input type="text" name="imagenCdNuevo"></input></label>
+			<label><p>Stock</p><input type="number" name="stockCdNuevo"></input></label>
 			<input type="submit" value="Añadir Cd"/>
 		</form>
 	</div>
