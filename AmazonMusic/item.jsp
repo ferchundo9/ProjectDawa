@@ -40,6 +40,8 @@
 		});
 		
 		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+		</script>
 		<!---------------------------------------------->
 
     </head>
@@ -137,7 +139,7 @@
 			</div>	
 			<!--------------------------->
 			<!-- cuadro de la derecha para añadir al carrito --------->
-				<div class=cuadroCompra >
+				<div class=cuadroCompra ng-app="" ng-init="campoCantidad='1'" >
 					<p class=precioItem> EUR ${producto.precio}€ </p>
 					<img class=imagenEnvio src="./img/imagenEnvio.PNG" />
 					<p class=enStock> En Stock </p>
@@ -146,15 +148,15 @@
 						<input type=hidden name=Referencia value=${producto.referencia}></input>
 						<input type="hidden" name="AnadirAlCarrito" value=1></input>
 
-						<label> Cantidad : <input class=cantidad name=Cantidad type=number required min=1 max=${stock} value=1/></label>
-
+						<label> Cantidad : <input class=cantidad ng-model="campoCantidad" name=Cantidad type=number required min=1 max=${stock} value="1"/></label>
+							
 						<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
 					</form>
 					<!-- Formulario para añadir al carrito y ir al carrito directamente --->
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type="hidden" name="ComprarYa" value=1></input>
 						<input type="hidden" name="ReferenciaComprarYa" value=${producto.referencia}></input>
-						<input type="hidden" name="CantidadComprarYa" value=""></input>
+						<input type="hidden" name="CantidadComprarYa" ng-value="campoCantidad" ></input>
 						<!-- La funcion ya está implementada, sólo necesito que este campo coja el valor del otro :) --->
 						<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png"/> Comprar ya</button>
 					</form>
@@ -191,7 +193,7 @@
 					<p> Nadie ha valorado aun este producto </p>
 				</div>
 				</c:if>
-				<div class=anadirComentario>
+<div class=anadirComentario>
 					<h2> Valora este producto </h2>
 					<hr>
 					<form method="POST" action="Controlador" class="Controlador">
@@ -208,14 +210,7 @@
 							<label for="radio5">★</label>
 						  </p>
 						<textarea name=opinion rows=3 cols=120> ¿Que te ha parecido el producto? ¿Llego bien y a tiempo? </textarea>
-						<input type=hidden name=Referencia value=${producto.referencia}></input>
 						<input type=hidden name="AnadirComentario" value=1></input>
-						<c:if test="${comentario == 'incorrecto'}">
-							<p class=mensajeErrorComentario> No puedes añadir un comentario a un producto que no has comprado</p>
-						</c:if>
-						<c:if test="${comentario == 'correcto'}">
-							<p class=mensajeExitoComentario> Se ha añadido tu comentario</p>
-						</c:if>
 						<button type="submit" class="botonEnviar"> <img src="./img/iconoAnadir.png"/> Añadir valoracion</button>
 					</form>
 				</div>

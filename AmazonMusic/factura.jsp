@@ -112,8 +112,6 @@
 						<p class="c3 cantidad" >x${entry.value.cantidad}uds </p>
 						<p class="c4 precio"> EUR ${entry.value.item.precio} </p>
 						<input type=hidden name=Referencia value=${entry.value.item.referencia}>
-						<input type=hidden name=EliminarDelCarrito value=1></input>
-						<button class=botonInvisible type=submit><img class="c5 botonEliminar" src="./img/iconoEliminar.png"/> </button>
 				</form>
 			</c:forEach>
 
