@@ -50,7 +50,14 @@ public class GestorProductos{
    }
    
    public void IntroducirProducto(){
-      fdao.IntroducirProducto();
+      Double precio=Double.parseDouble(request.getParameter("precioMaxCD"));
+      String url=request.getParameter("precioMaxCD");
+      Integer valoracion=Integer.parseInt(request.getParameter("precioMaxCD"));
+      String titulo=request.getParameter("precioMaxCD");
+      String autor=request.getParameter("precioMaxCD");
+      Integer ano=Integer.parseInt(request.getParameter("precioMaxCD"));
+      Integer stock=Integer.parseInt(request.getParameter("precioMaxCD"));
+      fdao.IntroducirProducto(precio,url,valoracion,titulo,autor,ano,stock);
    }
 
 }

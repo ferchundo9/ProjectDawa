@@ -44,10 +44,33 @@ public class DAOUsuarios{
       }catch(Exception e){}
       return false;
    }
-   public void EliminarUsuario(){
-      
+   public void EliminarUsuario(String email){
+   try{
+      ResultSet consulta2;
+      sentencia = conexion.prepareStatement("SELECT * FROM pedido where Email=?");
+      sentencia.setString(1, email);
+      consulta = sentencia.executeQuery();
+      while(consulta.next()){
+         sentencia=conexion.prepareStatement("DELETE FROM itemspedido where id=?");
+         sentencia.setInt(1, consulta.getInt("id"));
+         sentencia.executeUpdate();
+      }
+      sentencia = conexion.prepareStatement("DELETE FROM pedido where Email=?");
+      sentencia.setString(1, email);
+      sentencia.executeUpdate();
+      sentencia = conexion.prepareStatement("DELETE FROM pedido where Email=?");
+      sentencia.setString(1, email);
+      sentencia.executeUpdate();
+      sentencia = conexion.prepareStatement("DELETE FROM pedido where Email=?");
+      sentencia.setString(1, email);
+      sentencia.executeUpdate();
+      }catch(Exception e){}
+
+
+
+
    }
-   public void ActualizarContrasena(){
+   public void ActualizarContrasena(String email,String password){
       try{
          sentencia=conexion.prepareStatement("UPDATE usuario SET contrasena=? WHERE email=? ");
          sentencia.setString(1, password);
