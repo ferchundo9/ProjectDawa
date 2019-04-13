@@ -201,18 +201,7 @@ public class DAOInventario{
             }
             
         }
-<<<<<<< HEAD
-        public void ActualizarInventario(Integer referencia,Integer stock){
-            try {
-               sentencia = conexion.prepareStatement("update inventario set Stock=? where Referencia=?");
-               sentencia.setInt(1, stock);
-               sentencia.setInt(2, referencia);
-               sentencia.executeQuery();
-            }
-            catch (SQLException e){
-                System.out.println(e);
-            }
-=======
+
         
         public void ActualizarInventario(String referencia, int cantidad){
             try{
@@ -228,6 +217,5 @@ public class DAOInventario{
                   sentencia.executeUpdate();
                }
             }catch(Exception e){}
->>>>>>> a62ba342a3588060d33c22c8d5136a0ef65e3244
         }
 }
