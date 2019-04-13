@@ -48,6 +48,11 @@ public class DAOUsuarios{
       
    }
    public void ActualizarContrasena(){
-      
+      try{
+         sentencia=conexion.prepareStatement("UPDATE usuario SET contrasena=? WHERE email=? ");
+         sentencia.setString(1, password);
+         sentencia.setString(2, email);
+         consulta = sentencia.executeQuery();
+      }catch(Exception e){}
    }
 }

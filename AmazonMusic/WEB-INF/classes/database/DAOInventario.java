@@ -135,10 +135,44 @@ public class DAOInventario{
 
 
 
-        public void IntroducirProducto(){
-
+        public void IntroducirProducto(Double precio,String url,Integer valoracion,String titulo,String autor,Integer ano,Integer stock){
+            int numero;
+            try {
+               sentencia = conexion.prepareStatement("SELECT max(Referencia) as Referencia FROM item");
+               consulta = sentencia.executeQuery();
+               consulta.next();
+               numero=consulta.getInt("Referencia");
+               sentencia = conexion.prepareStatement("INSERT INTO item VALUES(?,?,?,?)");
+               sentencia.setInt(1, numero);
+               sentencia.setDouble(2, precio);
+               sentencia.setString(3, url);
+               sentencia.setInt(4, valoracion);
+               sentencia.executeQuery();
+               sentencia = conexion.prepareStatement("INSERT INTO cd VALUES(?,?,?,?)");
+               sentencia.setInt(1, numero);
+               sentencia.setString(2, titulo);
+               sentencia.setString(3, autor);
+               sentencia.setInt(4, ano);
+               sentencia.executeQuery();
+               sentencia = conexion.prepareStatement("INSERT INTO inventario VALUES(?,?)");
+               sentencia.setInt(1, numero);
+               sentencia.setInt(2, stock);
+               sentencia.executeQuery();
+            }
+            catch (SQLException e){
+                System.out.println(e);
+            }
+            
         }
-        public void ActualizarInventario(){
-
+        public void ActualizarInventario(Integer referencia,Integer stock){
+            try {
+               sentencia = conexion.prepareStatement("update inventario set Stock=? where Referencia=?");
+               sentencia.setInt(1, stock);
+               sentencia.setInt(2, referencia);
+               sentencia.executeQuery();
+            }
+            catch (SQLException e){
+                System.out.println(e);
+            }
         }
 }
