@@ -85,4 +85,32 @@ public class GestorCarrito{
          }
       }
    }
+   
+   public void ComprarYa(){
+      try{
+         HttpSession sesion = request.getSession();
+         if(sesion.getAttribute("usuarioSesion")!=null){
+            if(fdao.RestarStock(request.getParameter("ReferenciaComprarYa"), Integer.parseInt(request.getParameter("CantidadComprarYa")))){
+               HttpSession session = request.getSession(true); 
+               Carrito carrito = (Carrito) session.getAttribute("carrito");
+               
+               Item item = fdao.ObtenerProducto(request.getParameter("ReferenciaComprarYa"));
+               ItemPedido itemPedido = new ItemPedido(item, Integer.parseInt(request.getParameter("CantidadComprarYa")));
+               carrito.addItem(itemPedido);
+               ConfirmarCompra();
+            }else{
+               request.setAttribute("itemAnadido", "incorrecto");
+               HashMap<String, Item> catalogo = fdao.ObtenerProductos();
+               request.setAttribute("catalogo", catalogo);
+               RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
+               vista.forward(request,response);
+            }
+            
+         }else{
+            RequestDispatcher  vista = request.getRequestDispatcher("login.jsp");
+            vista.forward(request,response);
+         }
+      }catch(Exception e){}
+   }
+   
 }

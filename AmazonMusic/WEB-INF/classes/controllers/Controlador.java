@@ -64,8 +64,8 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("IntroducirProducto") != null){
          this.IntroducirProducto();
       }
-      if(request.getParameter("ActualizarInventario") != null){
-         this.ActualizarInventario();
+      if(request.getParameter("ComprarYa") != null){
+         this.ComprarYa();
       }
       if(request.getParameter("MostrarUsuarios") != null){
          this.MostrarUsuarios();
@@ -188,6 +188,11 @@ public class Controlador extends HttpServlet{
          HelperCarrito hc = new HelperCarrito(request, response);
          hc.ConfirmarCompra();
      }
+     
+     public void ComprarYa(){
+         HelperCarrito hc = new HelperCarrito(request, response);
+         hc.ComprarYa();
+     }
      //.................................................................................//
     
      public void AdministrarTienda(){
@@ -203,10 +208,7 @@ public class Controlador extends HttpServlet{
          HelperProductos hp = new HelperProductos(request, response);
          hp.IntroducirProducto();
      }
-     public void ActualizarInventario(){
-         /*HelperProductos hp = new HelperProductos(request, response);
-         hp.ActualizarInventario();*/
-     }
+
      public void MostrarUsuarios(){
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.MostrarUsuarios();

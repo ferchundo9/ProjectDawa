@@ -25,4 +25,8 @@ public class HelperCarrito{
    public void ConfirmarCompra(){
       fm.ConfirmarCompra();
    }
+   
+   public void ComprarYa(){
+      fm.ComprarYa();
+   }
 }
