@@ -41,6 +41,9 @@
 	<!-- .....................................................................-->
 	
     <body>
+	<!-- Gif que se muestra mientras carga la pagina -->
+	<script type="text/javascript">$(window).load(function() {$(".loader").fadeOut("slow");});</script>
+	<div class="loader"></div>
 	<!-- ---------------------   ENCABEZADO  ------------------------------ -->
 		<header>
 			<!-- Barra superior de navegacion -->
@@ -69,7 +72,7 @@
 				<!-- SI EL USUARIO YA INICIO SESION -->
 				<c:if test="${not empty sessionScope.usuarioSesion}">
 					<form method="POST" action="Controlador" class="Controlador">
-						<input type="hidden" name="Registrarse" value=1></input>
+						<input type="hidden" name="VerCarrito" value=1></input>
 						<button class="botonInvisible derecha" ><span>Ver Carrito</span></button>
 					</form>
 					<form method="POST" action="Controlador" class="Controlador">
@@ -103,7 +106,7 @@
 		<c:forEach items="${catalogo}" var="entry">
 			<div class=item>
 				<form method="POST" action="Controlador" class="Controlador">
-					<img class=imagenItem src="./img/cd1.jpg">
+					<img class=imagenItem src=./img/${entry.value.urlImagen}>
 					<p class=titulo> ${entry.value.titulo} </p>
 					<p class=autor> de ${entry.value.autor}(${entry.value.ano})</p>
 					<!-- Valoracion del item -->
@@ -124,13 +127,23 @@
 			</div>
 		</c:forEach>
 		<!-- ...................................................... -->
+		<c:if test="${empty catalogo}">
+			<p> No hemos encontrado ningún cd con esas características </p>
+			<img src="./img/iconoTriste.png">
+		</c:if>
 	</center>
      
-	<c:if test="${not empty itemAnadido && itemAnadido=='correcto'}">
+	<c:if test="${not empty itemAnadido}">
 		<div id=notificacionFondo class=notificacionFondo>
 			<div class=cuadroNotificacion>
-				<img src="./img/iconoExito.png">
-				<p> El item se ha añadido con éxito al carrito </p>
+				<c:if test="${itemAnadido=='correcto'}">
+					<img src="./img/iconoExito.png">
+					<p> El item se ha añadido con éxito al carrito </p>
+				</c:if>
+				<c:if test="${itemAnadido!='correcto'}">
+					<img src="./img/iconoTriste.png">
+					<p> Se ha producido un error añadiendo el producto al carrito </p>
+				</c:if>
 				<button id="botonNotificacion"> Aceptar </button>
 			</div>
 		</div>

@@ -21,13 +21,11 @@ public class HelperProductos{
    public void VerProducto(){
       fm.VerProducto();
    }
-   public HashMap<String, Item> FiltrarProductos(String precioMax,String autor,String ano){
-      return fm.FiltrarProductos(precioMax,autor,ano);
+   public void FiltrarProductos(){
+      fm.FiltrarProductos();
    }
    public void IntroducirProducto(){
       fm.IntroducirProducto();
    }
-   public void ActualizarInventario(){
-      fm.ActualizarInventario();
-   }
+
 }

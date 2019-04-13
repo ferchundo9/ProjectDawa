@@ -29,6 +29,11 @@ public class FachadaModelo{
       GestorCarrito gc = new GestorCarrito(request,response);
       gc.ConfirmarCompra();
    }
+   
+   public void ComprarYa(){
+      GestorCarrito gc = new GestorCarrito(request,response);
+      gc.ComprarYa();
+   }
    //////////////////////////////////// REGISTRO ////////////////////////////////////
    public void ConfirmarRegistro(){
       GestorUsuarios gu = new GestorUsuarios(request,response);
@@ -68,17 +73,14 @@ public class FachadaModelo{
       GestorProductos gp = new GestorProductos(request,response);
       gp.VerProducto();
    }
-   public HashMap<String, Item> FiltrarProductos(String precioMax,String autor,String ano){
+   public void FiltrarProductos(){
       GestorProductos gp = new GestorProductos(request,response);
-      return gp.FiltrarProductos(precioMax,autor,ano);
+      gp.FiltrarProductos();
    }
    public void IntroducirProducto(){
       GestorProductos gp = new GestorProductos(request,response);
       gp.IntroducirProducto();
    }
-   public void ActualizarInventario(){
-      GestorProductos gp = new GestorProductos(request,response);
-      gp.ActualizarInventario();
-   }
+
 }
    

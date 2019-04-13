@@ -64,8 +64,8 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("IntroducirProducto") != null){
          this.IntroducirProducto();
       }
-      if(request.getParameter("ActualizarInventario") != null){
-         this.ActualizarInventario();
+      if(request.getParameter("ComprarYa") != null){
+         this.ComprarYa();
       }
       if(request.getParameter("MostrarUsuarios") != null){
          this.MostrarUsuarios();
@@ -116,7 +116,7 @@ public class Controlador extends HttpServlet{
      }
      /*Este método devuelve la informacion de un producto (cuando el usuario clica en el 
      desde el catalogo) en el atributo "producto" y tiene que devolver tambien un array
-     list con las opiniones asociadas al mismo (FALTA POR IMPLEMENTAR OPINIONES)*/
+     list con las opiniones asociadas al mismo*/
      public void VerProducto(){
          HelperProductos hp = new HelperProductos(request, response);
          hp.VerProducto();
@@ -125,18 +125,8 @@ public class Controlador extends HttpServlet{
      los atributos que recibe del formulario son "nombreCD","autorCD","precioMaxCD", 
      "anoCD" y pueden ser nulos*/
      public void FiltrarProductos(){
-         HashMap<String, Item> catalogo=null;
-         String precioMax=request.getParameter("precioMaxCD");
-         String autor=request.getParameter("autorCD");
-         String ano=request.getParameter("anoCD");
          HelperProductos hp = new HelperProductos(request, response);
-         catalogo=hp.FiltrarProductos(precioMax,autor,ano);
-         request.setAttribute("catalogo", catalogo);
-         try{
-            RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
-            vista.forward(request,response);
-         }catch(Exception e){
-         }
+         hp.FiltrarProductos();
      }
      
      //..................................................................................//
@@ -184,21 +174,31 @@ public class Controlador extends HttpServlet{
       public void VerCarrito(){
          HelperCarrito hc = new HelperCarrito(request, response);
          hc.VerCarrito();
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("carrito.jsp");
+            vista.forward(request,response);
+         }catch(Exception e){
+         }
+     }
+     public void EliminarDelCarrito(){
+         HelperCarrito hc = new HelperCarrito(request, response);
+         hc.EliminarDelCarrito();
+     }
+     public void ConfirmarCompra(){
+         HelperCarrito hc = new HelperCarrito(request, response);
+         hc.ConfirmarCompra();
+     }
+     
+     public void ComprarYa(){
+         HelperCarrito hc = new HelperCarrito(request, response);
+         hc.ComprarYa();
      }
      //.................................................................................//
     
      public void AdministrarTienda(){
          //LLEVA A LA VISTA DE ADMINISTRADOR
      }
-     
-     public void ConfirmarCompra(){
-         HelperCarrito hc = new HelperCarrito(request, response);
-         hc.ConfirmarCompra();
-     }
-     public void EliminarDelCarrito(){
-         HelperCarrito hc = new HelperCarrito(request, response);
-         hc.EliminarDelCarrito();
-     }
+          
      public void ConfirmarRegistro(){
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.ConfirmarRegistro();
@@ -208,10 +208,7 @@ public class Controlador extends HttpServlet{
          HelperProductos hp = new HelperProductos(request, response);
          hp.IntroducirProducto();
      }
-     public void ActualizarInventario(){
-         HelperProductos hp = new HelperProductos(request, response);
-         hp.ActualizarInventario();
-     }
+
      public void MostrarUsuarios(){
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.MostrarUsuarios();

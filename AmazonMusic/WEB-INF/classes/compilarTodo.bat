@@ -1,4 +1,5 @@
 javac businessLogic/Item.java
+javac businessLogic/ItemPedido.java
 javac businessLogic/Cd.java
 javac businessLogic/Tarjeta.java
 javac businessLogic/Usuario.java

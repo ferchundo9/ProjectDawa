@@ -38,6 +38,7 @@
 				zoomWindowHeight: 500
 		  });
 		});
+		
 		</script>
 		<!---------------------------------------------->
 
@@ -57,6 +58,9 @@
 	<!-- .....................................................................-->
 	
     <body>
+	<!-- Gif que se muestra mientras carga la pagina -->
+	<script type="text/javascript">$(window).load(function() {$(".loader").fadeOut("slow");});</script>
+	<div class="loader"></div>
 	<!-- ---------------------   ENCABEZADO  ------------------------------ -->
 		<header>
 			<!-- Barra superior de navegacion -->
@@ -85,7 +89,7 @@
 				<!-- SI EL USUARIO YA INICIO SESION -->
 				<c:if test="${not empty sessionScope.usuarioSesion}">
 					<form method="POST" action="Controlador" class="Controlador">
-						<input type="hidden" name="Registrarse" value=1></input>
+						<input type="hidden" name="VerCarrito" value=1></input>
 						<button class="botonInvisible derecha" ><span>Ver Carrito</span></button>
 					</form>
 					<form method="POST" action="Controlador" class="Controlador">
@@ -119,7 +123,7 @@
 			<!-- info del item en si -->
 			<div class=columna1>
 			
-				<img class=imagenItemUd id="zoom" src="./img/cd1.jpg">
+				<img class=imagenItemUd id="zoom" src=./img/${producto.urlImagen}>
 				<p class=tituloItem> ${producto.titulo} </p>
 				<c:forEach begin="0" end="${producto.valoracion - 1}" var="i">
 						<img class=estrellaItem src="img/iconoEstrellaCompleta.png" />
@@ -129,6 +133,7 @@
 				</c:forEach>
 				<p class=autorItem > de ${producto.autor} (${producto.ano})</p>
 				<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR ${producto.precio}€ </span></p> 
+				<p class=StockItem > Stock disponible: ${stock} uds</p>
 			</div>	
 			<!--------------------------->
 			<!-- cuadro de la derecha para añadir al carrito --------->
@@ -138,14 +143,18 @@
 					<p class=enStock> En Stock </p>
 					<!-- Formulario para añadir al carrito  -->
 					<form method="POST" action="Controlador" class="Controlador">
+						<input type=hidden name=Referencia value=${producto.referencia}></input>
 						<input type="hidden" name="AnadirAlCarrito" value=1></input>
-						<label> Cantidad : <input class=cantidad type=number /></label>
+						<label> Cantidad : <input class=cantidad name=Cantidad type=number required min=1 max=${stock} value="1"/></label>
 						<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
 					</form>
 					<!-- Formulario para añadir al carrito y ir al carrito directamente --->
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type="hidden" name="ComprarYa" value=1></input>
-						<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png" /> Comprar ya</button>
+						<input type="hidden" name="ReferenciaComprarYa" value=${producto.referencia}></input>
+						<input type="hidden" name="CantidadComprarYa" value=""></input>
+						<!-- La funcion ya está implementada, sólo necesito que este campo coja el valor del otro :) --->
+						<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png"/> Comprar ya</button>
 					</form>
 				</div>
 			</form>
@@ -155,10 +164,6 @@
 			
 			<!---- SECCION DE COMENTARIOS Y VALORACIONES -------------->
 			<div class=comentarios>
-				<hr/>
-				<h2> Opiniones de clientes</h2>
-				<!----- Comentario Individual -------->
-				<div class=comentarios>
 				<hr/>
 				<h2> Opiniones de clientes</h2>
 				<!----- Comentario Individual -------->
@@ -178,6 +183,12 @@
 					</div>
 				</c:forEach>
 				
+				<c:if test="${empty valoraciones}">
+				<div class=noComentarios>
+					<img src="./img/iconoCorazon.png">
+					<p> Nadie ha valorado aun este producto </p>
+				</div>
+				</c:if>
 
 			</div>
 			</div>

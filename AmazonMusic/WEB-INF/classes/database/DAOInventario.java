@@ -70,7 +70,7 @@ public class DAOInventario{
 
 
         //################################## OBTENER PRODUCTOS FILTRADOS ###########################################3
-        public  HashMap<String, Item>  ObtenerProductosFiltrados(String precioMax,String autor,String ano){
+        public  HashMap<String, Item>  ObtenerProductosFiltrados(String precioMax,String autor,String ano, String titulo){
                 HashMap<String, Item> catalogo = new HashMap<>();
                  try{
                      if(precioMax==null || precioMax==""){
@@ -79,13 +79,18 @@ public class DAOInventario{
                      if(autor=="" || autor==null){
                         autor="%";
                      }
+                     if(autor=="" || autor==null){
+                        titulo="%";
+                     }
                      if(ano==null || ano=="" ){
                         ano="%";
                      }
-                     sentencia = conexion.prepareStatement("select * from  cd join item on cd.Referencia=item.Referencia where cd.ano like ? and cd.Autor like ? and item.precio < ?");
+                     titulo = "%" + titulo + "%";
+                     sentencia = conexion.prepareStatement("select * from  cd join item on cd.Referencia=item.Referencia where cd.ano like ? and cd.Autor like ? and item.precio < ? and cd.Titulo like ?");
                      sentencia.setString(1,ano);
                      sentencia.setString(2,autor);
                      sentencia.setDouble(3,Double.valueOf(precioMax.replace(",",".")));
+                     sentencia.setString(4,titulo);
                      consulta=sentencia.executeQuery();
 
                      while (consulta.next()) {
@@ -132,7 +137,39 @@ public class DAOInventario{
            return valoraciones;
         }
 
-
+       public int ObtenerStock(String referencia){
+            int stock =0;
+            try{
+               sentencia = conexion.prepareStatement("SELECT Stock FROM inventario WHERE Referencia=?");
+               sentencia.setInt(1, Integer.parseInt(referencia));
+               consulta = sentencia.executeQuery();
+               while(consulta.next()){
+                  stock = consulta.getInt("Stock");
+               }
+            }catch(Exception e){}
+            return stock;
+       }
+       
+       public synchronized boolean RestarStock(String referencia, int cantidad){
+            boolean stockSuficiente = false;
+            try{
+               sentencia = conexion.prepareStatement("SELECT Stock FROM inventario WHERE Referencia=?");
+               sentencia.setInt(1, Integer.parseInt(referencia));
+               consulta = sentencia.executeQuery();
+               if(consulta.next()){
+                  int StockOriginal = consulta.getInt("Stock");
+                  if(StockOriginal >=cantidad){//Si hay stock suficiente
+                     int StockActualizado = StockOriginal - cantidad;
+                     sentencia = conexion.prepareStatement("UPDATE inventario SET Stock=? WHERE Referencia=?");
+                     sentencia.setInt(1, StockActualizado);
+                     sentencia.setInt(2, Integer.parseInt(referencia));
+                     sentencia.executeUpdate();
+                     return true;
+                  }
+               }
+            }catch(Exception e){}
+            return stockSuficiente;
+       }
 
 
         public void IntroducirProducto(Double precio,String url,Integer valoracion,String titulo,String autor,Integer ano,Integer stock){
@@ -164,6 +201,7 @@ public class DAOInventario{
             }
             
         }
+<<<<<<< HEAD
         public void ActualizarInventario(Integer referencia,Integer stock){
             try {
                sentencia = conexion.prepareStatement("update inventario set Stock=? where Referencia=?");
@@ -174,5 +212,22 @@ public class DAOInventario{
             catch (SQLException e){
                 System.out.println(e);
             }
+=======
+        
+        public void ActualizarInventario(String referencia, int cantidad){
+            try{
+               sentencia = conexion.prepareStatement("SELECT Stock FROM inventario WHERE Referencia=?");
+               sentencia.setInt(1, Integer.parseInt(referencia));
+               consulta = sentencia.executeQuery();
+               if(consulta.next()){
+                  int stockOriginal = consulta.getInt("Stock");
+                  int stockActualizado = stockOriginal+cantidad;
+                  sentencia = conexion.prepareStatement("UPDATE inventario SET Stock=? WHERE Referencia=?");
+                  sentencia.setInt(1, stockActualizado);
+                  sentencia.setInt(2, Integer.parseInt(referencia));
+                  sentencia.executeUpdate();
+               }
+            }catch(Exception e){}
+>>>>>>> a62ba342a3588060d33c22c8d5136a0ef65e3244
         }
 }
