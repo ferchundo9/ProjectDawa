@@ -131,6 +131,7 @@
 				<c:forEach begin="${producto.valoracion}" end="4" var="i">
 						<img class=estrellaItem src="img/iconoEstrellaVacia.png" />
 				</c:forEach>
+				(${producto.valoracion} /5)
 				<p class=autorItem > de ${producto.autor} (${producto.ano})</p>
 				<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR ${producto.precio}€ </span></p> 
 				<p class=StockItem > Stock disponible: ${stock} uds</p>
@@ -171,7 +172,6 @@
 				<!----- Comentario Individual -------->
 				<c:forEach items="${valoraciones}" var="val">
 					<div class=opinion>
-					
 						<p > <img src="./img/iconoUsuario.png" /> <span class=usuario> ${val.cliente} </span></p>
 						<p>
 							<c:forEach begin="0" end="${val.valoracion - 1}" var="i">
