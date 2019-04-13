@@ -68,6 +68,14 @@ public class FachadaDAO{
       DAOInventario daoI = new DAOInventario(conexion);
       return daoI.RestarStock(referencia, cantidad);
    }
+   public boolean ComprobarPedidoUsuario(String usuario, String referencia){
+      DAOInventario daoI = new DAOInventario(conexion);
+      return daoI.ComprobarPedidoUsuario(usuario, referencia);
+   }
+   public void AnadirValoracion(String referencia, Valoracion valoracion){
+      DAOInventario daoI  = new DAOInventario(conexion);
+      daoI.AnadirValoracion(referencia, valoracion);
+   }
    //////////////////////////////////////////
    public void ConfirmarCompra(Carrito carrito, String email, String fechaCompra){
       DAOPedidos daoP = new DAOPedidos(conexion);

@@ -75,7 +75,10 @@ public class Controlador extends HttpServlet{
       }
       if(request.getParameter("ActualizarContrasena") != null){
          this.ActualizarContrasena();
-      }    
+      } 
+      if(request.getParameter("AnadirComentario") != null){
+         this.AnadirComentario();
+      }
      }
      
      //-----------------------------------------------------------------------------------------------//
@@ -127,6 +130,14 @@ public class Controlador extends HttpServlet{
      public void FiltrarProductos(){
          HelperProductos hp = new HelperProductos(request, response);
          hp.FiltrarProductos();
+     }
+     /*Este metodo añade un comentario y valoracion a un item; comprueba que el usuario 
+     haya comprado ese item. Actualiza la valoracion media del item.
+     Devuelve un atributo "comentario" que puede tener valor "correcto" si se añadio bien
+     o "incorrecto" si el usuario no habia comprado ese producto*/
+     public void AnadirComentario(){
+         HelperProductos hp = new HelperProductos(request, response);
+         hp.AnadirComentario();
      }
      
      //..................................................................................//

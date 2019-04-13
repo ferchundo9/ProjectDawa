@@ -191,7 +191,7 @@
 					<p> Nadie ha valorado aun este producto </p>
 				</div>
 				</c:if>
-<div class=anadirComentario>
+				<div class=anadirComentario>
 					<h2> Valora este producto </h2>
 					<hr>
 					<form method="POST" action="Controlador" class="Controlador">
@@ -208,7 +208,14 @@
 							<label for="radio5">★</label>
 						  </p>
 						<textarea name=opinion rows=3 cols=120> ¿Que te ha parecido el producto? ¿Llego bien y a tiempo? </textarea>
+						<input type=hidden name=Referencia value=${producto.referencia}></input>
 						<input type=hidden name="AnadirComentario" value=1></input>
+						<c:if test="${comentario == 'incorrecto'}">
+							<p class=mensajeErrorComentario> No puedes añadir un comentario a un producto que no has comprado</p>
+						</c:if>
+						<c:if test="${comentario == 'correcto'}">
+							<p class=mensajeExitoComentario> Se ha añadido tu comentario</p>
+						</c:if>
 						<button type="submit" class="botonEnviar"> <img src="./img/iconoAnadir.png"/> Añadir valoracion</button>
 					</form>
 				</div>

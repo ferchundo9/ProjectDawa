@@ -59,5 +59,30 @@ public class GestorProductos{
       Integer stock=Integer.parseInt(request.getParameter("precioMaxCD"));
       fdao.IntroducirProducto(precio,url,valoracion,titulo,autor,ano,stock);
    }
+   
+   public void AnadirComentario(){
+      String usuario = (String)request.getSession().getAttribute("usuarioSesion");
+      String referencia = request.getParameter("Referencia");
+      if(fdao.ComprobarPedidoUsuario(usuario, referencia)){
+         String comentario = request.getParameter("opinion");
+         int puntuacion = Integer.parseInt(request.getParameter("estrellas"));
+         Valoracion valoracion  = new Valoracion(puntuacion, comentario, usuario);
+         fdao.AnadirValoracion(referencia, valoracion);
+         request.setAttribute("comentario", "correcto");
+      }else{
+         request.setAttribute("comentario", "incorrecto");
+      }
+      try{
+         Item producto = fdao.ObtenerProducto(request.getParameter("Referencia"));
+         request.setAttribute("producto", producto);
+         ArrayList<Valoracion> valoraciones = fdao.ObtenerValoraciones(request.getParameter("Referencia"));
+         request.setAttribute("valoraciones", valoraciones);
+         int stock = fdao.ObtenerStock(request.getParameter("Referencia"));
+         request.setAttribute("stock", stock);
+         RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
+         vista.forward(request,response);
+      }catch(Exception e){
+         }
+   }
 
 }

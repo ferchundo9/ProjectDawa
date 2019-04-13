@@ -729,3 +729,6 @@ legend{font-size: 1.2em; font-weight: bold;}
 	margin-top: -7px;
 	margin-left: -7px;
 }
+
+.mensajeErrorComentario{color: #CC2B1B; font-weight: lighter; font-size: 0.8em;}
+.mensajeExitoComentario{color: #4D7D1F; font-weight: lighter; font-size: 0.8em;}

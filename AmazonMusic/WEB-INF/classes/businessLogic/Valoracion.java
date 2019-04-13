@@ -7,6 +7,11 @@ public class Valoracion{
    private String cliente;
    public Valoracion(){
    }
+   public Valoracion(Integer valoracion, String comentario, String cliente){  
+      this.valoracion = valoracion;
+      this.comentario = comentario;
+      this.cliente = cliente;
+   }
    public Integer getValoracion(){
       return this.valoracion;
    }

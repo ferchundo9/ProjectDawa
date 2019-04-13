@@ -81,6 +81,10 @@ public class FachadaModelo{
       GestorProductos gp = new GestorProductos(request,response);
       gp.IntroducirProducto();
    }
+   public void AnadirComentario(){
+      GestorProductos gp = new GestorProductos(request, response);
+      gp.AnadirComentario();
+   }
 
 }
    

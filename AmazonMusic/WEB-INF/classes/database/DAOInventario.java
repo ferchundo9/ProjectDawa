@@ -170,6 +170,27 @@ public class DAOInventario{
             }catch(Exception e){}
             return stockSuficiente;
        }
+       
+       public boolean ComprobarPedidoUsuario(String usuario, String referencia){
+            try{
+               sentencia = conexion.prepareStatement("SELECT * FROM itemspedido JOIN  pedido ON itemspedido.id=pedido.id WHERE Referencia=? AND Email=?");
+               sentencia.setInt(1, Integer.parseInt(referencia));
+               sentencia.setString(2, usuario);
+               consulta = sentencia.executeQuery();
+               return (consulta.next());
+            }catch(Exception e){return false;}
+       }
+       
+       public void AnadirValoracion(String referencia, Valoracion valoracion){
+            try{
+               sentencia = conexion.prepareStatement("INSERT INTO valoracion VALUES(?, ?, ?, ?)");
+               sentencia.setString(1, valoracion.getCliente());
+               sentencia.setString(2, referencia);
+               sentencia.setInt(3, valoracion.getValoracion());
+               sentencia.setString(4, valoracion.getComentario());
+               sentencia.executeUpdate();
+            }catch(Exception e){}
+       }
 
 
         public void IntroducirProducto(Double precio,String url,Integer valoracion,String titulo,String autor,Integer ano,Integer stock){
