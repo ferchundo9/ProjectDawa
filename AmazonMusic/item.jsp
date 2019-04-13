@@ -55,6 +55,8 @@
 	<%@ page language="java" import="businessLogic.*" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@page isELIgnored="false" %>
+	<!-- AngularJS-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8.min.js"></script>
 	<!-- .....................................................................-->
 	
     <body>
@@ -137,7 +139,7 @@
 			</div>	
 			<!--------------------------->
 			<!-- cuadro de la derecha para añadir al carrito --------->
-				<div class=cuadroCompra >
+				<div class=cuadroCompra ng-app="" ng-init="cantidadCompra=1">
 					<p class=precioItem> EUR ${producto.precio}€ </p>
 					<img class=imagenEnvio src="./img/imagenEnvio.PNG" />
 					<p class=enStock> En Stock </p>
@@ -145,11 +147,15 @@
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type=hidden name=Referencia value=${producto.referencia}></input>
 						<input type="hidden" name="AnadirAlCarrito" value=1></input>
-						<label> Cantidad : <input class=cantidad name=Cantidad type=number required min=1 max=${stock} value="1"/></label>
+
+						<label> Cantidad : <input ng-model="cantidadCompra" class=cantidad name=Cantidad type=number required min=1 max=${stock} value=1/></label>
+
 						<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
 					</form>
 					<!-- Formulario para añadir al carrito y ir al carrito directamente --->
 					<form method="POST" action="Controlador" class="Controlador">
+						<p ng-bind="cantidadCompra"></p>
+						<input type="hidden" name=Cantidad type=number value=1>
 						<input type="hidden" name="ComprarYa" value=1></input>
 						<input type="hidden" name="ReferenciaComprarYa" value=${producto.referencia}></input>
 						<input type="hidden" name="CantidadComprarYa" value=""></input>
@@ -187,8 +193,31 @@
 				<div class=noComentarios>
 					<img src="./img/iconoCorazon.png">
 					<p> Nadie ha valorado aun este producto </p>
+					<hr class=linea>
 				</div>
+				
 				</c:if>
+				<div class=anadirComentario>
+					<h2> Valora este producto </h2>
+					<hr>
+					<form method="POST" action="Controlador" class="Controlador">
+						<p class="clasificacion">
+							<input id="radio1" type="radio" name="estrellas" value="5">
+							<label for="radio1">★</label>
+							<input id="radio2" type="radio" name="estrellas" value="4">
+							<label for="radio2">★</label>
+							<input id="radio3" type="radio" name="estrellas" value="3">
+							<label for="radio3">★</label>
+							<input id="radio4" type="radio" name="estrellas" value="2">
+							<label for="radio4">★</label>
+							<input id="radio5" type="radio" name="estrellas" value="1">
+							<label for="radio5">★</label>
+						  </p>
+						<textarea name=opinion rows=3 cols=120> ¿Que te ha parecido el producto? ¿Llego bien y a tiempo? </textarea>
+						<input type=hidden name="AnadirComentario" value=1></input>
+						<button type="submit" class="botonEnviar"> <img src="./img/iconoAnadir.png"/> Añadir valoracion</button>
+					</form>
+				</div>
 
 			</div>
 			</div>
