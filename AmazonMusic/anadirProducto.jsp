@@ -1,7 +1,7 @@
   <html>
 	<!-- ---------------------   METADATOS  ------------------------------ -->
     <head>
-		<title>AmazonMusic[Factura]</title>
+		<title>AmazonMusic[Item]</title>
 		<meta charset="utf-8"> 
 		<meta name="description" content="Página de venta de productos">
 		<meta name="keywords" content="CD, musica, comprar, tienda">
@@ -10,6 +10,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico">
 		<script type="text/javascript" src="jquery-2.2.4.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/igorlino/elevatezoom-plus@1.2.3/src/jquery.ez-plus.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function()   {
 				$("#boton").on( "click", function() {	 
@@ -17,11 +18,34 @@
 					});
 			});
 		</script>
+	
+		<!--- PLUGUIN PARA EL ZOOOM DE LA IMAGEN ---->
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
+		<script>
+		$(function(){  
+			  $("#zoom").elevateZoom({
+				
+				scrollZoom: true,
+				lensShape: "square",
+				tint: true,
+				tintColour: '#F90', tintOpacity: 0.2,
+				 zoomWindowFadeIn: 500,
+				zoomWindowFadeOut: 500,
+				lensFadeIn: 500,
+				lensFadeOut: 500,
+				zoomWindowWidth: 680,
+				zoomWindowHeight: 500
+		  });
+		});
+		
+		</script>
+		<!---------------------------------------------->
+
     </head>
 	<!-- ------------------------------------------------------------------ -->
 	
-
-	<!-- ---------------------   ENCABEZADO  ------------------------------ -->
+	
 	<!-- Codificacion en UTF-8 con Tomcat -->
 	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<!--................................  -->
@@ -65,8 +89,8 @@
 				<!-- SI EL USUARIO YA INICIO SESION -->
 				<c:if test="${not empty sessionScope.usuarioSesion}">
 					<form method="POST" action="Controlador" class="Controlador">
-						<input type="hidden" name="VerCarrito" value=1></input>
-						<button class="botonInvisible derecha" ><span>Ver Carrito</span></button>
+						<input type="hidden" name="AdminUsuarios" value=1></input>
+						<button class="botonInvisible derecha" ><span>Administrar Usuarios</span></button>
 					</form>
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type="hidden" name="CerrarSesion" value=1></input>
@@ -79,7 +103,7 @@
 				<form class=form method="POST" action="Controlador" class="Controlador">
 					<div id=boton class=opcionesBusqueda><img src="./img/iconoDesplegar.png" />Opciones busqueda </div>
 					<input class="barraBusqueda" type="text" name="nombreCD">
-					<input type="hidden" name="FiltrarProductos" value=1></input>
+					<input type="hidden" name="FiltrarProductosAdmin" value=1></input>
 					<button type="submit"> <img src="./img/iconoBuscar.png" /> </button>
 					<div id=target class=otrasOpciones>
 						<label><p>Precio Máximo</p><input type="number" name="precioMaxCD"></label>
@@ -91,41 +115,22 @@
 				
 			</nav>
 		</header>
-	<!--....................................................................-->
+	<!-- ------------------------------------------------------------------ -->
+
 	<!-------------------------   CUERPO -------------------------------------->
-	<center class=fondoBlanco>
-		<div class=block>
-			<div class=tabla5Columnas >
-					<h2 class="c1"> Factura de compra </h2>
-			</div>
-			<div class=cuadroDerecha>
-				<h2> Subtotal ( ${factura.numItems} productos): </h2>
-				<p class=precio>   EUR ${factura.precio} </p>
-
-			</div>
-				<!----------- ITEM INDIVIDUAL DEL  CARRITO ---------->
-			<c:forEach items="${factura.items}" var="entry">
-				<hr class=linea>
-				<form class=tablaCarrito method="POST" action="Controlador" class="Controlador">
-						<img class="c1 imagenCarrito" src="./img/${entry.value.item.urlImagen}">
-						<p class="c2 tituloCarrito"> ${entry.value.item.titulo} </p>
-						<p class="c3 cantidad" >x${entry.value.cantidad}uds </p>
-						<p class="c4 precio"> EUR ${entry.value.item.precio} </p>
-						<input type=hidden name=Referencia value=${entry.value.item.referencia}>
-				</form>
-			</c:forEach>
-
-			<c:if test="${not empty factura.items}">
-			<!-- Suma final de la compra -->
-			<hr class=linea>
-			<div class=tablaCarrito >
-				<p class=derecha> Subtotal(${factura.numItems} productos): <span class=precioDer> EUR ${factura.precio} </span></p>
-				<p class=derecha> Los datos de factura se enviarán a la dirección: <span class=precioDer> ${sessionScope.usuarioSesion} </span></p>
-				<p class=derecha> La compra ha sido realizada a: <span class=precioDer> ${fecha} </span></p>
-			</div>
-			</c:if>
-		</div>
-	</center>
-     
+	<div class=itemGrid> <!--Div con el fondo blanco-->
+		<form method="POST" action="Controlador" class="Controlador">
+			<input type="hidden" name="IntroducirProducto" value=1/>
+			<label><p>Titulo</p><input type="text" name="tituloCdNuevo"></input></label>
+			<label><p>Autor</p><input type="text" name="autorCdNuevo"></input></label>
+			<label><p>Precio</p><input type="number" name="precioCdNuevo"></input></label>
+			<label><p>Año</p><input type="number" name="anoCdNuevo"></input></label>
+			<label><p>Imagen</p><input type="text" name="imagenCdNuevo"></input></label>
+			<label><p>Stock</p><input type="number" name="stockCdNuevo"></input></label>
+			<input type="submit" value="Añadir Cd"/>
+		</form>
+	</div>
+	
+	
     </body>
 </html>

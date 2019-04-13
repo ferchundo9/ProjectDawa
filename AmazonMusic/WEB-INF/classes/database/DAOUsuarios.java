@@ -78,4 +78,20 @@ public class DAOUsuarios{
          consulta = sentencia.executeQuery();
       }catch(Exception e){}
    }
+   
+   public String ValidarClienteAdministrador(String email,String password){
+      try{
+         sentencia = conexion.prepareStatement("SELECT * FROM cliente WHERE Email=?");
+         sentencia.setString(1, email);
+         
+         consulta = sentencia.executeQuery();
+         if  (consulta.next()) {
+            return "cliente";
+         }else{   
+            return "admin";
+         }
+  
+      }catch(Exception e){}
+      return null;
+   }
 }

@@ -7,7 +7,7 @@ import java.util.*;
 public class FachadaModelo{
    private HttpServletRequest request;
    private HttpServletResponse response;
-   
+
    public FachadaModelo(HttpServletRequest request, HttpServletResponse response){
       this.request = request;
       this.response = response;
@@ -29,7 +29,7 @@ public class FachadaModelo{
       GestorCarrito gc = new GestorCarrito(request,response);
       gc.ConfirmarCompra();
    }
-   
+
    public void ComprarYa(){
       GestorCarrito gc = new GestorCarrito(request,response);
       gc.ComprarYa();
@@ -39,15 +39,15 @@ public class FachadaModelo{
       GestorUsuarios gu = new GestorUsuarios(request,response);
       gu.ConfirmarRegistro();
    }
-   public void IniciarSesion(){
+   public String IniciarSesion(String email,String password){
       GestorUsuarios gu = new GestorUsuarios(request,response);
-      gu.IniciarSesion();
+      return gu.IniciarSesion(email,password);
    }
    public void CerrarSesion(){
       GestorUsuarios gu = new GestorUsuarios(request,response);
       gu.CerrarSesion();
    }
-   
+
    public void CrearCuenta(){
       GestorUsuarios gu = new GestorUsuarios(request, response);
       gu.CrearCuenta();
@@ -81,6 +81,9 @@ public class FachadaModelo{
       GestorProductos gp = new GestorProductos(request,response);
       gp.IntroducirProducto();
    }
+   public void AnadirComentario(){
+      GestorProductos gp = new GestorProductos(request, response);
+      gp.AnadirComentario();
+   }
 
 }
-   

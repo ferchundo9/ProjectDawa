@@ -85,6 +85,9 @@ public class DAOInventario{
                      if(ano==null || ano=="" ){
                         ano="%";
                      }
+                     if(titulo==null || titulo==""){
+                        titulo="%";
+                     }
                      titulo = "%" + titulo + "%";
                      sentencia = conexion.prepareStatement("select * from  cd join item on cd.Referencia=item.Referencia where cd.ano like ? and cd.Autor like ? and item.precio < ? and cd.Titulo like ?");
                      sentencia.setString(1,ano);
@@ -170,20 +173,48 @@ public class DAOInventario{
             }catch(Exception e){}
             return stockSuficiente;
        }
+       
+       public boolean ComprobarPedidoUsuario(String usuario, String referencia){
+            try{
+               sentencia = conexion.prepareStatement("SELECT * FROM itemspedido JOIN  pedido ON itemspedido.id=pedido.id WHERE Referencia=? AND Email=?");
+               sentencia.setInt(1, Integer.parseInt(referencia));
+               sentencia.setString(2, usuario);
+               consulta = sentencia.executeQuery();
+               return (consulta.next());
+            }catch(Exception e){return false;}
+       }
+       
+       public void AnadirValoracion(String referencia, Valoracion valoracion){
+            try{
+               //Anade el comentario a la BD
+               sentencia = conexion.prepareStatement("INSERT INTO valoracion VALUES(?, ?, ?, ?)");
+               sentencia.setString(1, valoracion.getCliente());
+               sentencia.setString(2, referencia);
+               sentencia.setInt(3, valoracion.getValoracion());
+               sentencia.setString(4, valoracion.getComentario());
+               sentencia.executeUpdate();
+               //Actualiza la puntuacion media del item
+               sentencia = conexion.prepareStatement("UPDATE item SET valoracion=(SELECT AVG(valoracion) FROM valoracion WHERE referencia=?) WHERE Referencia=?");
+               sentencia.setString(1,referencia);
+               sentencia.setString(2,referencia);
+               sentencia.executeUpdate();
+            }catch(Exception e){}
+       }
+       
 
 
-        public void IntroducirProducto(Double precio,String url,Integer valoracion,String titulo,String autor,Integer ano,Integer stock){
+        public void IntroducirProducto(Double precio,String url,String titulo,String autor,Integer ano,Integer stock){
             int numero;
             try {
                sentencia = conexion.prepareStatement("SELECT max(Referencia) as Referencia FROM item");
                consulta = sentencia.executeQuery();
                consulta.next();
                numero=consulta.getInt("Referencia");
-               sentencia = conexion.prepareStatement("INSERT INTO item VALUES(?,?,?,?)");
+               numero=numero+1;
+               sentencia = conexion.prepareStatement("INSERT INTO item(Referencia,Precio,imagen) VALUES(?,?,?)");
                sentencia.setInt(1, numero);
                sentencia.setDouble(2, precio);
                sentencia.setString(3, url);
-               sentencia.setInt(4, valoracion);
                sentencia.executeUpdate();
                sentencia = conexion.prepareStatement("INSERT INTO cd VALUES(?,?,?,?)");
                sentencia.setInt(1, numero);

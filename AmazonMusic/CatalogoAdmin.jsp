@@ -1,7 +1,8 @@
   <html>
 	<!-- ---------------------   METADATOS  ------------------------------ -->
     <head>
-		<title>AmazonMusic[Factura]</title>
+		<title>AmazonMusic[Catalogo]</title>
+		
 		<meta charset="utf-8"> 
 		<meta name="description" content="Página de venta de productos">
 		<meta name="keywords" content="CD, musica, comprar, tienda">
@@ -17,11 +18,17 @@
 					});
 			});
 		</script>
+		<script>
+		$(document).ready(function(){
+            /* Si se pulsa sobre el div "button" */
+            $("#botonNotificacion").click(function(){
+                $("#notificacionFondo").hide();
+            });
+        });
+		</script>
     </head>
-	<!-- ------------------------------------------------------------------ -->
+	<!-- .................................................................. -->
 	
-
-	<!-- ---------------------   ENCABEZADO  ------------------------------ -->
 	<!-- Codificacion en UTF-8 con Tomcat -->
 	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<!--................................  -->
@@ -65,8 +72,8 @@
 				<!-- SI EL USUARIO YA INICIO SESION -->
 				<c:if test="${not empty sessionScope.usuarioSesion}">
 					<form method="POST" action="Controlador" class="Controlador">
-						<input type="hidden" name="VerCarrito" value=1></input>
-						<button class="botonInvisible derecha" ><span>Ver Carrito</span></button>
+						<input type="hidden" name="AdminUsuarios" value=1></input>
+						<button class="botonInvisible derecha" ><span>Administrar Usuarios</span></button>
 					</form>
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type="hidden" name="CerrarSesion" value=1></input>
@@ -92,40 +99,75 @@
 			</nav>
 		</header>
 	<!--....................................................................-->
+
 	<!-------------------------   CUERPO -------------------------------------->
-	<center class=fondoBlanco>
-		<div class=block>
-			<div class=tabla5Columnas >
-					<h2 class="c1"> Factura de compra </h2>
-			</div>
-			<div class=cuadroDerecha>
-				<h2> Subtotal ( ${factura.numItems} productos): </h2>
-				<p class=precio>   EUR ${factura.precio} </p>
-
-			</div>
-				<!----------- ITEM INDIVIDUAL DEL  CARRITO ---------->
-			<c:forEach items="${factura.items}" var="entry">
-				<hr class=linea>
-				<form class=tablaCarrito method="POST" action="Controlador" class="Controlador">
-						<img class="c1 imagenCarrito" src="./img/${entry.value.item.urlImagen}">
-						<p class="c2 tituloCarrito"> ${entry.value.item.titulo} </p>
-						<p class="c3 cantidad" >x${entry.value.cantidad}uds </p>
-						<p class="c4 precio"> EUR ${entry.value.item.precio} </p>
-						<input type=hidden name=Referencia value=${entry.value.item.referencia}>
+	<center class=items>
+		<!-- Bucle que recorre el hash de elementos del catalgo --->
+		<c:forEach items="${catalogo}" var="entry">
+			<div class=item>
+				<form method="POST" action="Controlador" class="Controlador">
+					<img class=imagenItem src=./img/${entry.value.urlImagen}>
+					<p class=titulo> ${entry.value.titulo} </p>
+					<p class=autor> de ${entry.value.autor}(${entry.value.ano})</p>
+					<!-- Valoracion del item -->
+					<c:forEach begin="0" end="${entry.value.valoracion - 1}" var="i">
+						<img class=estrella src="img/iconoEstrellaCompleta.png" />
+					</c:forEach>
+					<c:forEach begin="1" end="${5 - entry.value.valoracion}" var="i">
+						<img class=estrella src="img/iconoEstrellaVacia.png" />
+					</c:forEach>
+					<p class=precio> ${entry.value.precio} € </p>
+					<!-- Campos ocultos para enviar datos al servlet -->
+					<input type="hidden" name="VerProductoAdmin" value=1></input>
+					<input type="hidden" name="Referencia" value=${entry.value.referencia}></input>
+					<!-- ............................................ -->
+					
+					<input type="submit" class=mas value="Ver CD"> </input>
+					
 				</form>
-			</c:forEach>
-
-			<c:if test="${not empty factura.items}">
-			<!-- Suma final de la compra -->
-			<hr class=linea>
-			<div class=tablaCarrito >
-				<p class=derecha> Subtotal(${factura.numItems} productos): <span class=precioDer> EUR ${factura.precio} </span></p>
-				<p class=derecha> Los datos de factura se enviarán a la dirección: <span class=precioDer> ${sessionScope.usuarioSesion} </span></p>
-				<p class=derecha> La compra ha sido realizada a: <span class=precioDer> ${fecha} </span></p>
+				<form method="POST" action="Controlador" >
+					<input type="hidden" name="eliminarProducto" value=1></input>
+					<input type="hidden" name="Referencia" value=${entry.value.referencia}></input>
+					<input type="submit" class=mas value="Eliminar CD"> </input>
+				</form>
 			</div>
-			</c:if>
+		</c:forEach>
+		<div class=item>
+			<form method="POST" action="Controlador" class="Controlador">
+					<img class=imagenItem src=./img/iconoAnadir.png>
+					<p class=titulo> Añadir CD </p>
+					<p class=autor> </p>
+					<!-- Valoracion del item -->
+					<p class=precio> </p>
+					<!-- Campos ocultos para enviar datos al servlet -->
+					<input type="hidden" name="AnadirProducto" value=1></input>
+					<!-- ............................................ -->
+					
+					<input type="submit" class=mas value="AÑADIR"> </input>
+					
+				</form>	
 		</div>
+		<!-- ...................................................... -->
+		<c:if test="${empty catalogo}">
+			<p> No hemos encontrado ningún cd con esas características </p>
+			<img src="./img/iconoTriste.png">
+		</c:if>
 	</center>
      
+	<c:if test="${not empty itemAnadido}">
+		<div id=notificacionFondo class=notificacionFondo>
+			<div class=cuadroNotificacion>
+				<c:if test="${itemAnadido=='correcto'}">
+					<img src="./img/iconoExito.png">
+					<p> El item se ha añadido con éxito al carrito </p>
+				</c:if>
+				<c:if test="${itemAnadido!='correcto'}">
+					<img src="./img/iconoTriste.png">
+					<p> Se ha producido un error añadiendo el producto al carrito </p>
+				</c:if>
+				<button id="botonNotificacion"> Aceptar </button>
+			</div>
+		</div>
+	</c:if>
     </body>
 </html>

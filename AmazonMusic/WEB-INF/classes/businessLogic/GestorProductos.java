@@ -29,11 +29,6 @@ public class GestorProductos{
       request.setAttribute("valoraciones", valoraciones);
       int stock = fdao.ObtenerStock(request.getParameter("Referencia"));
       request.setAttribute("stock", stock);
-      try{
-         RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
-         vista.forward(request,response);
-      }catch(Exception e){
-      }
    }
    public void FiltrarProductos(){
       String precioMax=request.getParameter("precioMaxCD");
@@ -50,14 +45,40 @@ public class GestorProductos{
    }
    
    public void IntroducirProducto(){
-      Double precio=Double.parseDouble(request.getParameter("precioMaxCD"));
-      String url=request.getParameter("precioMaxCD");
-      Integer valoracion=Integer.parseInt(request.getParameter("precioMaxCD"));
-      String titulo=request.getParameter("precioMaxCD");
-      String autor=request.getParameter("precioMaxCD");
-      Integer ano=Integer.parseInt(request.getParameter("precioMaxCD"));
-      Integer stock=Integer.parseInt(request.getParameter("precioMaxCD"));
-      fdao.IntroducirProducto(precio,url,valoracion,titulo,autor,ano,stock);
+      Double precio=Double.parseDouble(request.getParameter("precioCdNuevo"));
+      String url=request.getParameter("imagenCdNuevo");
+      String titulo=request.getParameter("tituloCdNuevo");
+      String autor=request.getParameter("autorCdNuevo");
+      Integer ano=Integer.parseInt(request.getParameter("anoCdNuevo"));
+      Integer stock=Integer.parseInt(request.getParameter("stockCdNuevo"));
+      fdao.IntroducirProducto(precio,url,titulo,autor,ano,stock);
    }
+   
+   public void AnadirComentario(){
+      String usuario = (String)request.getSession().getAttribute("usuarioSesion");
+      String referencia = request.getParameter("Referencia");
+      if(fdao.ComprobarPedidoUsuario(usuario, referencia)){
+         String comentario = request.getParameter("opinion");
+         int puntuacion = Integer.parseInt(request.getParameter("estrellas"));
+         Valoracion valoracion  = new Valoracion(puntuacion, comentario, usuario);
+         fdao.AnadirValoracion(referencia, valoracion);
+         request.setAttribute("comentario", "correcto");
+      }else{
+         request.setAttribute("comentario", "incorrecto");
+      }
+      try{
+         Item producto = fdao.ObtenerProducto(request.getParameter("Referencia"));
+         request.setAttribute("producto", producto);
+         ArrayList<Valoracion> valoraciones = fdao.ObtenerValoraciones(request.getParameter("Referencia"));
+         request.setAttribute("valoraciones", valoraciones);
+         int stock = fdao.ObtenerStock(request.getParameter("Referencia"));
+         request.setAttribute("stock", stock);
+         RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
+         vista.forward(request,response);
+      }catch(Exception e){
+         }
+   }
+   
+   
 
 }

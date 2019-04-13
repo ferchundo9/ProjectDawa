@@ -21,3 +21,5 @@ javac controllers/HelperCarrito.java
 javac controllers/HelperProductos.java
 javac controllers/HelperUsuarios.java
 javac controllers/Controlador.java
+
+pause
