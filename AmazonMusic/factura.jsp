@@ -101,10 +101,7 @@
 			<div class=cuadroDerecha>
 				<h2> Subtotal ( ${factura.numItems} productos): </h2>
 				<p class=precio>   EUR ${factura.precio} </p>
-				<form method="POST" action="Controlador" class="Controlador">
-					<input type=hidden name=ConfirmarCompra value=1></input>
-					<input class=botonLogin type=submit value="Proceder a la compra"></input>
-				</form>
+
 			</div>
 				<!----------- ITEM INDIVIDUAL DEL  CARRITO ---------->
 			<c:forEach items="${factura.items}" var="entry">

@@ -29,6 +29,11 @@ public class FachadaModelo{
       GestorCarrito gc = new GestorCarrito(request,response);
       gc.ConfirmarCompra();
    }
+   
+   public void ComprarYa(){
+      GestorCarrito gc = new GestorCarrito(request,response);
+      gc.ComprarYa();
+   }
    //////////////////////////////////// REGISTRO ////////////////////////////////////
    public void ConfirmarRegistro(){
       GestorUsuarios gu = new GestorUsuarios(request,response);

@@ -27,7 +27,5 @@ public class HelperProductos{
    public void IntroducirProducto(){
       fm.IntroducirProducto();
    }
-   /*public void ActualizarInventario(){
-      fm.ActualizarInventario();
-   }*/
+
 }

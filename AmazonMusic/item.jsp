@@ -38,6 +38,7 @@
 				zoomWindowHeight: 500
 		  });
 		});
+		
 		</script>
 		<!---------------------------------------------->
 
@@ -144,13 +145,16 @@
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type=hidden name=Referencia value=${producto.referencia}></input>
 						<input type="hidden" name="AnadirAlCarrito" value=1></input>
-						<label> Cantidad : <input class=cantidad name=Cantidad type=number required min=1 max=${stock} value=1/></label>
+						<label> Cantidad : <input class=cantidad name=Cantidad type=number required min=1 max=${stock} value="1"/></label>
 						<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
 					</form>
 					<!-- Formulario para añadir al carrito y ir al carrito directamente --->
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type="hidden" name="ComprarYa" value=1></input>
-						<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png" /> Comprar ya</button>
+						<input type="hidden" name="ReferenciaComprarYa" value=${producto.referencia}></input>
+						<input type="hidden" name="CantidadComprarYa" value=""></input>
+						<!-- La funcion ya está implementada, sólo necesito que este campo coja el valor del otro :) --->
+						<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png"/> Comprar ya</button>
 					</form>
 				</div>
 			</form>
