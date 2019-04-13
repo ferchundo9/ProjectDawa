@@ -21,15 +21,17 @@ public class GestorCarrito{
       try{
          HttpSession sesion = request.getSession();
          if(sesion.getAttribute("usuarioSesion")!=null){
-         
-            request.setAttribute("itemAnadido", "correcto");
-                  
-            HttpSession session = request.getSession(true); 
-            Carrito carrito = (Carrito) session.getAttribute("carrito");
-            
-            Item item = fdao.ObtenerProducto(request.getParameter("Referencia"));
-            ItemPedido itemPedido = new ItemPedido(item, Integer.parseInt(request.getParameter("Cantidad")));
-            carrito.addItem(itemPedido);
+            if(fdao.RestarStock(request.getParameter("Referencia"), Integer.parseInt(request.getParameter("Cantidad")))){
+               request.setAttribute("itemAnadido", "correcto");
+               HttpSession session = request.getSession(true); 
+               Carrito carrito = (Carrito) session.getAttribute("carrito");
+               
+               Item item = fdao.ObtenerProducto(request.getParameter("Referencia"));
+               ItemPedido itemPedido = new ItemPedido(item, Integer.parseInt(request.getParameter("Cantidad")));
+               carrito.addItem(itemPedido);
+            }else{
+               request.setAttribute("itemAnadido", "incorrecto");
+            }
             HashMap<String, Item> catalogo = fdao.ObtenerProductos();
             request.setAttribute("catalogo", catalogo);
             RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
@@ -46,9 +48,11 @@ public class GestorCarrito{
           if(sesion.getAttribute("carrito")!=null){
                HttpSession session = request.getSession(true); 
                Carrito carrito = (Carrito) session.getAttribute("carrito");
+               int cantidad = carrito.getItems().get(request.getParameter("Referencia")).getCantidad();
                carrito.eliminarItem(request.getParameter("Referencia"));
                RequestDispatcher  vista = request.getRequestDispatcher("carrito.jsp");
                vista.forward(request,response);
+               fdao.ActualizarInventario(request.getParameter("Referencia"), cantidad);
           }else{
                RequestDispatcher  vista = request.getRequestDispatcher("login.jsp");
                vista.forward(request,response);

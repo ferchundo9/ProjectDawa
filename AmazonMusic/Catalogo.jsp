@@ -127,13 +127,23 @@
 			</div>
 		</c:forEach>
 		<!-- ...................................................... -->
+		<c:if test="${empty catalogo}">
+			<p> No hemos encontrado ningún cd con esas características </p>
+			<img src="./img/iconoTriste.png">
+		</c:if>
 	</center>
      
-	<c:if test="${not empty itemAnadido && itemAnadido=='correcto'}">
+	<c:if test="${not empty itemAnadido}">
 		<div id=notificacionFondo class=notificacionFondo>
 			<div class=cuadroNotificacion>
-				<img src="./img/iconoExito.png">
-				<p> El item se ha añadido con éxito al carrito </p>
+				<c:if test="${itemAnadido=='correcto'}">
+					<img src="./img/iconoExito.png">
+					<p> El item se ha añadido con éxito al carrito </p>
+				</c:if>
+				<c:if test="${itemAnadido!='correcto'}">
+					<img src="./img/iconoTriste.png">
+					<p> Se ha producido un error añadiendo el producto al carrito </p>
+				</c:if>
 				<button id="botonNotificacion"> Aceptar </button>
 			</div>
 		</div>

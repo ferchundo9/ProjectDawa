@@ -27,6 +27,8 @@ public class GestorProductos{
       request.setAttribute("producto", producto);
       ArrayList<Valoracion> valoraciones = fdao.ObtenerValoraciones(request.getParameter("Referencia"));
       request.setAttribute("valoraciones", valoraciones);
+      int stock = fdao.ObtenerStock(request.getParameter("Referencia"));
+      request.setAttribute("stock", stock);
       try{
          RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
          vista.forward(request,response);
@@ -50,7 +52,5 @@ public class GestorProductos{
    public void IntroducirProducto(){
       fdao.IntroducirProducto();
    }
-   public void ActualizarInventario(){
-      fdao.ActualizarInventario();
-   }
+
 }
