@@ -184,17 +184,17 @@ public class DAOInventario{
                sentencia.setDouble(2, precio);
                sentencia.setString(3, url);
                sentencia.setInt(4, valoracion);
-               sentencia.executeQuery();
+               sentencia.executeUpdate();
                sentencia = conexion.prepareStatement("INSERT INTO cd VALUES(?,?,?,?)");
                sentencia.setInt(1, numero);
                sentencia.setString(2, titulo);
                sentencia.setString(3, autor);
                sentencia.setInt(4, ano);
-               sentencia.executeQuery();
+               sentencia.executeUpdate();
                sentencia = conexion.prepareStatement("INSERT INTO inventario VALUES(?,?)");
                sentencia.setInt(1, numero);
                sentencia.setInt(2, stock);
-               sentencia.executeQuery();
+               sentencia.executeUpdate();
             }
             catch (SQLException e){
                 System.out.println(e);

@@ -56,9 +56,9 @@ public class FachadaDAO{
       DAOInventario daoI = new DAOInventario(conexion);
       return daoI.ObtenerProductosFiltrados(precioMax,autor,ano, titulo);
    }
-   public void IntroducirProducto(){
+   public void IntroducirProducto(Double precio,String url,Integer valoracion,String titulo,String autor,Integer ano,Integer stock){
       DAOInventario daoI = new DAOInventario(conexion);
-      daoI.IntroducirProducto();
+      daoI.IntroducirProducto(precio,url,valoracion,titulo,autor,ano,stock);
    }
    public void ActualizarInventario(String referencia, int cantidad){
       DAOInventario daoI = new DAOInventario(conexion);
@@ -86,12 +86,12 @@ public class FachadaDAO{
       DAOUsuarios daoU = new DAOUsuarios(conexion);
       return daoU.ValidarInicioSesion(email, password);
    }
-   public void EliminarUsuario(){
+   public void EliminarUsuario(String correo){
       DAOUsuarios daoU = new DAOUsuarios(conexion);
-      daoU.EliminarUsuario();
+      daoU.EliminarUsuario(correo);
    }
-   public void ActualizarContrasena(){
+   public void ActualizarContrasena(String email,String password){
       DAOUsuarios daoU = new DAOUsuarios(conexion);
-      daoU.ActualizarContrasena();
+      daoU.ActualizarContrasena(email,password);
    }
 }

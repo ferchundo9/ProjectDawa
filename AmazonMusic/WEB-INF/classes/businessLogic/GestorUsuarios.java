@@ -89,9 +89,12 @@ public class GestorUsuarios{
       fdao.ObtenerUsuarios();
    }
    public void ActualizarContrasena(){
-      fdao.ActualizarContrasena();
+      String email=request.getParameter("email");
+      String password=request.getParameter("password");
+      fdao.ActualizarContrasena(email,password);
    }
    public void EliminarUsuario(){
-      fdao.EliminarUsuario();
+      String correo=request.getParameter("email");
+      fdao.EliminarUsuario(correo);
    }
 }
