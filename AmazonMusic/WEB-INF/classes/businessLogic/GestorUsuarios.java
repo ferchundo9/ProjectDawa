@@ -19,7 +19,7 @@ public class GestorUsuarios{
    public String IniciarSesion(String email,String password){
       try{
          if(fdao.ValidarInicioSesion(email,password)){
-            if(fdao.ValidarClienteAdministrador(email,password).equals("cliente")){ //Comprobamos si el usuario que se registra es un cliente o un administrador
+            if(fdao.ValidarClienteAdministrador(email).equals("cliente")){ //Comprobamos si el usuario que se registra es un cliente o un administrador
                HttpSession session = request.getSession(true);//usa la sesion si existe o ccrea una nueva sesion si no existe
                session.setAttribute("usuarioSesion", email);
    
@@ -30,7 +30,7 @@ public class GestorUsuarios{
                request.setAttribute("catalogo", catalogo);
 
                return "cliente";
-            }else if(fdao.ValidarClienteAdministrador(email,password).equals("admin")){ //Comprobamos si el usuario que se registra es un cliente o un administrador
+            }else if(fdao.ValidarClienteAdministrador(email).equals("admin")){ //Comprobamos si el usuario que se registra es un cliente o un administrador
                HttpSession session = request.getSession(true);//usa la sesion si existe o ccrea una nueva sesion si no existe
                session.setAttribute("usuarioSesion", email);
    
@@ -117,5 +117,14 @@ public class GestorUsuarios{
    public void EliminarUsuario(){
       String correo=request.getParameter("email");
       fdao.EliminarUsuario(correo);
+   }
+   
+   public String AdminCliente(){
+      HttpSession session = request.getSession(true);
+      String email=(String)session.getAttribute("usuarioSesion");
+      if(email==null){
+         return "cliente";
+      }
+      return fdao.ValidarClienteAdministrador(email);
    }
 }

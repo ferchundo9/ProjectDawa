@@ -86,7 +86,7 @@
 				<form class=form method="POST" action="Controlador" class="Controlador">
 					<div id=boton class=opcionesBusqueda><img src="./img/iconoDesplegar.png" />Opciones busqueda </div>
 					<input class="barraBusqueda" type="text" name="nombreCD">
-					<input type="hidden" name="FiltrarProductos" value=1></input>
+					<input type="hidden" name="FiltrarAdmin" value=1></input>
 					<button type="submit"> <img src="./img/iconoBuscar.png" /> </button>
 					<div id=target class=otrasOpciones>
 						<label><p>Precio Máximo</p><input type="number" name="precioMaxCD"></label>

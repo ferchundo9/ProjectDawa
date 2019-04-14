@@ -98,7 +98,7 @@ public class DAOUsuarios{
       }catch(Exception e){}
    }
    
-   public String ValidarClienteAdministrador(String email,String password){
+   public String ValidarClienteAdministrador(String email){
       try{
          sentencia = conexion.prepareStatement("SELECT * FROM cliente WHERE Email=?");
          sentencia.setString(1, email);

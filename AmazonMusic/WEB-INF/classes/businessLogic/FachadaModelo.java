@@ -64,6 +64,11 @@ public class FachadaModelo{
       GestorUsuarios gu = new GestorUsuarios(request,response);
       gu.EliminarUsuario();
    }
+   
+   public String AdminCliente(){
+      GestorUsuarios gu = new GestorUsuarios(request,response);
+      return gu.AdminCliente();
+   }
    //////////////////////////////////// PRODUCTOS ////////////////////////////////////
    public void VerCatalogo(){
       GestorProductos gp = new GestorProductos(request,response);
@@ -85,5 +90,7 @@ public class FachadaModelo{
       GestorProductos gp = new GestorProductos(request, response);
       gp.AnadirComentario();
    }
+   
+   
 
 }

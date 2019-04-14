@@ -36,12 +36,7 @@ public class GestorProductos{
       String ano=request.getParameter("anoCD");
       String titulo=request.getParameter("nombreCD");
       HashMap<String, Item> catalogo = fdao.ObtenerProductosFiltrados(precioMax,autor,ano, titulo);
-      request.setAttribute("catalogo", catalogo);
-      try{
-         RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
-         vista.forward(request,response);
-      }catch(Exception e){
-         }
+      request.setAttribute("catalogo", catalogo); 
    }
    
    public void IntroducirProducto(){

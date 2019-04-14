@@ -89,7 +89,7 @@
 				<!-- SI EL USUARIO YA INICIO SESION -->
 				<c:if test="${not empty sessionScope.usuarioSesion}">
 					<form method="POST" action="Controlador" class="Controlador">
-						<input type="hidden" name="AdminUsuarios" value=1></input>
+						<input type="hidden" name="MostrarUsuarios" value=1></input>
 						<button class="botonInvisible derecha" ><span>Administrar Usuarios</span></button>
 					</form>
 					<form method="POST" action="Controlador" class="Controlador">
@@ -103,7 +103,7 @@
 				<form class=form method="POST" action="Controlador" class="Controlador">
 					<div id=boton class=opcionesBusqueda><img src="./img/iconoDesplegar.png" />Opciones busqueda </div>
 					<input class="barraBusqueda" type="text" name="nombreCD">
-					<input type="hidden" name="FiltrarProductosAdmin" value=1></input>
+					<input type="hidden" name="FiltrarAdmin" value=1></input>
 					<button type="submit"> <img src="./img/iconoBuscar.png" /> </button>
 					<div id=target class=otrasOpciones>
 						<label><p>Precio Máximo</p><input type="number" name="precioMaxCD"></label>

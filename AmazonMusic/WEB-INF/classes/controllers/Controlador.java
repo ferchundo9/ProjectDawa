@@ -84,7 +84,7 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("AnadirComentario") != null){
          this.AnadirComentario();
       }
-      if(request.getParameter("ProductoAdmin") != null){
+      if(request.getParameter("FiltrarAdmin") != null){
          this.VerCatalogoAdmin();
       }
 
@@ -133,8 +133,13 @@ public class Controlador extends HttpServlet{
      //-----------------METODOS DE GESTION DE PRODUCTOS -------------------------------//
      /*Este m�todo devuelve todos los items (cds) del catalogo sin filtrar*/
      public void VerCatalogo(){
-         HelperProductos hp = new HelperProductos(request, response);
-         hp.VerCatalogo();
+         HelperUsuarios hu = new HelperUsuarios(request,response);
+         if(hu.AdminCliente().equals("admin")){
+            VerCatalogoAdmin();
+         }else{
+            HelperProductos hp = new HelperProductos(request, response);
+            hp.VerCatalogo();
+         }
      }
      /*Este m�todo devuelve la informacion de un producto (cuando el usuario clica en el
      desde el catalogo) en el atributo "producto" y tiene que devolver tambien un array
@@ -156,6 +161,11 @@ public class Controlador extends HttpServlet{
      public void FiltrarProductos(){
          HelperProductos hp = new HelperProductos(request, response);
          hp.FiltrarProductos();
+         try{
+         RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
+         vista.forward(request,response);
+         }catch(Exception e){
+         }
      }
      /*Este metodo a�ade un comentario y valoracion a un item; comprueba que el usuario
      haya comprado ese item. Actualiza la valoracion media del item.
@@ -287,6 +297,8 @@ public class Controlador extends HttpServlet{
          }
      }
      public void VerCatalogoAdmin(){
+         HelperProductos hp = new HelperProductos(request, response);
+         hp.FiltrarProductos();
          try{
             RequestDispatcher  vista = request.getRequestDispatcher("CatalogoAdmin.jsp");
             vista.forward(request,response);

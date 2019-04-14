@@ -72,7 +72,7 @@
 				<!-- SI EL USUARIO YA INICIO SESION -->
 				<c:if test="${not empty sessionScope.usuarioSesion}">
 					<form method="POST" action="Controlador" class="Controlador">
-						<input type="hidden" name="ProductoAdmin" value=1></input>
+						<input type="hidden" name="FiltrarAdmin" value=1></input>
 						<button class="botonInvisible derecha" ><span>Gestionar productos</span></button>
 					</form>
 					<form method="POST" action="Controlador" class="Controlador">

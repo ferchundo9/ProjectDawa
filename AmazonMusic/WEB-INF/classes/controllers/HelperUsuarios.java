@@ -36,4 +36,8 @@ public class HelperUsuarios{
    public void EliminarUsuario(){
       fm.EliminarUsuario();
    }
+   
+   public String AdminCliente(){
+      return fm.AdminCliente();
+   }
 }
