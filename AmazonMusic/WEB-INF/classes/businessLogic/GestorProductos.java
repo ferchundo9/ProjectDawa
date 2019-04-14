@@ -63,16 +63,11 @@ public class GestorProductos{
          request.setAttribute("comentario", "incorrecto");
       }
       try{
-         System.out.println("Fallo 1");
-         System.out.println(request.getParameter("Referencia"));
          Item producto = fdao.ObtenerProducto(referencia);
-         System.out.println("Fallo 1");
          request.setAttribute("producto", producto);
          ArrayList<Valoracion> valoraciones = fdao.ObtenerValoraciones(referencia);
-         System.out.println("Fallo 2");
          request.setAttribute("valoraciones", valoraciones);
          int stock = fdao.ObtenerStock(referencia);
-         System.out.println("Fallo 3");
          request.setAttribute("stock", stock);
          RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
          vista.forward(request,response);
