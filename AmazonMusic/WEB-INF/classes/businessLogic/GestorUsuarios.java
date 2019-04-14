@@ -16,28 +16,40 @@ public class GestorUsuarios{
    }
    public void ConfirmarRegistro(){
    }
-   public void IniciarSesion(){
+   public String IniciarSesion(String email,String password){
       try{
-         String email=request.getParameter("emailLogin");
-         String password=request.getParameter("passwordLogin");
          if(fdao.ValidarInicioSesion(email,password)){
-            HttpSession session = request.getSession(true);//usa la sesion si existe o ccrea una nueva sesion si no existe
-            session.setAttribute("usuarioSesion", email);
+            if(fdao.ValidarClienteAdministrador(email).equals("cliente")){ //Comprobamos si el usuario que se registra es un cliente o un administrador
+               HttpSession session = request.getSession(true);//usa la sesion si existe o ccrea una nueva sesion si no existe
+               session.setAttribute("usuarioSesion", email);
+   
+               session.setAttribute("carrito", new Carrito());
+           
+               //obtencion de datos del catalogo 
+               HashMap<String, Item> catalogo = fdao.ObtenerProductos();
+               request.setAttribute("catalogo", catalogo);
 
-            session.setAttribute("carrito", new Carrito());
-        
-            //obtencion de datos del catalogo 
-            HashMap<String, Item> catalogo = fdao.ObtenerProductos();
-            request.setAttribute("catalogo", catalogo);
-            
-            RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
-            vista.forward(request,response);
+               return "cliente";
+            }else if(fdao.ValidarClienteAdministrador(email).equals("admin")){ //Comprobamos si el usuario que se registra es un cliente o un administrador
+               HttpSession session = request.getSession(true);//usa la sesion si existe o ccrea una nueva sesion si no existe
+               session.setAttribute("usuarioSesion", email);
+   
+               session.setAttribute("carrito", new Carrito());
+           
+               //obtencion de datos del catalogo 
+               HashMap<String, Item> catalogo = fdao.ObtenerProductos();
+               request.setAttribute("catalogo", catalogo);
+
+               return "admin";
+            }
          }else{
+            
             request.setAttribute("login", "incorrecto");
-            RequestDispatcher  vista = request.getRequestDispatcher("login.jsp");
-            vista.forward(request,response);
+            return "false";
+
          }
         }catch(Exception e){}
+        return "false";
    }
    
    public void CerrarSesion(){
@@ -86,7 +98,16 @@ public class GestorUsuarios{
       }catch(Exception e){}
    }
    public void MostrarUsuarios(){
-      fdao.ObtenerUsuarios();
+      try{
+         HashMap<String, Usuario> usuarios=fdao.ObtenerUsuarios();
+         request.setAttribute("usuarios", usuarios);
+         RequestDispatcher  vista = request.getRequestDispatcher("AdminUsuarios.jsp");
+         vista.forward(request,response);
+      }catch(Exception e){
+         System.out.println(e);
+      }
+
+      
    }
    public void ActualizarContrasena(){
       String email=request.getParameter("email");
@@ -96,5 +117,14 @@ public class GestorUsuarios{
    public void EliminarUsuario(){
       String correo=request.getParameter("email");
       fdao.EliminarUsuario(correo);
+   }
+   
+   public String AdminCliente(){
+      HttpSession session = request.getSession(true);
+      String email=(String)session.getAttribute("usuarioSesion");
+      if(email==null){
+         return "cliente";
+      }
+      return fdao.ValidarClienteAdministrador(email);
    }
 }

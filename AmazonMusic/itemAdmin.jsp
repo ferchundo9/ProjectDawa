@@ -40,8 +40,6 @@
 		});
 		
 		</script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
-		</script>
 		<!---------------------------------------------->
 
     </head>
@@ -57,8 +55,6 @@
 	<%@ page language="java" import="businessLogic.*" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@page isELIgnored="false" %>
-	<!-- AngularJS-->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8.min.js"></script>
 	<!-- .....................................................................-->
 	
     <body>
@@ -135,44 +131,27 @@
 				<c:forEach begin="${producto.valoracion}" end="4" var="i">
 						<img class=estrellaItem src="img/iconoEstrellaVacia.png" />
 				</c:forEach>
-				(${producto.valoracion} /5)
 				<p class=autorItem > de ${producto.autor} (${producto.ano})</p>
 				<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR ${producto.precio}€ </span></p> 
 				<p class=StockItem > Stock disponible: ${stock} uds</p>
 			</div>	
 			<!--------------------------->
 			<!-- cuadro de la derecha para añadir al carrito --------->
-<<<<<<< HEAD
-				<div class=cuadroCompra ng-app="" ng-init="cantidadCompra=1">
-=======
-				<div class=cuadroCompra ng-app="" ng-init="campoCantidad='1'" >
->>>>>>> 942794d5647acf8f7b6e63242a727559c246420e
+				<div class=cuadroCompra >
 					<p class=precioItem> EUR ${producto.precio}€ </p>
 					<img class=imagenEnvio src="./img/imagenEnvio.PNG" />
 					<p class=enStock> En Stock </p>
 					<!-- Formulario para añadir al carrito  -->
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type=hidden name=Referencia value=${producto.referencia}></input>
-						<input type="hidden" name="AnadirAlCarrito" value=1></input>
-
-<<<<<<< HEAD
-						<label> Cantidad : <input ng-model="cantidadCompra" class=cantidad name=Cantidad type=number required min=1 max=${stock} value=1/></label>
-
-=======
-						<label> Cantidad : <input class=cantidad ng-model="campoCantidad" name=Cantidad type=number required min=1 max=${stock} value="1"/></label>
-							
->>>>>>> 942794d5647acf8f7b6e63242a727559c246420e
-						<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
+						<input type="hidden" name="EliminarProducto" value=1></input>
+						<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Eliminar producto</button>
 					</form>
 					<!-- Formulario para añadir al carrito y ir al carrito directamente --->
 					<form method="POST" action="Controlador" class="Controlador">
-						<p ng-bind="cantidadCompra"></p>
-						<input type="hidden" name=Cantidad type=number value=1>
-						<input type="hidden" name="ComprarYa" value=1></input>
-						<input type="hidden" name="ReferenciaComprarYa" value=${producto.referencia}></input>
-						<input type="hidden" name="CantidadComprarYa" ng-value="campoCantidad" ></input>
+						<input type="hidden" name="cambiarProducto" value=${producto.referencia}></input>
 						<!-- La funcion ya está implementada, sólo necesito que este campo coja el valor del otro :) --->
-						<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png"/> Comprar ya</button>
+						<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png"/> Modificar producto</button>
 					</form>
 				</div>
 			</form>
@@ -187,6 +166,7 @@
 				<!----- Comentario Individual -------->
 				<c:forEach items="${valoraciones}" var="val">
 					<div class=opinion>
+					
 						<p > <img src="./img/iconoUsuario.png" /> <span class=usuario> ${val.cliente} </span></p>
 						<p>
 							<c:forEach begin="0" end="${val.valoracion - 1}" var="i">
@@ -204,35 +184,8 @@
 				<div class=noComentarios>
 					<img src="./img/iconoCorazon.png">
 					<p> Nadie ha valorado aun este producto </p>
-					<hr class=linea>
 				</div>
-				
 				</c:if>
-<<<<<<< HEAD
-				<div class=anadirComentario>
-=======
-<div class=anadirComentario>
->>>>>>> 942794d5647acf8f7b6e63242a727559c246420e
-					<h2> Valora este producto </h2>
-					<hr>
-					<form method="POST" action="Controlador" class="Controlador">
-						<p class="clasificacion">
-							<input id="radio1" type="radio" name="estrellas" value="5">
-							<label for="radio1">★</label>
-							<input id="radio2" type="radio" name="estrellas" value="4">
-							<label for="radio2">★</label>
-							<input id="radio3" type="radio" name="estrellas" value="3">
-							<label for="radio3">★</label>
-							<input id="radio4" type="radio" name="estrellas" value="2">
-							<label for="radio4">★</label>
-							<input id="radio5" type="radio" name="estrellas" value="1">
-							<label for="radio5">★</label>
-						  </p>
-						<textarea name=opinion rows=3 cols=120> ¿Que te ha parecido el producto? ¿Llego bien y a tiempo? </textarea>
-						<input type=hidden name="AnadirComentario" value=1></input>
-						<button type="submit" class="botonEnviar"> <img src="./img/iconoAnadir.png"/> Añadir valoracion</button>
-					</form>
-				</div>
 
 			</div>
 			</div>

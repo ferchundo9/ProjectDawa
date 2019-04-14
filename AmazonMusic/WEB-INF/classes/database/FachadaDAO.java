@@ -56,9 +56,9 @@ public class FachadaDAO{
       DAOInventario daoI = new DAOInventario(conexion);
       return daoI.ObtenerProductosFiltrados(precioMax,autor,ano, titulo);
    }
-   public void IntroducirProducto(Double precio,String url,Integer valoracion,String titulo,String autor,Integer ano,Integer stock){
+   public void IntroducirProducto(Double precio,String url,String titulo,String autor,Integer ano,Integer stock){
       DAOInventario daoI = new DAOInventario(conexion);
-      daoI.IntroducirProducto(precio,url,valoracion,titulo,autor,ano,stock);
+      daoI.IntroducirProducto(precio,url,titulo,autor,ano,stock);
    }
    public void ActualizarInventario(String referencia, int cantidad){
       DAOInventario daoI = new DAOInventario(conexion);
@@ -86,9 +86,9 @@ public class FachadaDAO{
       DAOUsuarios daoU = new DAOUsuarios(conexion);
       return daoU.RegistrarUsuario(cliente);
    }
-   public void ObtenerUsuarios(){
+   public HashMap<String,Usuario> ObtenerUsuarios(){
       DAOUsuarios daoU = new DAOUsuarios(conexion);
-      daoU.ObtenerUsuarios();
+      return daoU.ObtenerUsuarios();
    }
    public boolean ValidarInicioSesion(String email, String password){
       DAOUsuarios daoU = new DAOUsuarios(conexion);
@@ -101,5 +101,10 @@ public class FachadaDAO{
    public void ActualizarContrasena(String email,String password){
       DAOUsuarios daoU = new DAOUsuarios(conexion);
       daoU.ActualizarContrasena(email,password);
+   }
+   
+   public String ValidarClienteAdministrador(String email){
+      DAOUsuarios daoU = new DAOUsuarios(conexion);
+      return daoU.ValidarClienteAdministrador(email);
    }
 }

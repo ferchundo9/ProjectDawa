@@ -29,11 +29,6 @@ public class GestorProductos{
       request.setAttribute("valoraciones", valoraciones);
       int stock = fdao.ObtenerStock(request.getParameter("Referencia"));
       request.setAttribute("stock", stock);
-      try{
-         RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
-         vista.forward(request,response);
-      }catch(Exception e){
-      }
    }
    public void FiltrarProductos(){
       String precioMax=request.getParameter("precioMaxCD");
@@ -41,23 +36,17 @@ public class GestorProductos{
       String ano=request.getParameter("anoCD");
       String titulo=request.getParameter("nombreCD");
       HashMap<String, Item> catalogo = fdao.ObtenerProductosFiltrados(precioMax,autor,ano, titulo);
-      request.setAttribute("catalogo", catalogo);
-      try{
-         RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
-         vista.forward(request,response);
-      }catch(Exception e){
-         }
+      request.setAttribute("catalogo", catalogo); 
    }
    
    public void IntroducirProducto(){
-      Double precio=Double.parseDouble(request.getParameter("precioMaxCD"));
-      String url=request.getParameter("precioMaxCD");
-      Integer valoracion=Integer.parseInt(request.getParameter("precioMaxCD"));
-      String titulo=request.getParameter("precioMaxCD");
-      String autor=request.getParameter("precioMaxCD");
-      Integer ano=Integer.parseInt(request.getParameter("precioMaxCD"));
-      Integer stock=Integer.parseInt(request.getParameter("precioMaxCD"));
-      fdao.IntroducirProducto(precio,url,valoracion,titulo,autor,ano,stock);
+      Double precio=Double.parseDouble(request.getParameter("precioCdNuevo"));
+      String url=request.getParameter("imagenCdNuevo");
+      String titulo=request.getParameter("tituloCdNuevo");
+      String autor=request.getParameter("autorCdNuevo");
+      Integer ano=Integer.parseInt(request.getParameter("anoCdNuevo"));
+      Integer stock=Integer.parseInt(request.getParameter("stockCdNuevo"));
+      fdao.IntroducirProducto(precio,url,titulo,autor,ano,stock);
    }
    
    public void AnadirComentario(){
