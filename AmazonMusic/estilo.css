@@ -223,6 +223,28 @@ nav .form button img{
 	padding: 15px;
 	cursor: pointer;
 }
+
+@media only screen and (min-width : 480px) and (max-width : 700px) {
+	.item{
+		width: 30vw;
+		padding: 1vw;
+		max-height: 50vw;
+	}
+	.imagenItem{
+		max-width: 90%;
+	}
+}
+
+@media only screen and (max-width : 480px) {
+	.item{
+		width: 48vw;
+		padding: 1vw;
+		max-height: 50vw;
+	}
+	.imagenItem{
+		max-width: 90%;
+	}
+}
 .mas{
 	text-decoration: underline;
 	display: block;
