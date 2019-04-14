@@ -175,6 +175,7 @@ public class Controlador extends HttpServlet{
      Devuelve un atributo "comentario" que puede tener valor "correcto" si se a�adio bien
      o "incorrecto" si el usuario no habia comprado ese producto*/
      public void AnadirComentario(){
+         System.out.println("Estamos dentro");
          HelperProductos hp = new HelperProductos(request, response);
          hp.AnadirComentario();
      }

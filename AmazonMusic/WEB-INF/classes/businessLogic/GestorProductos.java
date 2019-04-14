@@ -50,8 +50,9 @@ public class GestorProductos{
    }
    
    public void AnadirComentario(){
+      
       String usuario = (String)request.getSession().getAttribute("usuarioSesion");
-      String referencia = request.getParameter("Referencia");
+      String referencia = request.getParameter("Referencia2");
       if(fdao.ComprobarPedidoUsuario(usuario, referencia)){
          String comentario = request.getParameter("opinion");
          int puntuacion = Integer.parseInt(request.getParameter("estrellas"));
@@ -62,16 +63,22 @@ public class GestorProductos{
          request.setAttribute("comentario", "incorrecto");
       }
       try{
-         Item producto = fdao.ObtenerProducto(request.getParameter("Referencia"));
+         System.out.println("Fallo 1");
+         System.out.println(request.getParameter("Referencia"));
+         Item producto = fdao.ObtenerProducto(referencia);
+         System.out.println("Fallo 1");
          request.setAttribute("producto", producto);
-         ArrayList<Valoracion> valoraciones = fdao.ObtenerValoraciones(request.getParameter("Referencia"));
+         ArrayList<Valoracion> valoraciones = fdao.ObtenerValoraciones(referencia);
+         System.out.println("Fallo 2");
          request.setAttribute("valoraciones", valoraciones);
-         int stock = fdao.ObtenerStock(request.getParameter("Referencia"));
+         int stock = fdao.ObtenerStock(referencia);
+         System.out.println("Fallo 3");
          request.setAttribute("stock", stock);
          RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
          vista.forward(request,response);
       }catch(Exception e){
-         }
+            System.out.println(e);
+      }
    }
    
    public void EliminarProducto(){
