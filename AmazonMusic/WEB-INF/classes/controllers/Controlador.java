@@ -87,6 +87,9 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("FiltrarAdmin") != null){
          this.VerCatalogoAdmin();
       }
+      if(request.getParameter("EliminarProducto") != null){
+         this.EliminarProducto();
+      }
 
       
      }
@@ -267,11 +270,13 @@ public class Controlador extends HttpServlet{
      public void IntroducirProducto(){
          HelperProductos hp = new HelperProductos(request, response);
          hp.IntroducirProducto();
-         try{
-            RequestDispatcher  vista = request.getRequestDispatcher("CatalogoAdmin.jsp");
-            vista.forward(request,response);
-         }catch(Exception e){
-         }
+         VerCatalogoAdmin();
+     }
+     
+     public void EliminarProducto(){
+         HelperProductos hp = new HelperProductos(request, response);
+         hp.EliminarProducto();
+         VerCatalogoAdmin();
      }
 
      public void MostrarUsuarios(){

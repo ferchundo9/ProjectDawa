@@ -74,6 +74,11 @@ public class GestorProductos{
          }
    }
    
+   public void EliminarProducto(){
+      String referencia = request.getParameter("Referencia");
+      fdao.EliminarProducto(referencia);
+   }
+   
    
 
 }
