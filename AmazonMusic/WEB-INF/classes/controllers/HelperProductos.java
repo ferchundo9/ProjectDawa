@@ -30,5 +30,9 @@ public class HelperProductos{
    public void AnadirComentario(){
       fm.AnadirComentario();
    }
+   
+   public void EliminarProducto(){
+      fm.EliminarProducto();
+   }
 
 }

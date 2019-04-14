@@ -107,4 +107,9 @@ public class FachadaDAO{
       DAOUsuarios daoU = new DAOUsuarios(conexion);
       return daoU.ValidarClienteAdministrador(email);
    }
+   
+   public void EliminarProducto(String referencia){
+      DAOInventario daoI = new DAOInventario(conexion);
+      daoI.EliminarProducto(referencia);
+   }
 }

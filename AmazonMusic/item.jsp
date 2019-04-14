@@ -143,7 +143,6 @@
 			<!--------------------------->
 			<!-- cuadro de la derecha para añadir al carrito --------->
 				<div class=cuadroCompra ng-app="" ng-init="campoCantidad='1'" >
-
 					<p class=precioItem> EUR ${producto.precio}€ </p>
 					<img class=imagenEnvio src="./img/imagenEnvio.PNG" />
 					<p class=enStock> En Stock </p>
@@ -151,9 +150,7 @@
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type=hidden name=Referencia value=${producto.referencia}></input>
 						<input type="hidden" name="AnadirAlCarrito" value=1></input>
-
 						<label> Cantidad : <input class=cantidad ng-model="campoCantidad" name=Cantidad type=number required min=1 max=${stock} value="1"/></label>
-
 						<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Añadir a la cesta</button>
 					</form>
 					<!-- Formulario para añadir al carrito y ir al carrito directamente --->
@@ -200,6 +197,7 @@
 				</div>
 				</c:if>
 				<div class=anadirComentario>
+
 					<h2> Valora este producto </h2>
 					<hr>
 					<form method="POST" action="Controlador" class="Controlador">

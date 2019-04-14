@@ -90,6 +90,10 @@ public class FachadaModelo{
       GestorProductos gp = new GestorProductos(request, response);
       gp.AnadirComentario();
    }
+   public void EliminarProducto(){
+      GestorProductos gp = new GestorProductos(request, response);
+      gp.EliminarProducto();
+   }
    
    
 

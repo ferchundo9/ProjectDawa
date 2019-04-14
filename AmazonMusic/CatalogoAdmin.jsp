@@ -7,7 +7,7 @@
 		<meta name="description" content="Página de venta de productos">
 		<meta name="keywords" content="CD, musica, comprar, tienda">
 		<meta name="author" content="Raquel Vilas, Fernando Rodríguez, Miguel Martinez, Carlos Rial">
-		<link type="text/css" rel="stylesheet" href="./estilo.css" >
+		<link type="text/css" rel="stylesheet" href="./estiloAdmin.css" >
 		<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico">
 		<script type="text/javascript" src="jquery-2.2.4.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -126,7 +126,7 @@
 					
 				</form>
 				<form method="POST" action="Controlador" >
-					<input type="hidden" name="eliminarProducto" value=1></input>
+					<input type="hidden" name="EliminarProducto" value=1></input>
 					<input type="hidden" name="Referencia" value=${entry.value.referencia}></input>
 					<input type="submit" class=mas value="Eliminar CD"> </input>
 				</form>
@@ -134,7 +134,7 @@
 		</c:forEach>
 		<div class=item>
 			<form method="POST" action="Controlador" class="Controlador">
-					<img class=imagenItem src=./img/iconoAnadir.png>
+					<img class=imagenItem src=./img/botonAnadirCd.png>
 					<p class=titulo> Añadir CD </p>
 					<p class=autor> </p>
 					<!-- Valoracion del item -->

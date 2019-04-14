@@ -211,7 +211,7 @@ public class DAOInventario{
                consulta.next();
                numero=consulta.getInt("Referencia");
                numero=numero+1;
-               sentencia = conexion.prepareStatement("INSERT INTO item(Referencia,Precio,imagen) VALUES(?,?,?)");
+               sentencia = conexion.prepareStatement("INSERT INTO item(Referencia,Precio,imagen,valoracion) VALUES(?,?,?,1)");
                sentencia.setInt(1, numero);
                sentencia.setDouble(2, precio);
                sentencia.setString(3, url);
@@ -248,5 +248,18 @@ public class DAOInventario{
                   sentencia.executeUpdate();
                }
             }catch(Exception e){}
+        }
+        
+        public void EliminarProducto(String referencia){
+            try{
+               sentencia = conexion.prepareStatement("DELETE FROM valoracion WHERE referencia = ?");
+               sentencia.setInt(1, Integer.parseInt(referencia));
+               sentencia.executeUpdate();
+               sentencia = conexion.prepareStatement("DELETE FROM item WHERE referencia = ?");
+               sentencia.setInt(1, Integer.parseInt(referencia));
+               sentencia.executeUpdate();
+            }catch(Exception e){
+            
+            }
         }
 }
