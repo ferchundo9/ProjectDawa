@@ -30,9 +30,6 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("VerCarrito") != null){
          this.VerCarrito();
       }
-      if(request.getParameter("AdministrarTienda") != null){
-         this.AdministrarTienda();
-      }
       if(request.getParameter("AnadirAlCarrito") != null){
          this.AnadirAlCarrito();
       }
@@ -89,6 +86,9 @@ public class Controlador extends HttpServlet{
       }
       if(request.getParameter("EliminarProducto") != null){
          this.EliminarProducto();
+      }
+      if(request.getParameter("VerProductoAdmin") != null){
+         this.VerProductoAdmin();
       }
 
       
@@ -259,10 +259,6 @@ public class Controlador extends HttpServlet{
      }
      //.................................................................................//
 
-     public void AdministrarTienda(){
-         //LLEVA A LA VISTA DE ADMINISTRADOR
-     }
-
      public void ConfirmarRegistro(){
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.ConfirmarRegistro();
@@ -300,6 +296,7 @@ public class Controlador extends HttpServlet{
             RequestDispatcher  vista = request.getRequestDispatcher("itemAdmin.jsp");
             vista.forward(request,response);
          }catch(Exception e){
+            System.out.println("No carga la vista itemAdmin" + e.getMessage());
          }
      }
      public void VerCatalogoAdmin(){
