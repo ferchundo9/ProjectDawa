@@ -671,10 +671,6 @@ legend{font-size: 1.2em; font-weight: bold;}
 .noComentarios img{max-width: 3vw;float:left;margin-left: 10px;}
 .noComentarios p{display: block; float: left; color:#394561;margin-left: 10px;}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 942794d5647acf8f7b6e63242a727559c246420e
 /* Formato para valoraciones */
 .clasificacion{ font-size:2.5em;width:250px; margin:0 auto; padding:10px; margin-top: -15px;}
 .clasificacion p, .clasificacion input[type = "submit"]{text-align:center; font-size:2.5em;}
@@ -686,28 +682,7 @@ legend{font-size: 1.2em; font-weight: bold;}
 .clasificacion label:hover ~ label{color:orange;}
 .clasificacion input[type = "radio"]:checked ~ label{color:orange;}
 
-<<<<<<< HEAD
-.ec-stars-wrapper {
-	font-size: 0;
-	display: inline-block;
-}
-.ec-stars-wrapper a {
-	text-decoration: none;
-	display: inline-block;
-	font-size: 32px;
-	font-size: 2rem;
-	color: #888;
-}
 
-.ec-stars-wrapper:hover a {
-	color: #F3AF13;
-}
-.ec-stars-wrapper > a:hover ~ a {
-	color: #888;
-}
-
-=======
->>>>>>> 942794d5647acf8f7b6e63242a727559c246420e
 .anadirComentario{
 	width: 80vw;
 	margin-left: 15px;
@@ -742,11 +717,7 @@ legend{font-size: 1.2em; font-weight: bold;}
 	border-radius: 2px;
 	border: 1px solid #2C3958;
 	color: #2C3958;
-<<<<<<< HEAD
 	width: 13vw;
-=======
-	width: 10vw;
->>>>>>> 942794d5647acf8f7b6e63242a727559c246420e
 	height: 33px;
 	padding: 8px;
 	cursor: pointer;
@@ -755,10 +726,7 @@ legend{font-size: 1.2em; font-weight: bold;}
 .botonEnviar:hover{
 	background-image: linear-gradient(#D3D3D3,#9A9A9A);
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 942794d5647acf8f7b6e63242a727559c246420e
 .botonEnviar img{
 	border-radius: 2px;
 	width: 29px;
@@ -766,11 +734,10 @@ legend{font-size: 1.2em; font-weight: bold;}
 	float: left;
 	margin-top: -7px;
 	margin-left: -7px;
-<<<<<<< HEAD
+
 }
-=======
-}
+
 
 .mensajeErrorComentario{color: #CC2B1B; font-weight: lighter; font-size: 0.8em;}
 .mensajeExitoComentario{color: #4D7D1F; font-weight: lighter; font-size: 0.8em;}
->>>>>>> 942794d5647acf8f7b6e63242a727559c246420e
+
