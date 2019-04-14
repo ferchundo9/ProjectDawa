@@ -24,8 +24,27 @@ public class DAOUsuarios{
             return true;
       }catch(Exception e ){return false;}
    }
-   public void ObtenerUsuarios(){
-   
+   public HashMap<String, Usuario> ObtenerUsuarios(){
+      HashMap<String, Usuario> usuarios=new HashMap<>();
+      try {
+         sentencia = conexion.prepareStatement("SELECT * FROM usuario natural join projectdawa.cliente natural join tarjeta");
+         consulta = sentencia.executeQuery();
+         while(consulta.next()){
+            String nombre,email,direccion,contrasena,num,fecha;
+            nombre=consulta.getString("Nombre");
+            email=consulta.getString("Email");
+            direccion=consulta.getString("Direccion");
+            contrasena=consulta.getString("Contrasena");
+            num=consulta.getString("Numero");
+            fecha=consulta.getString("Vencimiento");
+            Cliente cliente=new Cliente(nombre,email,direccion,contrasena,num,fecha);
+            usuarios.put(cliente.getEmail(),cliente);
+         } 
+         
+      }catch(Exception e ){
+         System.out.println(e);
+      }
+      return usuarios;
    }
    public boolean ValidarInicioSesion(String email, String password){
       String contrasena;

@@ -86,9 +86,9 @@ public class FachadaDAO{
       DAOUsuarios daoU = new DAOUsuarios(conexion);
       return daoU.RegistrarUsuario(cliente);
    }
-   public void ObtenerUsuarios(){
+   public HashMap<String,Usuario> ObtenerUsuarios(){
       DAOUsuarios daoU = new DAOUsuarios(conexion);
-      daoU.ObtenerUsuarios();
+      return daoU.ObtenerUsuarios();
    }
    public boolean ValidarInicioSesion(String email, String password){
       DAOUsuarios daoU = new DAOUsuarios(conexion);

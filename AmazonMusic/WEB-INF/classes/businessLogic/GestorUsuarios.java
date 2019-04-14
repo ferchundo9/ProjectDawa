@@ -98,7 +98,16 @@ public class GestorUsuarios{
       }catch(Exception e){}
    }
    public void MostrarUsuarios(){
-      fdao.ObtenerUsuarios();
+      try{
+         HashMap<String, Usuario> usuarios=fdao.ObtenerUsuarios();
+         request.setAttribute("usuarios", usuarios);
+         RequestDispatcher  vista = request.getRequestDispatcher("AdminUsuarios.jsp");
+         vista.forward(request,response);
+      }catch(Exception e){
+         System.out.println(e);
+      }
+
+      
    }
    public void ActualizarContrasena(){
       String email=request.getParameter("email");

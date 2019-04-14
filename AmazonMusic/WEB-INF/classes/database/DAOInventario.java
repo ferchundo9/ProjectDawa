@@ -28,7 +28,7 @@ public class DAOInventario{
                 cd1.setValoracion(consulta.getInt("valoracion"));
                 catalogo.put(cd1.getReferencia(),(Item) cd1);
             }
-
+            System.out.println("Numero de CD en catalogo="+catalogo.size());
 
         } catch (SQLException e) {
         } finally {

@@ -84,10 +84,11 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("AnadirComentario") != null){
          this.AnadirComentario();
       }
-      if(request.getParameter("IntroducirProducto") != null){
-         this.IntroducirProducto();
+      if(request.getParameter("ProductoAdmin") != null){
+         this.VerCatalogoAdmin();
       }
 
+      
      }
 
      //-----------------------------------------------------------------------------------------------//
@@ -284,6 +285,15 @@ public class Controlador extends HttpServlet{
             vista.forward(request,response);
          }catch(Exception e){
          }
+     }
+     public void VerCatalogoAdmin(){
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("CatalogoAdmin.jsp");
+            vista.forward(request,response);
+         }catch(Exception e){
+            
+         }
+
      }
 
 

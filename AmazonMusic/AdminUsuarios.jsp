@@ -72,8 +72,8 @@
 				<!-- SI EL USUARIO YA INICIO SESION -->
 				<c:if test="${not empty sessionScope.usuarioSesion}">
 					<form method="POST" action="Controlador" class="Controlador">
-						<input type="hidden" name="MostrarUsuarios" value=1></input>
-						<button class="botonInvisible derecha" ><span>Administrar Usuarios</span></button>
+						<input type="hidden" name="ProductoAdmin" value=1></input>
+						<button class="botonInvisible derecha" ><span>Gestionar productos</span></button>
 					</form>
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type="hidden" name="CerrarSesion" value=1></input>
@@ -82,92 +82,41 @@
 				</c:if>
 				<!-- ..................................... -->
 				
-				<!-- Formuario para filtrar productos del catalogo -->
-				<form class=form method="POST" action="Controlador" class="Controlador">
-					<div id=boton class=opcionesBusqueda><img src="./img/iconoDesplegar.png" />Opciones busqueda </div>
-					<input class="barraBusqueda" type="text" name="nombreCD">
-					<input type="hidden" name="FiltrarProductos" value=1></input>
-					<button type="submit"> <img src="./img/iconoBuscar.png" /> </button>
-					<div id=target class=otrasOpciones>
-						<label><p>Precio Máximo</p><input type="number" name="precioMaxCD"></label>
-						<label><p>Autor</p><input type="text" name="autorCD"></label>
-						<label><p>Año</p><input type="number" name="anoCD"></label>
-					</div>
-				</form>
-				<!-- ............................................... -->
-				
 			</nav>
 		</header>
 	<!--....................................................................-->
 
 	<!-------------------------   CUERPO -------------------------------------->
-	<center class=items>
-		<!-- Bucle que recorre el hash de elementos del catalgo --->
-		<c:forEach items="${catalogo}" var="entry">
-			<div class=item>
-				<form method="POST" action="Controlador" class="Controlador">
-					<img class=imagenItem src=./img/${entry.value.urlImagen}>
-					<p class=titulo> ${entry.value.titulo} </p>
-					<p class=autor> de ${entry.value.autor}(${entry.value.ano})</p>
-					<!-- Valoracion del item -->
-					<c:forEach begin="0" end="${entry.value.valoracion - 1}" var="i">
-						<img class=estrella src="img/iconoEstrellaCompleta.png" />
-					</c:forEach>
-					<c:forEach begin="1" end="${5 - entry.value.valoracion}" var="i">
-						<img class=estrella src="img/iconoEstrellaVacia.png" />
-					</c:forEach>
-					<p class=precio> ${entry.value.precio} € </p>
-					<!-- Campos ocultos para enviar datos al servlet -->
-					<input type="hidden" name="VerProductoAdmin" value=1></input>
-					<input type="hidden" name="Referencia" value=${entry.value.referencia}></input>
-					<!-- ............................................ -->
-					
-					<input type="submit" class=mas value="Ver CD"> </input>
-					
-				</form>
-				<form method="POST" action="Controlador" >
-					<input type="hidden" name="eliminarProducto" value=1></input>
-					<input type="hidden" name="Referencia" value=${entry.value.referencia}></input>
-					<input type="submit" class=mas value="Eliminar CD"> </input>
-				</form>
+		<form class=form method="POST" action="Controlador" class="Controlador">
+			<div class="form-group">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Email</th>
+							<th scope="col">Contraseña</th>
+							<th scope="col">Dirección</th>
+							<th scope="col">Nºtarjeta</th>
+							<th scope="col">Dirección</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${usuarios}" var="entry">
+							<tr>
+								<th scope="row">1</th>
+								<td><input type="text" value=${entry.value.nombre} name="nombreCliente"> </td>
+								<td><input type="text" value=${entry.value.email} name="emailCliente"></td>
+								<td><input type="password" value=${entry.value.contrasena} name="direccionCliente"></td>
+								<td><input type="text" value=${entry.value.direccion} name="contrasenaCliente"></td>
+								<td><input type="text" value=${entry.value.tarjeta.numero} name="numeroCliente"></td>
+								<td><input type="date" value=${entry.value.tarjeta.vencimiento} name="vencimientoCliente"></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
-		</c:forEach>
-		<div class=item>
-			<form method="POST" action="Controlador" class="Controlador">
-					<img class=imagenItem src=./img/iconoAnadir.png>
-					<p class=titulo> Añadir CD </p>
-					<p class=autor> </p>
-					<!-- Valoracion del item -->
-					<p class=precio> </p>
-					<!-- Campos ocultos para enviar datos al servlet -->
-					<input type="hidden" name="AnadirProducto" value=1></input>
-					<!-- ............................................ -->
-					
-					<input type="submit" class=mas value="AÑADIR"> </input>
-					
-				</form>	
-		</div>
-		<!-- ...................................................... -->
-		<c:if test="${empty catalogo}">
-			<p> No hemos encontrado ningún cd con esas características </p>
-			<img src="./img/iconoTriste.png">
-		</c:if>
-	</center>
-     
-	<c:if test="${not empty itemAnadido}">
-		<div id=notificacionFondo class=notificacionFondo>
-			<div class=cuadroNotificacion>
-				<c:if test="${itemAnadido=='correcto'}">
-					<img src="./img/iconoExito.png">
-					<p> El item se ha añadido con éxito al carrito </p>
-				</c:if>
-				<c:if test="${itemAnadido!='correcto'}">
-					<img src="./img/iconoTriste.png">
-					<p> Se ha producido un error añadiendo el producto al carrito </p>
-				</c:if>
-				<button id="botonNotificacion"> Aceptar </button>
-			</div>
-		</div>
-	</c:if>
+			<button type="submit" class="btn btn-default">Actualizar</button>
+		</form>
     </body>
 </html>
