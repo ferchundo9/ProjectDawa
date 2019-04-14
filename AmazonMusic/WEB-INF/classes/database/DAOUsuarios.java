@@ -27,7 +27,7 @@ public class DAOUsuarios{
    public HashMap<String, Usuario> ObtenerUsuarios(){
       HashMap<String, Usuario> usuarios=new HashMap<>();
       try {
-         sentencia = conexion.prepareStatement("SELECT * FROM usuario natural join projectdawa.cliente natural join tarjeta");
+         sentencia = conexion.prepareStatement("SELECT * FROM usuario natural join projectdawa.cliente left join tarjeta on tarjeta=numero");
          consulta = sentencia.executeQuery();
          while(consulta.next()){
             String nombre,email,direccion,contrasena,num,fecha;

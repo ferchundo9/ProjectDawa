@@ -89,8 +89,8 @@
 				<!-- SI EL USUARIO YA INICIO SESION -->
 				<c:if test="${not empty sessionScope.usuarioSesion}">
 					<form method="POST" action="Controlador" class="Controlador">
-						<input type="hidden" name="VerCarrito" value=1></input>
-						<button class="botonInvisible derecha" ><span>Ver Carrito</span></button>
+						<input type="hidden" name="MostrarUsuario" value=1></input>
+						<button class="botonInvisible derecha" ><span>Administrar Usuarios</span></button>
 					</form>
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type="hidden" name="CerrarSesion" value=1></input>
@@ -103,7 +103,7 @@
 				<form class=form method="POST" action="Controlador" class="Controlador">
 					<div id=boton class=opcionesBusqueda><img src="./img/iconoDesplegar.png" />Opciones busqueda </div>
 					<input class="barraBusqueda" type="text" name="nombreCD">
-					<input type="hidden" name="FiltrarProductos" value=1></input>
+					<input type="hidden" name="FiltrarAdmin" value=1></input>
 					<button type="submit"> <img src="./img/iconoBuscar.png" /> </button>
 					<div id=target class=otrasOpciones>
 						<label><p>Precio Máximo</p><input type="number" name="precioMaxCD"></label>
@@ -145,16 +145,9 @@
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type=hidden name=Referencia value=${producto.referencia}></input>
 						<input type="hidden" name="EliminarProducto" value=1></input>
-						<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Eliminar producto</button>
-					</form>
-					<!-- Formulario para añadir al carrito y ir al carrito directamente --->
-					<form method="POST" action="Controlador" class="Controlador">
-						<input type="hidden" name="cambiarProducto" value=${producto.referencia}></input>
-						<!-- La funcion ya está implementada, sólo necesito que este campo coja el valor del otro :) --->
-						<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png"/> Modificar producto</button>
+						<button type="submit" class=botonAnadir> Eliminar producto</button>
 					</form>
 				</div>
-			</form>
 			<!-------------------------->
 			<p class=notaZoom > Pasa el ratón por encima de la imagen para ampliarla </p>
 			
