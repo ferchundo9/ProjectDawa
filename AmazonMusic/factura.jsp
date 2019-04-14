@@ -95,35 +95,35 @@
 	<!-------------------------   CUERPO -------------------------------------->
 	<center class=fondoBlanco>
 		<div class=block>
-			<div class=tabla5Columnas >
-					<h2 class="c1"> Factura de compra </h2>
+			<h2 class=tituloFactura> Gracias, has realizado tu pedido</h2>
+			<div class=cuadroFactura>
+				<div class=cabeceraFactura>
+					<div class=ancho><p style="color:#4A4A4A;">PEDIDO REALIZADO</p><p>${fecha}</p></div>
+					<div class=ancho><p style="color:#4A4A4A;">TOTAL</p><p>EUR ${factura.precio}</p></div>
+					<div class=ancho><p style="color:#4A4A4A;">FACTURA ENVIADA A</p><p>${sessionScope.usuarioSesion}</p></div>
+				</div>
+					<!----------- ITEM INDIVIDUAL DEL  CARRITO ---------->
+				<div class=block>
+					<div class=listaProductos>
+						<p> Detalles del pedido </p>
+						<c:forEach items="${factura.items}" var="entry">
+							<form class=tablaCarrito method="POST" action="Controlador" class="Controlador">
+								<hr class=lineaFactura>
+								<img class="c1 imagenCarrito" src="./img/${entry.value.item.urlImagen}">
+								<p class="c2 tituloCarrito"> ${entry.value.item.titulo} </p>
+								<p class="c3 cantidad" >x${entry.value.cantidad}uds </p>
+								<p class="c4 precio"> EUR ${entry.value.item.precio} </p>
+								<input type=hidden name=Referencia value=${entry.value.item.referencia}>
+							</form>
+						</c:forEach>
+					</div>
+					<div class=derechaFactura>
+						<p class=c1>Total pedido:</p><p class=c2> ${factura.precio}</p>
+						<p class=c1>Descuento aplicado: </p><p class=c2> 0%</p>
+						<p class=c1>Precio final: </p><p class=c2> ${factura.precio}</p>
+					</div>
+				</div>
 			</div>
-			<div class=cuadroDerecha>
-				<h2> Subtotal ( ${factura.numItems} productos): </h2>
-				<p class=precio>   EUR ${factura.precio} </p>
-
-			</div>
-				<!----------- ITEM INDIVIDUAL DEL  CARRITO ---------->
-			<c:forEach items="${factura.items}" var="entry">
-				<hr class=linea>
-				<form class=tablaCarrito method="POST" action="Controlador" class="Controlador">
-						<img class="c1 imagenCarrito" src="./img/${entry.value.item.urlImagen}">
-						<p class="c2 tituloCarrito"> ${entry.value.item.titulo} </p>
-						<p class="c3 cantidad" >x${entry.value.cantidad}uds </p>
-						<p class="c4 precio"> EUR ${entry.value.item.precio} </p>
-						<input type=hidden name=Referencia value=${entry.value.item.referencia}>
-				</form>
-			</c:forEach>
-
-			<c:if test="${not empty factura.items}">
-			<!-- Suma final de la compra -->
-			<hr class=linea>
-			<div class=tablaCarrito >
-				<p class=derecha> Subtotal(${factura.numItems} productos): <span class=precioDer> EUR ${factura.precio} </span></p>
-				<p class=derecha> Los datos de factura se enviarán a la dirección: <span class=precioDer> ${sessionScope.usuarioSesion} </span></p>
-				<p class=derecha> La compra ha sido realizada a: <span class=precioDer> ${fecha} </span></p>
-			</div>
-			</c:if>
 		</div>
 	</center>
      

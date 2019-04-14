@@ -66,7 +66,8 @@ public class GestorCarrito{
       Carrito carrito = (Carrito) sesion.getAttribute("carrito");
       String email = (String) sesion.getAttribute("usuarioSesion");
       Date fecha = new Date();
-      String fechaCompra = new SimpleDateFormat("dd-MM-yyyy - hh:mm").format(fecha);
+      //String fechaCompra = new SimpleDateFormat("dd-MM-yyyy - hh:mm").format(fecha);
+      String fechaCompra = new SimpleDateFormat("EEEEEEEEE dd 'de' MMMMM 'de' yyyy (hh:mm)").format(fecha);
       if(carrito.getNumItems() > 0){
          fdao.ConfirmarCompra(carrito, email, fechaCompra);
          request.setAttribute("factura", carrito);
