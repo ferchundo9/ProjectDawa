@@ -223,29 +223,12 @@ nav .form button img{
 	padding: 15px;
 	cursor: pointer;
 }
-.mas{
-	text-decoration: underline;
-	display: block;
-	width: 15vw;
-	margin: 0px;
-	background-color: white;
-	border: 0px;
-	cursor: pointer;
-	font-size: 1.1em;
-	text-align: left;
-}
-
-.mas:hover{
-	color:#DC780E;
-}
-
 .imagenItem{
 	max-width: 14vw;
 	max-height: 14vw;
 	align-self: center;
 	margin: auto;
 }
-
 .estrella{
 	width: 1vw;
 	height: 1vw;
@@ -263,6 +246,110 @@ nav .form button img{
 
 .titulo{font-weight: bold;align-self: left;text-align: left;height:1vw;margin: 0px;}
 .autor{color:#606060;text-align: left;height:1vw;margin: 0px;}
+
+@media only screen and (min-width : 600px) and (max-width : 1100px) {
+	.item{
+		display: block;
+		width: 25vw;
+		max-height: 35vw;
+		height: 35vw;
+		padding: 1vw;
+	}
+	.imagenItem{
+		max-width: 22vw;
+		width: 22vw;
+		max-height: 22vw;
+		height: 22vw;
+	}
+	.titulo, .autor, .estrella{height: 3vh;display:block;margin-top: 5px;}
+	.estrella{width: 3vh;}
+}
+
+@media only screen and (max-width : 800px) and (orientation : landscape){
+	.item{
+		display: block;
+		width: 40vw;
+		max-height: 50vw;
+		height: 50vw;
+		padding: 1vw;
+	}
+	.imagenItem{
+		max-width: 33vw;
+		width: 33vw;
+		max-height: 33vw;
+		height: 33vw;
+	}
+	.titulo, .autor, .estrella{height: 3vh;display:block;margin-top: 5px;}
+	.estrella{width: 3vh;}
+}
+@media only screen and (orientation: portrait){
+	/*Formato de los items del catalogo para moviles */
+	.item{
+		display: block;
+		width: 90%;
+		max-height: 40vh;
+		padding: 1vw;
+		margin: 2vh;
+	}
+	.imagenItem{
+		max-width: 50%;
+		width: 50%;
+		max-height: 40vh;
+		float: left;
+	}
+	.titulo, .autor, .estrella{height: 3vh;display:block;margin-top: 5px;float: left; width: 45%; font-size: 0.8em;}
+	.autor{ margin-top: 5vh;}
+	.precio{width: 45%; font-size: 0.8em;}
+	.estrella{width: 3vh;}
+	
+	/*Formato de la barra nav para moviles */
+	nav .form input{height:3vh;display: block; width: 50%; }
+	nav .form button{height:3vh;display: block;}
+	nav .form button img{max-height:3vh;max-width:3vh;display: block;}
+	nav span{
+		margin: 5px;
+		font-size: 0.6em;
+	}
+	.botonInvisible{
+		max-width: 100%;
+		max-height: 100%;
+	}
+	
+	.logoResponsive{
+		max-width: 30%;
+		display: block;
+		float: left;
+	}
+	.logoResponsive2{
+		max-width: 30%;
+		display: block;
+		float: right;
+	}
+	.barraBusquedaResponsive{
+		max-height: 3vh;display: block;
+	}
+	.opcionesBusqueda{max-height: 100%; height: 100%; max-width: 20%; width: 10%;font-size: 0.2em;display: inline-block; float: left;}
+	.barraBlock{width: 90%; display: block;margin-top: 5%;}
+}
+.mas{
+	text-decoration: underline;
+	display: block;
+	width: 15vw;
+	margin: 0px;
+	background-color: white;
+	border: 0px;
+	cursor: pointer;
+	font-size: 1.1em;
+	text-align: left;
+}
+
+.mas:hover{
+	color:#DC780E;
+}
+
+
+
+
 
 
 /*-----Formato de item individual al clicar en el catalogo---------------*/
