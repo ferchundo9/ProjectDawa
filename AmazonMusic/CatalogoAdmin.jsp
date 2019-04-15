@@ -125,11 +125,6 @@
 					<input type="submit" class=mas value="Ver CD"> </input>
 					
 				</form>
-				<form method="POST" action="Controlador" >
-					<input type="hidden" name="EliminarProducto" value=1></input>
-					<input type="hidden" name="Referencia" value=${entry.value.referencia}></input>
-					<input type="submit" class=mas value="Eliminar CD"> </input>
-				</form>
 			</div>
 		</c:forEach>
 		<div class=item>
