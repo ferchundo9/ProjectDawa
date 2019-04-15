@@ -40,4 +40,22 @@ public class HelperUsuarios{
    public String AdminCliente(){
       return fm.AdminCliente();
    }
+   public void actualizarUsuario(){
+      fm.actualizarUsuario();
+   }
+   public void borrarUsuario(){
+      fm.borrarUsuario();
+   }
+   public void actualizarAdmin(){
+      fm.actualizarAdmin();
+   }
+   public void borrarAdmin(){
+      fm.borrarAdmin();
+   }
+   public void insertarAdmin(){
+      fm.insertarAdmin();
+   }
+
+
+
 }

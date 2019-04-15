@@ -94,6 +94,29 @@ public class FachadaModelo{
       GestorProductos gp = new GestorProductos(request, response);
       gp.EliminarProducto();
    }
+   public void actualizarUsuario(){
+      GestorUsuarios gu = new GestorUsuarios(request,response);
+      gu.actualizarUsuario();
+   }
+   public void borrarUsuario(){
+      GestorUsuarios gu = new GestorUsuarios(request,response);
+      gu.borrarUsuario();
+   }
+   public void actualizarAdmin(){
+      GestorUsuarios gu = new GestorUsuarios(request,response);
+      gu.actualizarAdmin();
+   }
+   public void borrarAdmin(){
+      GestorUsuarios gu = new GestorUsuarios(request,response);
+      gu.borrarAdmin();
+   }
+   public void insertarAdmin(){
+      GestorUsuarios gu = new GestorUsuarios(request,response);
+      gu.insertarAdmin();
+   }
+
+
+
    
    
 

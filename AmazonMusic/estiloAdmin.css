@@ -26,6 +26,14 @@ body{
     margin: 0px auto;
     float: none;
 }
+.tituloTabla{
+    border-radius: 5px;
+    width: 50%;
+    margin: 0px auto;
+    float: none;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
 .boton{
 	border-radius: 15px;
 	border: 0px;

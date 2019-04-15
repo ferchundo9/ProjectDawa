@@ -90,6 +90,24 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("EliminarProducto") != null){
          this.EliminarProducto();
       }
+      if(request.getParameter("actualizarUsuario") != null){
+         this.actualizarUsuario();
+      }
+      if(request.getParameter("borrarUsuario") != null){
+         this.borrarUsuario();
+      }
+      if(request.getParameter("actualizarAdmin") != null){
+         this.actualizarAdmin();
+      }
+      if(request.getParameter("borrarAdmin") != null){
+         this.borrarAdmin();
+      }
+      if(request.getParameter("insertarAdmin") != null){
+         this.insertarAdmin();
+      }
+
+
+
 
       
      }
@@ -311,8 +329,34 @@ public class Controlador extends HttpServlet{
          }catch(Exception e){
             
          }
-
      }
+     public void actualizarUsuario(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.actualizarUsuario();
+         this.MostrarUsuarios();
+     }
+     public void borrarUsuario(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.borrarUsuario();
+         this.MostrarUsuarios();
+     }
+     public void actualizarAdmin(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.actualizarAdmin();
+         this.MostrarUsuarios();
+     }
+     public void borrarAdmin(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.borrarAdmin();
+     }
+     public void insertarAdmin(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.insertarAdmin();
+         this.MostrarUsuarios();
+     }
+
+
+
 
 
 
