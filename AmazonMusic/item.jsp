@@ -162,7 +162,6 @@
 						<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png"/> Comprar ya</button>
 					</form>
 				</div>
-			</form>
 			<!-------------------------->
 			<p class=notaZoom > Pasa el ratón por encima de la imagen para ampliarla </p>
 			

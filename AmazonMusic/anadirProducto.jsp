@@ -22,6 +22,7 @@
 		<!--- PLUGUIN PARA EL ZOOOM DE LA IMAGEN ---->
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 		<script>
 		$(function(){  
 			  $("#zoom").elevateZoom({
@@ -118,17 +119,38 @@
 	<!-- ------------------------------------------------------------------ -->
 
 	<!-------------------------   CUERPO -------------------------------------->
-	<div class=itemGrid> <!--Div con el fondo blanco-->
-		<form method="POST" action="Controlador" class="Controlador">
-			<input type="hidden" name="IntroducirProducto" value=1 />
-			<label><p>Titulo</p><input type="text" name="tituloCdNuevo"></label>
-			<label><p>Autor</p><input type="text" name="autorCdNuevo"></label>
-			<label><p>Precio</p><input type="number" step="0.01" name="precioCdNuevo"></label>
-			<label><p>Año</p><input type="number" name="anoCdNuevo"></label>
-			<label><p>Imagen</p><input type="text" name="imagenCdNuevo"></label>
-			<label><p>Stock</p><input type="number" name="stockCdNuevo"></label>
-			<input type="submit" value="Añadir Cd"/>
-		</form>
+	<div class=itemGrid ng-app="" ng-init="modelTitulo=''" > <!--Div con el fondo blanco-->
+		
+			<!-- info del item en si -->
+			<div class=columna1>
+			
+				<img class=imagenItemUd id="zoom" ng-src="{{modelImagen}}">
+				<p class=tituloItem ng-bind="modelTitulo"> </p>
+				<c:forEach begin="0" end="4" var="i">
+						<img class=estrellaItem src="img/iconoEstrellaVacia.png" />
+				</c:forEach>
+				<p class=autorItem > de {{modelAutor}} ({{modelAno}})</pre></p>
+				<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR {{modelPrecio}}€</span></p> 
+				<p class=StockItem> Stock disponible: {{modelStock}}</span> uds</p>
+			</div>	
+			<!--------------------------->
+			<!-- cuadro de la derecha para añadir al carrito --------->
+				<div class=cuadroCompra>
+					<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR {{modelPrecio}}€</span></p>
+					<img class=imagenEnvio src="./img/imagenEnvio.PNG" />
+					<p class=enStock> En Stock </p>
+					<!-- Formulario para añadir al carrito  -->
+					<form method="POST" action="Controlador" class="Controlador">
+						<input type="hidden" name="IntroducirProducto" value=1 />
+						<label><p style="text-align: right;">Titulo: <input type="text" name="tituloCdNuevo" ng-model="modelTitulo" required></label> </p>
+						<label><p style="text-align: right;">Autor: <input type="text" name="autorCdNuevo" ng-model="modelAutor" required></label> </p>
+						<label><p style="text-align: right;">Precio: <input type="number" step="0.01" name="precioCdNuevo min=0 max=999" ng-model="modelPrecio" required></label> </p>
+						<label><p style="text-align: right;">Año: <input type="number" name="anoCdNuevo" ng-model="modelAno" min=1900 max=2020 required></label> </p>
+						<label><p style="text-align: right;">Imagen: <input type="text" name="imagenCdNuevo" ng-model="modelImagen" required></label> </p>
+						<label><p style="text-align: right;">Stock: <input type="number" name="stockCdNuevo min=1 max=999" ng-model="modelStock" required></label> </p>
+						<button type="submit" class=botonAnadir> Introducir CD</button>
+					</form>
+				</div>
 	</div>
 	
 	
