@@ -41,7 +41,7 @@ public class Controlador extends HttpServlet{
       }
       if(request.getParameter("EliminarDelCarrito") != null){
          this.EliminarDelCarrito();
-      }     
+      }
       if(request.getParameter("goIniciarSesion") != null){
          this.goIniciarSesion();
       }
@@ -77,7 +77,7 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("AnadirProducto") != null){
          this.AnadirProducto();
       }
-      
+
       if(request.getParameter("AnadirComentario") != null){
          this.AnadirComentario();
       }
@@ -243,14 +243,11 @@ public class Controlador extends HttpServlet{
          HelperCarrito hc = new HelperCarrito(request, response);
          hc.AnadirAlCarrito();
      }
-     
+
      /*Este metodo solo se deberia llamar cuando el usuario ya ha iniciado sesion*/
       public void VerCarrito(){
-<<<<<<< HEAD
-=======
          HelperCarrito hc = new HelperCarrito(request, response);
          hc.ComprobarUsuarioVip();
->>>>>>> 91c8707228f7e374ebf19517644783aec112232a
          try{
             RequestDispatcher  vista = request.getRequestDispatcher("carrito.jsp");
             vista.forward(request,response);
@@ -272,14 +269,14 @@ public class Controlador extends HttpServlet{
      }
      //.................................................................................//
 
-     
+
 
      public void IntroducirProducto(){
          HelperProductos hp = new HelperProductos(request, response);
          hp.IntroducirProducto();
          VerCatalogoAdmin();
      }
-     
+
      public void EliminarProducto(){
          HelperProductos hp = new HelperProductos(request, response);
          hp.EliminarProducto();
@@ -315,7 +312,7 @@ public class Controlador extends HttpServlet{
             RequestDispatcher  vista = request.getRequestDispatcher("CatalogoAdmin.jsp");
             vista.forward(request,response);
          }catch(Exception e){
-            
+
          }
      }
      public void actualizarUsuario(){

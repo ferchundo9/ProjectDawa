@@ -13,13 +13,10 @@ public class FachadaModelo{
       this.response = response;
    }
    //////////////////////////////////// CARRITO ////////////////////////////////////
-<<<<<<< HEAD
-=======
    public void ComprobarUsuarioVip(){
       GestorUsuarios gu = new GestorUsuarios(request,response);
       gu.ComprobarUsuarioVip();
    }
->>>>>>> 91c8707228f7e374ebf19517644783aec112232a
    public void AnadirAlCarrito(){
       GestorCarrito gc = new GestorCarrito(request,response);
       gc.AnadirAlCarrito();
@@ -67,7 +64,7 @@ public class FachadaModelo{
       GestorUsuarios gu = new GestorUsuarios(request,response);
       gu.EliminarUsuario();
    }
-   
+
    public String AdminCliente(){
       GestorUsuarios gu = new GestorUsuarios(request,response);
       return gu.AdminCliente();
@@ -117,11 +114,11 @@ public class FachadaModelo{
       GestorProductos gp = new GestorProductos(request, response);
       gp.EliminarProducto();
    }
-   
 
 
 
-   
-   
+
+
+
 
 }

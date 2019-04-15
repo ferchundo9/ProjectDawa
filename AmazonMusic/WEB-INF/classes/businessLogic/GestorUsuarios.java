@@ -14,13 +14,8 @@ public class GestorUsuarios{
       this.response = response;
       this.fdao = new FachadaDAO(request, response);
    }
-<<<<<<< HEAD
-=======
-   public void ConfirmarRegistro(){
-   }
-   
    /*Este metodo comprueba si el usuario que ha iniciado sesion es VIP o no
-   si lo es añade el atributo "tipoUsuario" el valor "VIP"; si no es VIP 
+   si lo es aï¿½ade el atributo "tipoUsuario" el valor "VIP"; si no es VIP
    el valor sera "normal"*/
    public void ComprobarUsuarioVip(){
       HttpSession session = request.getSession(true);
@@ -30,7 +25,7 @@ public class GestorUsuarios{
          request.setAttribute("tipoUsuario", "normal");
       }
    }
->>>>>>> 91c8707228f7e374ebf19517644783aec112232a
+
    public String IniciarSesion(String email,String password){
       try{
          if(fdao.ValidarInicioSesion(email,password)){
@@ -43,8 +38,8 @@ public class GestorUsuarios{
                   session.setAttribute("tipoUsuario", "normal");
                }
                session.setAttribute("carrito", new Carrito());
-           
-               //obtencion de datos del catalogo 
+
+               //obtencion de datos del catalogo
                HashMap<String, Item> catalogo = fdao.ObtenerProductos();
                request.setAttribute("catalogo", catalogo);
 
@@ -52,17 +47,17 @@ public class GestorUsuarios{
             }else if(fdao.ValidarClienteAdministrador(email).equals("admin")){ //Comprobamos si el usuario que se registra es un cliente o un administrador
                HttpSession session = request.getSession(true);//usa la sesion si existe o ccrea una nueva sesion si no existe
                session.setAttribute("usuarioSesion", email);
-   
+
                session.setAttribute("carrito", new Carrito());
-           
-               //obtencion de datos del catalogo 
+
+               //obtencion de datos del catalogo
                HashMap<String, Item> catalogo = fdao.ObtenerProductos();
                request.setAttribute("catalogo", catalogo);
 
                return "admin";
             }
          }else{
-            
+
             request.setAttribute("login", "incorrecto");
             return "false";
 
@@ -70,22 +65,22 @@ public class GestorUsuarios{
         }catch(Exception e){}
         return "false";
    }
-   
+
    public void CerrarSesion(){
       try{
           HttpSession session = request.getSession(true);
           session.invalidate();
-          
-          //obtencion de datos del catalogo 
+
+          //obtencion de datos del catalogo
            HashMap<String, Item> catalogo = fdao.ObtenerProductos();
            request.setAttribute("catalogo", catalogo);
-            
+
            RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
            vista.forward(request,response);
-          
+
       }catch(Exception e){}
    }
-   
+
    public void CrearCuenta(){
       try{
          String nombreUsuario = request.getParameter("nombreRegistro");
@@ -101,16 +96,16 @@ public class GestorUsuarios{
             session.setAttribute("usuarioSesion", email);
             HashMap<String, Item> carrito = new HashMap<>();
             session.setAttribute("carrito", carrito);
-            //obtencion de datos del catalogo 
+            //obtencion de datos del catalogo
             HashMap<String, Item> catalogo = fdao.ObtenerProductos();
             request.setAttribute("catalogo", catalogo);
-            
+
             RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
             vista.forward(request,response);
-            
+
          }else{
             request.setAttribute("registro", "incorrecto");
-            
+
             RequestDispatcher  vista = request.getRequestDispatcher("registro.jsp");
             vista.forward(request,response);
          }
@@ -128,7 +123,7 @@ public class GestorUsuarios{
          System.out.println(e);
       }
 
-      
+
    }
    public void ActualizarContrasena(){
       String email=request.getParameter("email");
@@ -139,7 +134,7 @@ public class GestorUsuarios{
       String correo=request.getParameter("email");
       fdao.EliminarUsuario(correo);
    }
-   
+
    public String AdminCliente(){
       HttpSession session = request.getSession(true);
       String email=(String)session.getAttribute("usuarioSesion");
@@ -157,7 +152,7 @@ public class GestorUsuarios{
       String fecha=request.getParameter("vencimientoCliente");
       String oldEmail=request.getParameter("oldEmail");
       fdao.actualizarUsuario(nombre,email,contrasena,direccion,tarjeta,fecha,oldEmail);
-      
+
    }
    public void borrarUsuario(){
       String email=request.getParameter("correoUsuario");
