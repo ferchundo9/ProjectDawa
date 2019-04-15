@@ -332,6 +332,8 @@ nav .form button img{
 	.opcionesBusqueda{max-height: 100%; height: 100%; max-width: 20%; width: 10%;font-size: 0.2em;display: inline-block; float: left;border-radius: 0px;}
 	.opcionesBusqueda img{ max-height: 90%; max-width: 90%;}
 	.barraBlock{width: 90%; display: block;margin-top: 5%;}
+	
+
 }
 .mas{
 	text-decoration: underline;
@@ -589,7 +591,16 @@ legend{font-size: 1.2em; font-weight: bold;}
 
 .mensajeError{font-weight: lighter; color: #B8362B;}
 
-
+@media only screen and (orientation: portrait){
+	/*Formato para login y registro en movil */
+	.iniciarSesion{ width: 85%;}
+	.iniciarSesion input{ width: 90%; align-self: center; margin: auto;}
+	.iniciarSesion h2{font-size: 1.5em;}
+	.iniciarSesion p{font-size: 1em;}
+	.botonInvisibleLogin{width: 60%; margin-left:20%;max-height: 23vh; height: 23vh; margin-top: -5vh;}
+	.botonInvisibleLogin .logoLogin{max-width: 100%;max-height: 100%;margin-top:0px;}
+	.iniciarSesion input[type="submit"]{font-size:1.4em;}
+}
 /*----------------Formato de la vista carrito -----------------*/
 
 .carritoGrid{
