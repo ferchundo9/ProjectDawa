@@ -235,7 +235,7 @@ nav .form button img{
 .mas{
 	text-decoration: underline;
 	display: block;
-	width: 15vw;
+	width: 5vw;
 	margin: 0px;
 	background-color: white;
 	border: 0px;
@@ -245,6 +245,26 @@ nav .form button img{
 }
 
 .mas:hover{
+	color:#DC780E;
+}
+
+.eliminarCdCatalogo{
+	text-decoration: underline;
+	display: block;
+	position:relative;
+	width: 8vw;
+	margin: 0px;
+	background-color: white;
+	border: 0px;
+	cursor: pointer;
+	font-size: 1.1em;
+	text-align: center;
+	bottom:2.5vw;
+	left:3vw;
+	
+}
+
+.eliminarCdCatalogo:hover{
 	color:#DC780E;
 }
 
