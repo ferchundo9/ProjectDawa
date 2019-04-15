@@ -111,7 +111,7 @@
 					<p class=c1>Precio final</p> <p class="c2 precio">   EUR ${sessionScope.carrito.precio * 0.8} </p>
 				</c:if>
 				<c:if test="${sessionScope.tipoUsuario != 'VIP'}">
-					<p class=c1>Descuento aplicado</p> <p class="c2 precio">   EUR ${sessionScope.carrito.precio} </p>
+					<p class=c1>Descuento aplicado</p> <p class="c2 precio">   0% </p>
 					<p class=c1>Precio final</p> <p class="c2 precio">   EUR ${sessionScope.carrito.precio} </p>
 				</c:if>
 				<form method="POST" action="Controlador" class="Controlador">
@@ -152,4 +152,35 @@
 	</center>
      
     </body>
+	<!-- 
+	       .                .                    
+       :"-.          .-";                    
+       |:`.`.__..__.'.';|                    
+       || :-"      "-; ||                    
+       :;              :;                    
+       /  .==.    .==.  \                    
+      :      _.--._      ;                   
+      ; .--.' `--' `.--. :     Ponnos un 10 profe              
+     :   __;`      ':__   ;  /                
+     ;  '  '-._:;_.-'  '  :                  
+     '.       `--'       .'                  
+      ."-._          _.-".                   
+    .'     ""------""     `.                 
+   /`-                    -'\                
+  /`-                      -'\               
+ :`-   .'              `.   -';              
+ ;    /                  \    :              
+:    :                    ;    ;             
+;    ;                    :    :             
+':_:.'                    '.;_;'             
+   :_                      _;                
+   ; "-._                -" :`-.     _.._    
+   :_          ()          _;   "--::__. `.  
+    \"-                  -"/`._           :  
+   .-"-.                 -"-.  ""--..____.'  
+  /         .__  __.         \               
+ : / ,       / "" \       . \ ;         
+  "-:___..--"      "--..___;-"
+	-->
+	
 </html>
