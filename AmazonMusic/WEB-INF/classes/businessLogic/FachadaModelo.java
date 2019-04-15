@@ -35,10 +35,6 @@ public class FachadaModelo{
       gc.ComprarYa();
    }
    //////////////////////////////////// USUARIOS ////////////////////////////////////
-   public void ConfirmarRegistro(){
-      GestorUsuarios gu = new GestorUsuarios(request,response);
-      gu.ConfirmarRegistro();
-   }
    public String IniciarSesion(String email,String password){
       GestorUsuarios gu = new GestorUsuarios(request,response);
       return gu.IniciarSesion(email,password);
