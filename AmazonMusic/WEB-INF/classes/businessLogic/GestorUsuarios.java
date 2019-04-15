@@ -101,6 +101,8 @@ public class GestorUsuarios{
       try{
          HashMap<String, Usuario> usuarios=fdao.ObtenerUsuarios();
          request.setAttribute("usuarios", usuarios);
+         HashMap<String, Usuario> admins=fdao.ObtenerAdmins();
+         request.setAttribute("admins", admins);
          RequestDispatcher  vista = request.getRequestDispatcher("AdminUsuarios.jsp");
          vista.forward(request,response);
       }catch(Exception e){
@@ -127,4 +129,48 @@ public class GestorUsuarios{
       }
       return fdao.ValidarClienteAdministrador(email);
    }
+   public void actualizarUsuario(){
+      String nombre=request.getParameter("nombreCliente");
+      String email=request.getParameter("emailCliente");
+      String contrasena=request.getParameter("contrasenaCliente");
+      String direccion=request.getParameter("direccionCliente");
+      String tarjeta=request.getParameter("numeroCliente");
+      String fecha=request.getParameter("vencimientoCliente");
+      String oldEmail=request.getParameter("oldEmail");
+      fdao.actualizarUsuario(nombre,email,contrasena,direccion,tarjeta,fecha,oldEmail);
+      
+   }
+   public void borrarUsuario(){
+      String email=request.getParameter("correoUsuario");
+      fdao.EliminarUsuario(email);
+   }
+   public void actualizarAdmin(){
+      String nombre=request.getParameter("nombreAdmin");
+      String email=request.getParameter("emailAdmin");
+      String contrasena=request.getParameter("contrasenaAdmin");
+      String direccion=request.getParameter("direccionAdmin");
+      String oldEmail=request.getParameter("oldEmailAdmin");
+      fdao.actualizarAdmin(nombre,email,contrasena,direccion,oldEmail);
+
+   }
+   public void borrarAdmin(){
+      String email=request.getParameter("correoAdmin");
+      fdao.borrarAdmin(email);
+      HttpSession session = request.getSession(true);
+      String emailSesion=(String)session.getAttribute("usuarioSesion");
+      if(emailSesion.equals(email)){
+         this.CerrarSesion();
+      }else{
+         this.MostrarUsuarios();
+      }
+
+   }
+   public void insertarAdmin(){
+      String nombre=request.getParameter("nombreAdmin");
+      String email=request.getParameter("emailAdmin");
+      String contrasena=request.getParameter("contrasenaAdmin");
+      String direccion=request.getParameter("direccionAdmin");
+      fdao.insertarAdmin(nombre,email,contrasena,direccion);
+   }
+
 }

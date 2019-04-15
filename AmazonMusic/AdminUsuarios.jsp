@@ -87,36 +87,97 @@
 	<!--....................................................................-->
 
 	<!-------------------------   CUERPO -------------------------------------->
-		<form class=form method="POST" action="Controlador" class="Controlador">
-			<div class="form-group">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Nombre</th>
-							<th scope="col">Email</th>
-							<th scope="col">Contraseña</th>
-							<th scope="col">Dirección</th>
-							<th scope="col">Nºtarjeta</th>
-							<th scope="col">Dirección</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${usuarios}" var="entry">
-							<tr>
-								<th scope="row">1</th>
-								<td><input type="text" value=${entry.value.nombre} name="nombreCliente"> </td>
-								<td><input type="text" value=${entry.value.email} name="emailCliente"></td>
-								<td><input type="password" value=${entry.value.contrasena} name="direccionCliente"></td>
-								<td><input type="text" value=${entry.value.direccion} name="contrasenaCliente"></td>
-								<td><input type="text" value=${entry.value.tarjeta.numero} name="numeroCliente"></td>
-								<td><input type="date" value=${entry.value.tarjeta.vencimiento} name="vencimientoCliente"></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-			<button type="submit" class="btn btn-default">Actualizar</button>
-		</form>
+	<h1 class="tituloTabla">Clientes</h1>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Nombre</th>
+				<th scope="col">Email</th>
+				<th scope="col">Contraseña</th>
+				<th scope="col">Dirección</th>
+				<th scope="col">Nºtarjeta</th>
+				<th scope="col">Fecha tarjeta</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:set var="indice" value="${1}"/>
+			<c:forEach items="${usuarios}" var="entry">
+				<tr>
+					<th scope="row">${indice}</th>
+					<form class=form method="POST" action="Controlador" class="Controlador">
+						<div class="form-group">
+							<input type="hidden" value=1 name="actualizarUsuario">
+							<input type="hidden" value=${entry.value.email} name="oldEmail">
+							<td><input type="text" value=${entry.value.nombre} name="nombreCliente"> </td>
+							<td><input type="email" value=${entry.value.email} name="emailCliente"></td>
+							<td><input type="password" name="contrasenaCliente"></td>
+							<td><input type="text" value=${entry.value.direccion} name="direccionCliente"></td>
+							<td><input type="numeric" value=${entry.value.tarjeta.numero} name="numeroCliente"></td>
+							<td><input type="date" value=${entry.value.tarjeta.vencimiento} name="vencimientoCliente"></td>
+							<td><button type="submit" class="btn btn-default">Actualizar</button></td>
+						</div>
+					</form>
+					<form class=form method="POST" action="Controlador" class="Controlador">
+						<input type="hidden" value=1 name="borrarUsuario">
+						<input type="hidden" value=${entry.value.email} name="correoUsuario">
+						<td><button type="submit" class="btn btn-default">Borrar</button></td>
+					</form>
+				</tr>
+				<c:set var="indice" value="${indice+1}"/>
+			</c:forEach>
+		</tbody>
+	</table>
+	<h1 class="tituloTabla">Administradores</h1>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Nombre</th>
+				<th scope="col">Email</th>
+				<th scope="col">Contraseña</th>
+				<th scope="col">Dirección</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:set var="indice2" value="${1}"/>
+			<c:forEach items="${admins}" var="entry2">
+				<tr>
+					<th scope="row">${indice2}</th>
+					<form class=form method="POST" action="Controlador" class="Controlador">
+						<div class="form-group">
+							<input type="hidden" value=1 name="actualizarAdmin">
+							<input type="hidden" value=${entry2.value.email} name="oldEmailAdmin">
+							<td><input type="text" value=${entry2.value.nombre} name="nombreAdmin"> </td>
+							<td><input type="email" value=${entry2.value.email} name="emailAdmin"></td>
+							<td><input type="password" name="contrasenaAdmin"></td>
+							<td><input type="text" value=${entry2.value.direccion} name="direccionAdmin"></td>
+							<td><button type="submit" class="btn btn-default">Actualizar</button></td>
+						</div>
+					</form>
+					<form class=form method="POST" action="Controlador" class="Controlador">
+						<input type="hidden" value=1 name="borrarAdmin">
+						<input type="hidden" value=${entry2.value.email} name="correoAdmin">
+						<td><button type="submit" class="btn btn-default">Borrar</button></td>
+					</form>
+				</tr>
+				<c:set var="indice2" value="${indice2+1}"/>
+			</c:forEach>
+				<tr>
+					<th scope="row">Nuevo</th>
+					<form class=form method="POST" action="Controlador" class="Controlador">
+						<div class="form-group">
+							<input type="hidden" value=1 name="insertarAdmin">
+							<td><input type="text"  name="nombreAdmin"> </td>
+							<td><input type="email"  name="emailAdmin"></td>
+							<td><input type="password" name="contrasenaAdmin"></td>
+							<td><input type="text"  name="direccionAdmin"></td>
+							<td><button type="submit" class="btn btn-default">Añadir</button></td>
+						</div>
+					</form>
+					
+				</tr>
+		</tbody>
+	</table>
     </body>
 </html>

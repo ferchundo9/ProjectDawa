@@ -90,6 +90,11 @@ public class FachadaDAO{
       DAOUsuarios daoU = new DAOUsuarios(conexion);
       return daoU.ObtenerUsuarios();
    }
+   public HashMap<String,Usuario> ObtenerAdmins(){
+      DAOUsuarios daoU = new DAOUsuarios(conexion);
+      return daoU.ObtenerAdmins();
+   }
+
    public boolean ValidarInicioSesion(String email, String password){
       DAOUsuarios daoU = new DAOUsuarios(conexion);
       return daoU.ValidarInicioSesion(email, password);
@@ -111,5 +116,22 @@ public class FachadaDAO{
    public void EliminarProducto(String referencia){
       DAOInventario daoI = new DAOInventario(conexion);
       daoI.EliminarProducto(referencia);
+   }
+   public void actualizarUsuario(String nombre,String email,String contrasena,String direccion,String tarjeta,String fecha,String oldEmail){
+      DAOUsuarios daoU = new DAOUsuarios(conexion);
+      daoU.actualizarUsuario(nombre,email,contrasena,direccion,tarjeta,fecha,oldEmail);
+   }
+   public void actualizarAdmin(String nombre,String email,String contrasena,String direccion,String oldEmail){
+      DAOUsuarios daoU = new DAOUsuarios(conexion);
+      daoU.actualizarAdmin(nombre,email,contrasena,direccion,oldEmail);
+   }
+
+   public void insertarAdmin(String nombre,String email,String contrasena,String direccion){
+      DAOUsuarios daoU = new DAOUsuarios(conexion);
+      daoU.insertarAdmin(nombre,email,contrasena,direccion);
+   }
+   public void borrarAdmin(String email){
+      DAOUsuarios daoU = new DAOUsuarios(conexion);
+      daoU.borrarAdmin(email);
    }
 }

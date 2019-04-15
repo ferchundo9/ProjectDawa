@@ -21,6 +21,9 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("VerProducto") != null){
          this.VerProducto();
       }
+      if(request.getParameter("VerProductoAdmin") != null){
+         this.VerProductoAdmin();
+      }
       if(request.getParameter("VolverHome") != null){
          this.VolverHome();
       }
@@ -29,6 +32,9 @@ public class Controlador extends HttpServlet{
       }
       if(request.getParameter("VerCarrito") != null){
          this.VerCarrito();
+      }
+      if(request.getParameter("AdministrarTienda") != null){
+         this.AdministrarTienda();
       }
       if(request.getParameter("AnadirAlCarrito") != null){
          this.AnadirAlCarrito();
@@ -87,9 +93,24 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("EliminarProducto") != null){
          this.EliminarProducto();
       }
-      if(request.getParameter("VerProductoAdmin") != null){
-         this.VerProductoAdmin();
+      if(request.getParameter("actualizarUsuario") != null){
+         this.actualizarUsuario();
       }
+      if(request.getParameter("borrarUsuario") != null){
+         this.borrarUsuario();
+      }
+      if(request.getParameter("actualizarAdmin") != null){
+         this.actualizarAdmin();
+      }
+      if(request.getParameter("borrarAdmin") != null){
+         this.borrarAdmin();
+      }
+      if(request.getParameter("insertarAdmin") != null){
+         this.insertarAdmin();
+      }
+
+
+
 
       
      }
@@ -175,7 +196,6 @@ public class Controlador extends HttpServlet{
      Devuelve un atributo "comentario" que puede tener valor "correcto" si se a�adio bien
      o "incorrecto" si el usuario no habia comprado ese producto*/
      public void AnadirComentario(){
-         System.out.println("Estamos dentro");
          HelperProductos hp = new HelperProductos(request, response);
          hp.AnadirComentario();
      }
@@ -259,6 +279,10 @@ public class Controlador extends HttpServlet{
      }
      //.................................................................................//
 
+     public void AdministrarTienda(){
+         //LLEVA A LA VISTA DE ADMINISTRADOR
+     }
+
      public void ConfirmarRegistro(){
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.ConfirmarRegistro();
@@ -296,7 +320,6 @@ public class Controlador extends HttpServlet{
             RequestDispatcher  vista = request.getRequestDispatcher("itemAdmin.jsp");
             vista.forward(request,response);
          }catch(Exception e){
-            System.out.println("No carga la vista itemAdmin" + e.getMessage());
          }
      }
      public void VerCatalogoAdmin(){
@@ -308,8 +331,34 @@ public class Controlador extends HttpServlet{
          }catch(Exception e){
             
          }
-
      }
+     public void actualizarUsuario(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.actualizarUsuario();
+         this.MostrarUsuarios();
+     }
+     public void borrarUsuario(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.borrarUsuario();
+         this.MostrarUsuarios();
+     }
+     public void actualizarAdmin(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.actualizarAdmin();
+         this.MostrarUsuarios();
+     }
+     public void borrarAdmin(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.borrarAdmin();
+     }
+     public void insertarAdmin(){
+         HelperUsuarios hu = new HelperUsuarios(request, response);
+         hu.insertarAdmin();
+         this.MostrarUsuarios();
+     }
+
+
+
 
 
 

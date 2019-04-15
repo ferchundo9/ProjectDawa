@@ -89,7 +89,7 @@
 				<!-- SI EL USUARIO YA INICIO SESION -->
 				<c:if test="${not empty sessionScope.usuarioSesion}">
 					<form method="POST" action="Controlador" class="Controlador">
-						<input type="hidden" name="MostrarUsuario" value=1></input>
+						<input type="hidden" name="MostrarUsuarios" value=1></input>
 						<button class="botonInvisible derecha" ><span>Administrar Usuarios</span></button>
 					</form>
 					<form method="POST" action="Controlador" class="Controlador">
@@ -102,13 +102,13 @@
 				<!-- Formuario para filtrar productos del catalogo -->
 				<form class=form method="POST" action="Controlador" class="Controlador">
 					<div id=boton class=opcionesBusqueda><img src="./img/iconoDesplegar.png" />Opciones busqueda </div>
-					<input class="barraBusqueda" type="text" name="nombreCD">
-					<input type="hidden" name="FiltrarAdmin" value=1></input>
+					<input class="barraBusqueda" type="text" name="nombreCD"></input>
+					<input type="hidden" name="FiltrarProductos" value=1></input>
 					<button type="submit"> <img src="./img/iconoBuscar.png" /> </button>
 					<div id=target class=otrasOpciones>
-						<label><p>Precio Máximo</p><input type="number" name="precioMaxCD"></label>
+						<label><p>Precio Máximo</p><input type="number" name="precioMaxCD" min=0 max=999></label>
 						<label><p>Autor</p><input type="text" name="autorCD"></label>
-						<label><p>Año</p><input type="number" name="anoCD"></label>
+						<label><p>Año</p><input type="number" name="anoCD" min=1900 max=2020></label>
 					</div>
 				</form>
 				<!-- ............................................... -->
@@ -123,7 +123,7 @@
 			<!-- info del item en si -->
 			<div class=columna1>
 			
-				<img class=imagenItemUd id="zoom" src=./img/${producto.urlImagen}>
+				<img class=imagenItemUd id="zoom" src=./img/${producto.urlImagen} />
 				<p class=tituloItem> ${producto.titulo} </p>
 				<c:forEach begin="0" end="${producto.valoracion - 1}" var="i">
 						<img class=estrellaItem src="img/iconoEstrellaCompleta.png" />
@@ -145,7 +145,12 @@
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type=hidden name=Referencia value=${producto.referencia}></input>
 						<input type="hidden" name="EliminarProducto" value=1></input>
-						<button type="submit" class=botonAnadir> Eliminar producto</button>
+						<button type="submit" class=botonAnadir> <img src="./img/iconoCarrito.png" /> Eliminar producto</button>
+					</form>
+					<!-- Formulario para añadir al carrito y ir al carrito directamente --->
+					<form method="POST" action="Controlador" class="Controlador">
+						<input type="hidden" name="cambiarProducto" value=${producto.referencia}></input>
+						<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png"/> Modificar producto</button>
 					</form>
 				</div>
 			<!-------------------------->
@@ -180,7 +185,6 @@
 				</div>
 				</c:if>
 
-			</div>
 			</div>
 	</div>
 	

@@ -46,6 +46,27 @@ public class DAOUsuarios{
       }
       return usuarios;
    }
+   public HashMap<String, Usuario> ObtenerAdmins(){
+      HashMap<String, Usuario> admins=new HashMap<>();
+      try {
+         sentencia = conexion.prepareStatement("SELECT * FROM usuario where Email in (select * from administrador)");
+         consulta = sentencia.executeQuery();
+         while(consulta.next()){
+            String nombre,email,direccion,contrasena;
+            nombre=consulta.getString("Nombre");
+            email=consulta.getString("Email");
+            direccion=consulta.getString("Direccion");
+            contrasena=consulta.getString("Contrasena");
+            Usuario admin=new Usuario(nombre,email,direccion,contrasena);
+            admins.put(admin.getEmail(),admin);
+         } 
+         
+      }catch(Exception e ){
+         System.out.println(e);
+      }
+      return admins;
+   }
+
    public boolean ValidarInicioSesion(String email, String password){
       String contrasena;
       try{
@@ -64,29 +85,39 @@ public class DAOUsuarios{
       return false;
    }
    public void EliminarUsuario(String email){
-   try{
-      ResultSet consulta2;
-      sentencia = conexion.prepareStatement("SELECT * FROM pedido where Email=?");
-      sentencia.setString(1, email);
-      consulta = sentencia.executeQuery();
-      while(consulta.next()){
-         sentencia=conexion.prepareStatement("DELETE FROM itemspedido where id=?");
-         sentencia.setInt(1, consulta.getInt("id"));
+      try{
+         System.out.println("Estamos en eliminar");
+         System.out.println("Email="+email);
+         ResultSet consulta2;
+         sentencia = conexion.prepareStatement("SELECT * FROM pedido where Email=?");
+         sentencia.setString(1, email);
+         consulta = sentencia.executeQuery();
+         while(consulta.next()){
+            sentencia=conexion.prepareStatement("DELETE FROM itemspedido where id=?");
+            sentencia.setInt(1, consulta.getInt("id"));
+            sentencia.executeUpdate();
+         }
+         sentencia = conexion.prepareStatement("DELETE FROM pedido where Email=?");
+         sentencia.setString(1, email);
          sentencia.executeUpdate();
+         sentencia = conexion.prepareStatement("DELETE FROM cliente where Email=?");
+         sentencia.setString(1, email);
+         sentencia.executeUpdate();
+         sentencia = conexion.prepareStatement("DELETE FROM usuario where Email=?");
+         sentencia.setString(1, email);
+         sentencia.executeUpdate();
+      }catch(Exception e){
+         System.out.println(e);
       }
-      sentencia = conexion.prepareStatement("DELETE FROM pedido where Email=?");
-      sentencia.setString(1, email);
-      sentencia.executeUpdate();
-      sentencia = conexion.prepareStatement("DELETE FROM pedido where Email=?");
-      sentencia.setString(1, email);
-      sentencia.executeUpdate();
-      sentencia = conexion.prepareStatement("DELETE FROM pedido where Email=?");
-      sentencia.setString(1, email);
-      sentencia.executeUpdate();
-      }catch(Exception e){}
-
-
-
+   }
+   public void borrarAdmin(String email){
+      try{
+         sentencia = conexion.prepareStatement("DELETE FROM usuario where Email=?");
+         sentencia.setString(1, email);
+         sentencia.executeUpdate();
+      }catch(Exception e){
+         System.out.println(e);
+      }
 
    }
    public void ActualizarContrasena(String email,String password){
@@ -113,4 +144,79 @@ public class DAOUsuarios{
       }catch(Exception e){}
       return null;
    }
+   public void actualizarUsuario(String nombre,String email,String contrasena,String direccion,String tarjeta,String fecha,String oldEmail){
+      try{
+         if(contrasena!=null){
+            sentencia = conexion.prepareStatement("UPDATE usuario set Nombre=?,Email=?,Contrasena=MD5(?),Direccion=? WHERE Email=?");
+            sentencia.setString(1, nombre);
+            sentencia.setString(2, email);
+            sentencia.setString(3, contrasena);
+            sentencia.setString(4, direccion);
+            sentencia.setString(5, oldEmail);
+         }
+         else{
+            sentencia = conexion.prepareStatement("UPDATE usuario set Nombre=?,Email=?,Direccion=? WHERE Email=?");
+            sentencia.setString(1, nombre);
+            sentencia.setString(2, email);
+            sentencia.setString(3, direccion);
+            sentencia.setString(4, email);
+         }
+         sentencia.executeUpdate();
+         sentencia = conexion.prepareStatement("Select tarjeta from cliente where Email=?");
+         sentencia.setString(1, email);
+         consulta = sentencia.executeQuery();
+         String tarjetaOriginal=null;
+         if  (consulta.next()) {
+            tarjetaOriginal=consulta.getString("tarjeta");
+         }
+         sentencia = conexion.prepareStatement("UPDATE tarjeta SET Numero=?, Vencimiento=? WHERE Numero=?");
+         sentencia.setString(1, tarjeta);
+         sentencia.setString(2, fecha);
+         sentencia.setString(3, tarjetaOriginal);
+         sentencia.executeUpdate();
+         
+      }catch(Exception e){
+         System.out.println(e);
+      }
+   }
+   public void actualizarAdmin(String nombre,String email,String contrasena,String direccion,String oldEmail){
+      try{
+         if(contrasena!=null){
+            sentencia = conexion.prepareStatement("UPDATE usuario set Nombre=?,Email=?,Contrasena=MD5(?),Direccion=? WHERE Email=?");
+            sentencia.setString(1, nombre);
+            sentencia.setString(2, email);
+            sentencia.setString(3, contrasena);
+            sentencia.setString(4, direccion);
+            sentencia.setString(5, oldEmail);
+         }
+         else{
+            sentencia = conexion.prepareStatement("UPDATE usuario set Nombre=?,Email=?,Direccion=? WHERE Email=?");
+            sentencia.setString(1, nombre);
+            sentencia.setString(2, email);
+            sentencia.setString(3, direccion);
+            sentencia.setString(4, email);
+         }
+         sentencia.executeUpdate();
+      }catch(Exception e){
+         System.out.println(e);
+      }
+
+   }
+   public void insertarAdmin(String nombre,String email,String contrasena,String direccion){
+      try{
+         sentencia = conexion.prepareStatement("INSERT INTO usuario VALUES(?,?,MD5(?),?)");
+         sentencia.setString(1, nombre);
+         sentencia.setString(2, email);
+         sentencia.setString(3, contrasena);
+         sentencia.setString(4, direccion);
+         sentencia.executeUpdate();
+         sentencia = conexion.prepareStatement("INSERT INTO administrador VALUES(?)");
+         sentencia.setString(1, email);
+         sentencia.executeUpdate();
+      }catch(Exception e){
+         System.out.println(e);
+      }
+
+   }
+
 }

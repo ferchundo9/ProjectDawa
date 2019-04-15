@@ -110,9 +110,9 @@
 					<input type="hidden" name="FiltrarProductos" value=1></input>
 					<button type="submit"> <img src="./img/iconoBuscar.png" /> </button>
 					<div id=target class=otrasOpciones>
-						<label><p>Precio Máximo</p><input type="number" name="precioMaxCD"></label>
+						<label><p>Precio Máximo</p><input type="number" name="precioMaxCD" min=0 max=999></label>
 						<label><p>Autor</p><input type="text" name="autorCD"></label>
-						<label><p>Año</p><input type="number" name="anoCD"></label>
+						<label><p>Año</p><input type="number" name="anoCD" min=1900 max=2020></label>
 					</div>
 				</form>
 				<!-- ............................................... -->
@@ -135,7 +135,6 @@
 				<c:forEach begin="${producto.valoracion}" end="4" var="i">
 						<img class=estrellaItem src="img/iconoEstrellaVacia.png" />
 				</c:forEach>
-				(${producto.valoracion} /5)
 				<p class=autorItem > de ${producto.autor} (${producto.ano})</p>
 				<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR ${producto.precio}€ </span></p> 
 				<p class=StockItem > Stock disponible: ${stock} uds</p>
@@ -160,7 +159,6 @@
 						<input type="hidden" name="ComprarYa" value=1></input>
 						<input type="hidden" name="ReferenciaComprarYa" value=${producto.referencia}></input>
 						<input type="hidden" name="CantidadComprarYa" ng-value="campoCantidad" ></input>
-						<!-- La funcion ya está implementada, sólo necesito que este campo coja el valor del otro :) --->
 						<button type="submit" class="botonAnadir botonComprar"> <img src="./img/iconoComprar.png"/> Comprar ya</button>
 					</form>
 				</div>
@@ -215,12 +213,12 @@
 						  </p>
 						<textarea name=opinion rows=3 cols=120 onClick='opinion.value=""'> ¿Que te ha parecido el producto? ¿Llego bien y a tiempo? </textarea>
 						<input type=hidden name="AnadirComentario" value=1></input>
+						<input type=hidden name="Referencia2" value='${producto.referencia}'></input>
 						<button type="submit" class="botonEnviar"> <img src="./img/iconoAnadir.png"/> Añadir valoracion</button>
 					</form>
 				</div>
 			</div>
 		</div>
-	</div>
 	
 	
     </body>

@@ -106,9 +106,9 @@
 					<input type="hidden" name="FiltrarAdmin" value=1></input>
 					<button type="submit"> <img src="./img/iconoBuscar.png" /> </button>
 					<div id=target class=otrasOpciones>
-						<label><p>Precio Máximo</p><input type="number" name="precioMaxCD"></label>
+						<label><p>Precio Máximo</p><input type="number" name="precioMaxCD" min=0 max=999></label>
 						<label><p>Autor</p><input type="text" name="autorCD"></label>
-						<label><p>Año</p><input type="number" name="anoCD"></label>
+						<label><p>Año</p><input type="number" name="anoCD" min=1900 max=2020></label>
 					</div>
 				</form>
 				<!-- ............................................... -->
