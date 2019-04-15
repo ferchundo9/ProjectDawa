@@ -220,7 +220,6 @@ nav .form button img{
 
 
 /* Formato items catalogo*/
-
 .item{
 	z-index: -99;
 	background-color: white;
@@ -232,63 +231,20 @@ nav .form button img{
 	padding: 15px;
 	cursor: pointer;
 }
-
-
 .mas{
 	text-decoration: underline;
-	display: inline-block;
-	width: 5vw;
+	display: block;
+	width: 15vw;
 	margin: 0px;
 	background-color: white;
 	border: 0px;
 	cursor: pointer;
 	font-size: 1.1em;
 	text-align: left;
-	position:relative;
-	right:5vw;
 }
 
 .mas:hover{
 	color:#DC780E;
-}
-
-.eliminarCdCat{
-	text-decoration: underline;
-	display: block;
-	width: 8vw;
-	margin: 0px;
-	background-color: white;
-	border: 0px;
-	cursor: pointer;
-	font-size: 1.1em;
-	text-align: center;
-	position:relative;
-	bottom:2.5vw;
-	left:3vw;
-}
-
-.eliminarCdCat:hover{
-	color:#DC780E;
-}
-
-.anadirCdCat{
-	text-decoration: underline;
-	display: inline-block;
-	width: 5vw;
-	margin: 0px;
-	background-color: white;
-	border: 0px;
-	cursor: pointer;
-	font-size: 1.1em;
-	text-align: left;
-	position:relative;
-	right:5vw;
-	top:1vw;
-	
-}
-
-.anadirCdCat:hover{
-	color:#DC780E;	
 }
 
 .imagenItem{
@@ -807,10 +763,10 @@ legend{font-size: 1.2em; font-weight: bold;}
 	float: left;
 	margin-top: -7px;
 	margin-left: -7px;
+<<<<<<< HEAD
 }
 
 }
-
 
 .mensajeErrorComentario{color: #CC2B1B; font-weight: lighter; font-size: 0.8em;}
 .mensajeExitoComentario{color: #4D7D1F; font-weight: lighter; font-size: 0.8em;}

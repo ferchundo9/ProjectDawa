@@ -215,6 +215,7 @@
 						  </p>
 						<textarea name=opinion rows=3 cols=120 onClick='opinion.value=""'> ¿Que te ha parecido el producto? ¿Llego bien y a tiempo? </textarea>
 						<input type=hidden name="AnadirComentario" value=1></input>
+						<input type=hidden name="Referencia2" value='${producto.referencia}'></input>
 						<button type="submit" class="botonEnviar"> <img src="./img/iconoAnadir.png"/> Añadir valoracion</button>
 					</form>
 				</div>
