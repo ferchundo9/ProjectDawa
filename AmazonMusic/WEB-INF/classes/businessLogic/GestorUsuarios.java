@@ -16,13 +16,29 @@ public class GestorUsuarios{
    }
    public void ConfirmarRegistro(){
    }
+   
+   /*Este metodo comprueba si el usuario que ha iniciado sesion es VIP o no
+   si lo es añade el atributo "tipoUsuario" el valor "VIP"; si no es VIP 
+   el valor sera "normal"*/
+   public void ComprobarUsuarioVip(){
+      HttpSession session = request.getSession(true);
+      if(fdao.ComprobarUsuarioVip((String)session.getAttribute("usuarioSesion"))){
+         request.setAttribute("tipoUsuario", "VIP");
+      }else{
+         request.setAttribute("tipoUsuario", "normal");
+      }
+   }
    public String IniciarSesion(String email,String password){
       try{
          if(fdao.ValidarInicioSesion(email,password)){
             if(fdao.ValidarClienteAdministrador(email).equals("cliente")){ //Comprobamos si el usuario que se registra es un cliente o un administrador
                HttpSession session = request.getSession(true);//usa la sesion si existe o ccrea una nueva sesion si no existe
                session.setAttribute("usuarioSesion", email);
-   
+               if(fdao.ComprobarUsuarioVip(email)){
+                  session.setAttribute("tipoUsuario", "VIP");
+               }else{
+                  session.setAttribute("tipoUsuario", "normal");
+               }
                session.setAttribute("carrito", new Carrito());
            
                //obtencion de datos del catalogo 

@@ -255,9 +255,11 @@ public class Controlador extends HttpServlet{
          HelperCarrito hc = new HelperCarrito(request, response);
          hc.AnadirAlCarrito();
      }
+     
+     /*Este metodo solo se deberia llamar cuando el usuario ya ha iniciado sesion*/
       public void VerCarrito(){
          HelperCarrito hc = new HelperCarrito(request, response);
-         hc.VerCarrito();
+         hc.ComprobarUsuarioVip();
          try{
             RequestDispatcher  vista = request.getRequestDispatcher("carrito.jsp");
             vista.forward(request,response);

@@ -65,6 +65,9 @@
 				</c:if> 
 				<!-- SI EL USUARIO YA INICIO SESION -->
 				<c:if test="${not empty sessionScope.usuarioSesion}">
+					<c:if test="${sessionScope.tipoUsuario == 'VIP'}">
+					<img class="vip derecha" src="./img/iconoVIP.png">
+					</c:if>
 					<form method="POST" action="Controlador" class="logoResponsive2">
 						<input type="hidden" name="VerCarrito" value=1></input>
 						<button class="botonInvisible derecha" ><span>Ver Carrito</span></button>
@@ -102,7 +105,15 @@
 			</div>
 			<div class=cuadroDerecha>
 				<h2> Subtotal ( ${sessionScope.carrito.numItems} productos): </h2>
-				<p class=precio>   EUR ${sessionScope.carrito.precio} </p>
+				<p class=c1>Precio pedido</p> <p class="c2 precio">   EUR ${sessionScope.carrito.precio} </p>
+				<c:if test="${sessionScope.tipoUsuario == 'VIP'}">
+					<p class=c1>Descuento aplicado</p> <p class="c2 precio">   20%(VIP) </p>
+					<p class=c1>Precio final</p> <p class="c2 precio">   EUR ${sessionScope.carrito.precio * 0.8} </p>
+				</c:if>
+				<c:if test="${sessionScope.tipoUsuario != 'VIP'}">
+					<p class=c1>Descuento aplicado</p> <p class="c2 precio">   EUR ${sessionScope.carrito.precio} </p>
+					<p class=c1>Precio final</p> <p class="c2 precio">   EUR ${sessionScope.carrito.precio} </p>
+				</c:if>
 				<form method="POST" action="Controlador" class="Controlador">
 					<input type=hidden name=ConfirmarCompra value=1></input>
 					<input class=botonLogin type=submit value="Proceder a la compra"></input>
@@ -132,7 +143,9 @@
 			<!-- Suma final de la compra -->
 			<hr class=linea>
 			<div class=tablaCarrito >
-				<p class=derecha> Subtotal(${sessionScope.carrito.numItems} productos): <span class=precioDer> EUR ${sessionScope.carrito.precio} </span></p>
+				<p class=derecha> Subtotal(${sessionScope.carrito.numItems} productos): </p>
+				<p class=precioDer>EUR ${sessionScope.carrito.precio} </p>
+				
 			</div>
 			</c:if>
 		</div>

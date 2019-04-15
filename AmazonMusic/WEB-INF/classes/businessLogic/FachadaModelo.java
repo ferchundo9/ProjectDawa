@@ -13,9 +13,9 @@ public class FachadaModelo{
       this.response = response;
    }
    //////////////////////////////////// CARRITO ////////////////////////////////////
-   public void VerCarrito(){
-      GestorCarrito gc = new GestorCarrito(request,response);
-      gc.ObtenerCarrito();
+   public void ComprobarUsuarioVip(){
+      GestorUsuarios gu = new GestorUsuarios(request,response);
+      gu.ComprobarUsuarioVip();
    }
    public void AnadirAlCarrito(){
       GestorCarrito gc = new GestorCarrito(request,response);

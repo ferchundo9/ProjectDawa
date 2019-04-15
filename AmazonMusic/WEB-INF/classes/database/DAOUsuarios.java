@@ -110,6 +110,15 @@ public class DAOUsuarios{
          System.out.println(e);
       }
    }
+   
+   public boolean ComprobarUsuarioVip(String emailUsuario){
+      try{
+         sentencia = conexion.prepareStatement("SELECT vip FROM cliente WHERE email=?");
+         sentencia.setString(1, emailUsuario);
+         consulta = sentencia.executeQuery();
+         return (consulta.next() && consulta.getInt("vip")==1);
+      }catch(Exception e){return false;}
+   }
    public void borrarAdmin(String email){
       try{
          sentencia = conexion.prepareStatement("DELETE FROM usuario where Email=?");
