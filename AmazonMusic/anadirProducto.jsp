@@ -41,8 +41,9 @@
 		});
 		
 		</script>
-		<!---------------------------------------------->
 
+		<!---------------------------------------------->
+	
     </head>
 	<!-- ------------------------------------------------------------------ -->
 	
@@ -124,7 +125,7 @@
 			<!-- info del item en si -->
 			<div class=columna1>
 			
-				<img class=imagenItemUd id="zoom" ng-src="{{modelImagen}}">
+				<img class=imagenItemUd id="zoom" ng-src="./img/{{modelImagen}}">
 				<p class=tituloItem ng-bind="modelTitulo"> </p>
 				<c:forEach begin="0" end="4" var="i">
 						<img class=estrellaItem src="img/iconoEstrellaVacia.png" />
@@ -144,10 +145,10 @@
 						<input type="hidden" name="IntroducirProducto" value=1 />
 						<label><p style="text-align: right;">Titulo: <input type="text" name="tituloCdNuevo" ng-model="modelTitulo" required></label> </p>
 						<label><p style="text-align: right;">Autor: <input type="text" name="autorCdNuevo" ng-model="modelAutor" required></label> </p>
-						<label><p style="text-align: right;">Precio: <input type="number" step="0.01" name="precioCdNuevo min=0 max=999" ng-model="modelPrecio" required></label> </p>
+						<label><p style="text-align: right;">Precio: <input type="number" step="0.01" name="precioCdNuevo" min=0 max=999 ng-model="modelPrecio" required></label> </p>
 						<label><p style="text-align: right;">Año: <input type="number" name="anoCdNuevo" ng-model="modelAno" min=1900 max=2020 required></label> </p>
 						<label><p style="text-align: right;">Imagen: <input type="text" name="imagenCdNuevo" ng-model="modelImagen" required></label> </p>
-						<label><p style="text-align: right;">Stock: <input type="number" name="stockCdNuevo min=1 max=999" ng-model="modelStock" required></label> </p>
+						<label><p style="text-align: right;">Stock: <input type="number" name="stockCdNuevo" min=1 max=999 ng-model="modelStock" required></label> </p>
 						<button type="submit" class=botonAnadir> Introducir CD</button>
 					</form>
 				</div>
