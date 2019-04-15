@@ -30,9 +30,6 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("VerCarrito") != null){
          this.VerCarrito();
       }
-      if(request.getParameter("AdministrarTienda") != null){
-         this.AdministrarTienda();
-      }
       if(request.getParameter("AnadirAlCarrito") != null){
          this.AnadirAlCarrito();
       }
@@ -80,7 +77,7 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("AnadirProducto") != null){
          this.AnadirProducto();
       }
-      
+
       if(request.getParameter("AnadirComentario") != null){
          this.AnadirComentario();
       }
@@ -108,8 +105,11 @@ public class Controlador extends HttpServlet{
 
 
 
+      if(request.getParameter("VerProductoAdmin") != null){
+         this.VerProductoAdmin();
+      }
 
-      
+
      }
 
      //-----------------------------------------------------------------------------------------------//
@@ -277,10 +277,6 @@ public class Controlador extends HttpServlet{
      }
      //.................................................................................//
 
-     public void AdministrarTienda(){
-         //LLEVA A LA VISTA DE ADMINISTRADOR
-     }
-
      public void ConfirmarRegistro(){
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.ConfirmarRegistro();
@@ -291,7 +287,7 @@ public class Controlador extends HttpServlet{
          hp.IntroducirProducto();
          VerCatalogoAdmin();
      }
-     
+
      public void EliminarProducto(){
          HelperProductos hp = new HelperProductos(request, response);
          hp.EliminarProducto();
@@ -318,6 +314,7 @@ public class Controlador extends HttpServlet{
             RequestDispatcher  vista = request.getRequestDispatcher("itemAdmin.jsp");
             vista.forward(request,response);
          }catch(Exception e){
+            System.out.println("No carga la vista itemAdmin" + e.getMessage());
          }
      }
      public void VerCatalogoAdmin(){
@@ -327,7 +324,7 @@ public class Controlador extends HttpServlet{
             RequestDispatcher  vista = request.getRequestDispatcher("CatalogoAdmin.jsp");
             vista.forward(request,response);
          }catch(Exception e){
-            
+
          }
      }
      public void actualizarUsuario(){

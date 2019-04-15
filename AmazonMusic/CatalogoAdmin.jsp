@@ -125,10 +125,10 @@
 					<input type="submit" class=mas value="Ver CD"> </input>
 					
 				</form>
-				<form method="POST" action="Controlador" >
+				<form method="POST" action="Controlador" class="Controlador" >
 					<input type="hidden" name="EliminarProducto" value=1></input>
 					<input type="hidden" name="Referencia" value=${entry.value.referencia}></input>
-					<input type="submit" class=mas value="Eliminar CD"> </input>
+					<input type="submit" class=eliminarCdCat value="Eliminar CD"> </input>
 				</form>
 			</div>
 		</c:forEach>
@@ -142,8 +142,11 @@
 					<!-- Campos ocultos para enviar datos al servlet -->
 					<input type="hidden" name="AnadirProducto" value=1></input>
 					<!-- ............................................ -->
-					
-					<input type="submit" class=mas value="AÑADIR"> </input>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<input type="submit" class=anadirCdCat value="AÑADIR"> </input>
 					
 				</form>	
 		</div>
