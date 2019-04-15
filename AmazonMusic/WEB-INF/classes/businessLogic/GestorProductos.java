@@ -40,7 +40,7 @@ public class GestorProductos{
    }
    
    public void IntroducirProducto(){
-      Double precio=Double.parseDouble(request.getParameter("precioCdNuevo"));
+      Double precio=Double.parseDouble(request.getParameter("precioCdNuevo").replace(',','.'));
       String url=request.getParameter("imagenCdNuevo");
       String titulo=request.getParameter("tituloCdNuevo");
       String autor=request.getParameter("autorCdNuevo");
