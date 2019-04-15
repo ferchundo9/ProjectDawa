@@ -13,6 +13,12 @@ public class HelperCarrito{
       this.response = response;
       this.fm = new FachadaModelo(request,response);
    }
+<<<<<<< HEAD
+=======
+   public void ComprobarUsuarioVip(){
+      fm.ComprobarUsuarioVip();
+   }
+>>>>>>> 91c8707228f7e374ebf19517644783aec112232a
    public void AnadirAlCarrito(){
       fm.AnadirAlCarrito();
    }

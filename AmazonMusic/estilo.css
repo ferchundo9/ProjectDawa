@@ -898,3 +898,11 @@ legend{font-size: 1.2em; font-weight: bold;}
 .listaProductos img{ width: 110px;}
 .listaProductos p{ text-align: left; font-size: 1.5em;}
 
+
+.cuadroDerecha{display: grid;grid-template-columns: 75% 25%;}
+.cuadroDerecha .precio{ float: left; font-size: 1em; display: block; }
+.cuadroDerecha p{display: block; float: left;text-align: left; text-decoration: underline;margin: 0px;font-weight: lighter;}
+.cuadroDerecha h2{grid-column-start:1; grid-column-end: 3;width: 100%; font-size: 1.1em;}
+
+.vip{width: 2%;
+}

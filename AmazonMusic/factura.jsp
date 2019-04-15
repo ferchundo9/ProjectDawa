@@ -65,6 +65,9 @@
 				</c:if> 
 				<!-- SI EL USUARIO YA INICIO SESION -->
 				<c:if test="${not empty sessionScope.usuarioSesion}">
+					<c:if test="${sessionScope.tipoUsuario == 'VIP'}">
+						<img class="vip derecha" src="./img/iconoVIP.png">
+					</c:if>
 					<form method="POST" action="Controlador" class="logoResponsive2">
 						<input type="hidden" name="VerCarrito" value=1></input>
 						<button class="botonInvisible derecha" ><span>Ver Carrito</span></button>

@@ -72,6 +72,10 @@ public class FachadaDAO{
       DAOInventario daoI = new DAOInventario(conexion);
       return daoI.ComprobarPedidoUsuario(usuario, referencia);
    }
+   public boolean ComprobarUsuarioVip(String emailUsuario){
+      DAOUsuarios daoU = new DAOUsuarios(conexion);
+      return daoU.ComprobarUsuarioVip(emailUsuario);
+   }
    public void AnadirValoracion(String referencia, Valoracion valoracion){
       DAOInventario daoI  = new DAOInventario(conexion);
       daoI.AnadirValoracion(referencia, valoracion);
