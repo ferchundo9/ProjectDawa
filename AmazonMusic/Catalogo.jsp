@@ -7,6 +7,7 @@
 		<meta name="description" content="Página de venta de productos">
 		<meta name="keywords" content="CD, musica, comprar, tienda">
 		<meta name="author" content="Raquel Vilas, Fernando Rodríguez, Miguel Martinez, Carlos Rial">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="./estilo.css" >
 		<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico">
 		<script type="text/javascript" src="jquery-2.2.4.min.js"></script>
