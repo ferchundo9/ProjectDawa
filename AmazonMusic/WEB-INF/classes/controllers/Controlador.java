@@ -21,6 +21,9 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("VerProducto") != null){
          this.VerProducto();
       }
+      if(request.getParameter("VerProductoAdmin") != null){
+         this.VerProductoAdmin();
+      }
       if(request.getParameter("VolverHome") != null){
          this.VolverHome();
       }
