@@ -13,9 +13,6 @@ public class HelperUsuarios{
       this.response = response;
       this.fm = new FachadaModelo(request,response);
    }
-   public void ConfirmarRegistro(){
-      fm.ConfirmarRegistro();
-   }
    public String IniciarSesion(String email,String password){
       return fm.IniciarSesion(email,password);
    }

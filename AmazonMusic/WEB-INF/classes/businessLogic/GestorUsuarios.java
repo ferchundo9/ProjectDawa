@@ -14,8 +14,6 @@ public class GestorUsuarios{
       this.response = response;
       this.fdao = new FachadaDAO(request, response);
    }
-   public void ConfirmarRegistro(){
-   }
    public String IniciarSesion(String email,String password){
       try{
          if(fdao.ValidarInicioSesion(email,password)){

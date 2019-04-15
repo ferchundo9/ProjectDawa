@@ -13,10 +13,6 @@ public class FachadaModelo{
       this.response = response;
    }
    //////////////////////////////////// CARRITO ////////////////////////////////////
-   public void VerCarrito(){
-      GestorCarrito gc = new GestorCarrito(request,response);
-      gc.ObtenerCarrito();
-   }
    public void AnadirAlCarrito(){
       GestorCarrito gc = new GestorCarrito(request,response);
       gc.AnadirAlCarrito();
@@ -34,7 +30,7 @@ public class FachadaModelo{
       GestorCarrito gc = new GestorCarrito(request,response);
       gc.ComprarYa();
    }
-   //////////////////////////////////// REGISTRO ////////////////////////////////////
+   //////////////////////////////////// USUARIOS ////////////////////////////////////
    public void ConfirmarRegistro(){
       GestorUsuarios gu = new GestorUsuarios(request,response);
       gu.ConfirmarRegistro();
@@ -69,6 +65,26 @@ public class FachadaModelo{
       GestorUsuarios gu = new GestorUsuarios(request,response);
       return gu.AdminCliente();
    }
+   public void actualizarUsuario(){
+      GestorUsuarios gu = new GestorUsuarios(request,response);
+      gu.actualizarUsuario();
+   }
+   public void borrarUsuario(){
+      GestorUsuarios gu = new GestorUsuarios(request,response);
+      gu.borrarUsuario();
+   }
+   public void actualizarAdmin(){
+      GestorUsuarios gu = new GestorUsuarios(request,response);
+      gu.actualizarAdmin();
+   }
+   public void borrarAdmin(){
+      GestorUsuarios gu = new GestorUsuarios(request,response);
+      gu.borrarAdmin();
+   }
+   public void insertarAdmin(){
+      GestorUsuarios gu = new GestorUsuarios(request,response);
+      gu.insertarAdmin();
+   }
    //////////////////////////////////// PRODUCTOS ////////////////////////////////////
    public void VerCatalogo(){
       GestorProductos gp = new GestorProductos(request,response);
@@ -94,26 +110,7 @@ public class FachadaModelo{
       GestorProductos gp = new GestorProductos(request, response);
       gp.EliminarProducto();
    }
-   public void actualizarUsuario(){
-      GestorUsuarios gu = new GestorUsuarios(request,response);
-      gu.actualizarUsuario();
-   }
-   public void borrarUsuario(){
-      GestorUsuarios gu = new GestorUsuarios(request,response);
-      gu.borrarUsuario();
-   }
-   public void actualizarAdmin(){
-      GestorUsuarios gu = new GestorUsuarios(request,response);
-      gu.actualizarAdmin();
-   }
-   public void borrarAdmin(){
-      GestorUsuarios gu = new GestorUsuarios(request,response);
-      gu.borrarAdmin();
-   }
-   public void insertarAdmin(){
-      GestorUsuarios gu = new GestorUsuarios(request,response);
-      gu.insertarAdmin();
-   }
+   
 
 
 

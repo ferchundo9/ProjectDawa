@@ -13,9 +13,6 @@ public class HelperCarrito{
       this.response = response;
       this.fm = new FachadaModelo(request,response);
    }
-   public void VerCarrito(){
-      fm.VerCarrito();
-   }
    public void AnadirAlCarrito(){
       fm.AnadirAlCarrito();
    }

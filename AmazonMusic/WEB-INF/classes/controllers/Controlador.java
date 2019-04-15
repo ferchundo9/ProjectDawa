@@ -33,9 +33,6 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("VerCarrito") != null){
          this.VerCarrito();
       }
-      if(request.getParameter("AdministrarTienda") != null){
-         this.AdministrarTienda();
-      }
       if(request.getParameter("AnadirAlCarrito") != null){
          this.AnadirAlCarrito();
       }
@@ -44,10 +41,7 @@ public class Controlador extends HttpServlet{
       }
       if(request.getParameter("EliminarDelCarrito") != null){
          this.EliminarDelCarrito();
-      }
-      if(request.getParameter("ConfirmarRegistro") != null){
-         this.ConfirmarRegistro();
-      }
+      }     
       if(request.getParameter("goIniciarSesion") != null){
          this.goIniciarSesion();
       }
@@ -109,15 +103,11 @@ public class Controlador extends HttpServlet{
          this.insertarAdmin();
       }
 
-
-
-
-      
      }
 
      //-----------------------------------------------------------------------------------------------//
      //----------------METODOS DE REDIRECCION DIRECTA (no pasan por los helpers)----------------------//
-     //Este m�todo redirige directamente al index (para cuando el usuario clica en el icono de amazon)
+     //Este metodo redirige directamente al index (para cuando el usuario clica en el icono de amazon)
      public void VolverHome(){
          try{
             RequestDispatcher  vista = request.getRequestDispatcher("index.html");
@@ -155,7 +145,7 @@ public class Controlador extends HttpServlet{
 
      //--------------------------------------------------------------------------------//
      //-----------------METODOS DE GESTION DE PRODUCTOS -------------------------------//
-     /*Este m�todo devuelve todos los items (cds) del catalogo sin filtrar*/
+     /*Este metodo devuelve todos los items (cds) del catalogo sin filtrar*/
      public void VerCatalogo(){
          HelperUsuarios hu = new HelperUsuarios(request,response);
          if(hu.AdminCliente().equals("admin")){
@@ -165,7 +155,7 @@ public class Controlador extends HttpServlet{
             hp.VerCatalogo();
          }
      }
-     /*Este m�todo devuelve la informacion de un producto (cuando el usuario clica en el
+     /*Este metodo devuelve la informacion de un producto (cuando el usuario clica en el
      desde el catalogo) en el atributo "producto" y tiene que devolver tambien un array
      list con las opiniones asociadas al mismo*/
      public void VerProducto(){
@@ -177,8 +167,6 @@ public class Controlador extends HttpServlet{
          }catch(Exception e){
          }
      }
-
-
      /*Este metodo devuelve un hashmap de productos filtrados de una busqueda de usuario
      los atributos que recibe del formulario son "nombreCD","autorCD","precioMaxCD",
      "anoCD" y pueden ser nulos*/
@@ -256,8 +244,6 @@ public class Controlador extends HttpServlet{
          hc.AnadirAlCarrito();
      }
       public void VerCarrito(){
-         HelperCarrito hc = new HelperCarrito(request, response);
-         hc.VerCarrito();
          try{
             RequestDispatcher  vista = request.getRequestDispatcher("carrito.jsp");
             vista.forward(request,response);
@@ -279,14 +265,7 @@ public class Controlador extends HttpServlet{
      }
      //.................................................................................//
 
-     public void AdministrarTienda(){
-         //LLEVA A LA VISTA DE ADMINISTRADOR
-     }
-
-     public void ConfirmarRegistro(){
-         HelperUsuarios hu = new HelperUsuarios(request, response);
-         hu.ConfirmarRegistro();
-     }
+     
 
      public void IntroducirProducto(){
          HelperProductos hp = new HelperProductos(request, response);
