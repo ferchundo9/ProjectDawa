@@ -132,8 +132,8 @@
 	<div class=itemGrid> <!--Div con el fondo blanco-->
 		
 			<!-- info del item en si -->
-			<div class=columna1>
-			
+			<div class=columna1 style="position:relative;">
+				<c:if test="${stock == 0}"><img class=agotado src="./img/iconoAgotado.png"></c:if>
 				<img class=imagenItemUd id="zoom" src=./img/${producto.urlImagen}>
 				<p class=tituloItem> ${producto.titulo} </p>
 				<c:forEach begin="0" end="${producto.valoracion - 1}" var="i">

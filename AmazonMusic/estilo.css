@@ -114,9 +114,11 @@ nav span:hover{
 /* Barra de busqueda */
 nav .form{
 	border-radius: 5px;
-	height: 4vh;
+	height: 4.5vh;
 	padding: -5vh;
 	margin-left:  15vw;
+	overflow: hidden;
+	border-radius: 5px;
 }
 
 .barraBusqueda{height:5vh;}
@@ -128,7 +130,7 @@ nav .form{
 	float: left;
 	background-color: #CECECE;
 	border-radius: 5px;	
-	height: 4.3vh;
+	height: 4.7vh;
 	max-width: 12vh;
 	font-size: 0.6em;
 	color: #858585;
@@ -144,6 +146,9 @@ nav .form{
 	margin: auto;
 	width: 3.5vh;
 	height: 3.5vh;
+	margin: 0px;
+	text-align: left;
+	border-radius: 5px;
 }
 
 .otrasOpciones{
@@ -192,7 +197,7 @@ nav .form button{
 	border-radius: 5px;
 	cursor: pointer;
 	border: 0px;
-	height: 5vh;
+	height: 4.5vh;
 	width: 5vh;
 	display: block;
 	float: left;
@@ -202,9 +207,8 @@ nav .form button:hover{
 	background-color: #DC780E;
 }
 nav .form button img{
-	height: 4vh;
-	width: 4vh;
-	background-color: #EC9334;
+
+	width: 95%;
 }
 
 /*------------------------------------------------------------------------------*/
@@ -226,8 +230,14 @@ nav .form button img{
 .imagenItem{
 	max-width: 14vw;
 	max-height: 14vw;
+	width: 14vw;
+
 	align-self: center;
 	margin: auto;
+}
+@media only screen and (orientation: landscape){
+	.imagenItem{	height: 14vw;}
+		
 }
 .estrella{
 	width: 1vw;
@@ -915,5 +925,5 @@ legend{font-size: 1.2em; font-weight: bold;}
 .cuadroDerecha p{display: block; float: left;text-align: left; text-decoration: underline;margin: 0px;font-weight: lighter;}
 .cuadroDerecha h2{grid-column-start:1; grid-column-end: 3;width: 100%; font-size: 1.1em;}
 
-.vip{width: 2%;
-}
+.vip{width: 2%;}
+.agotado{position: absolute; width: 60%; height: 90%; top: 0px; left: 0px;z-index: 999;}

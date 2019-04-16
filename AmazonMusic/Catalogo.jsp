@@ -111,7 +111,8 @@
 	<center class=items>
 		<!-- Bucle que recorre el hash de elementos del catalgo --->
 		<c:forEach items="${catalogo}" var="entry">
-			<div class=item>
+			<div class=item style="position:relative;">
+				
 				<form method="POST" action="Controlador" class="Controlador">
 					<img class=imagenItem src=./img/${entry.value.urlImagen}>
 					<p class=titulo> ${entry.value.titulo} </p>
