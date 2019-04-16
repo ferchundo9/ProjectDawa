@@ -15,7 +15,7 @@ public class GestorCarrito{
       this.response = response;
       this.fdao = new FachadaDAO(request,response);
    }
-   public void AnadirAlCarrito(){
+   public boolean AnadirAlCarrito(){
       try{
          HttpSession sesion = request.getSession();
          if(sesion.getAttribute("usuarioSesion")!=null){
@@ -23,7 +23,6 @@ public class GestorCarrito{
                request.setAttribute("itemAnadido", "correcto");
                HttpSession session = request.getSession(true); 
                Carrito carrito = (Carrito) session.getAttribute("carrito");
-               
                Item item = fdao.ObtenerProducto(request.getParameter("Referencia"));
                ItemPedido itemPedido = new ItemPedido(item, Integer.parseInt(request.getParameter("Cantidad")));
                carrito.addItem(itemPedido);
@@ -32,15 +31,14 @@ public class GestorCarrito{
             }
             HashMap<String, Item> catalogo = fdao.ObtenerProductos();
             request.setAttribute("catalogo", catalogo);
-            RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
-            vista.forward(request,response);
+            return true;
          }else{
-            RequestDispatcher  vista = request.getRequestDispatcher("login.jsp");
-            vista.forward(request,response);
+            return false;
          }
       }catch(Exception e){}
+      return false;
    }
-   public void EliminarDelCarrito(){
+   public boolean EliminarDelCarrito(){
       try{
           HttpSession sesion = request.getSession();
           if(sesion.getAttribute("carrito")!=null){
@@ -48,16 +46,15 @@ public class GestorCarrito{
                Carrito carrito = (Carrito) session.getAttribute("carrito");
                int cantidad = carrito.getItems().get(request.getParameter("Referencia")).getCantidad();
                carrito.eliminarItem(request.getParameter("Referencia"));
-               RequestDispatcher  vista = request.getRequestDispatcher("carrito.jsp");
-               vista.forward(request,response);
                fdao.ActualizarInventario(request.getParameter("Referencia"), cantidad);
+               return true;
           }else{
-               RequestDispatcher  vista = request.getRequestDispatcher("login.jsp");
-               vista.forward(request,response);
+               return false;
           }
       }catch(Exception e){}
+      return false;
    }
-   public void ConfirmarCompra(){
+   public boolean ConfirmarCompra(){
       //////FALTA MANDARLE EL CORREO AL USUARIO UNA VEZ SE HACE LA COMPRA BIEN//////////
       HttpSession sesion = request.getSession();
       Carrito carrito = (Carrito) sesion.getAttribute("carrito");
@@ -69,21 +66,13 @@ public class GestorCarrito{
          request.setAttribute("factura", carrito);
          request.setAttribute("fecha", fechaCompra);
          sesion.setAttribute("carrito", new Carrito());
-         try{
-            RequestDispatcher  vista = request.getRequestDispatcher("factura.jsp");
-            vista.forward(request,response);
-         }catch(Exception e){
-         }
+         return true;
       }else{
-         try{
-            RequestDispatcher  vista = request.getRequestDispatcher("carrito.jsp");
-            vista.forward(request,response);
-         }catch(Exception e){
-         }
+         return false;
       }
    }
    
-   public void ComprarYa(){
+   public String ComprarYa(){
       try{
          HttpSession sesion = request.getSession();
          if(sesion.getAttribute("usuarioSesion")!=null){
@@ -94,20 +83,21 @@ public class GestorCarrito{
                Item item = fdao.ObtenerProducto(request.getParameter("ReferenciaComprarYa"));
                ItemPedido itemPedido = new ItemPedido(item, Integer.parseInt(request.getParameter("CantidadComprarYa")));
                carrito.addItem(itemPedido);
-               ConfirmarCompra();
+               if(ConfirmarCompra()){
+                  return "factura";
+               }else return "carrito";
             }else{
                request.setAttribute("itemAnadido", "incorrecto");
                HashMap<String, Item> catalogo = fdao.ObtenerProductos();
                request.setAttribute("catalogo", catalogo);
-               RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
-               vista.forward(request,response);
+               return "Catalogo";
             }
             
          }else{
-            RequestDispatcher  vista = request.getRequestDispatcher("login.jsp");
-            vista.forward(request,response);
+            return "login";
          }
       }catch(Exception e){}
+      return "Catalogo";
    }
    
 }

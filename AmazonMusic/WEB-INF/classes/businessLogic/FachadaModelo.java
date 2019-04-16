@@ -17,36 +17,36 @@ public class FachadaModelo{
       GestorUsuarios gu = new GestorUsuarios(request,response);
       gu.ComprobarUsuarioVip();
    }
-   public void AnadirAlCarrito(){
+   public boolean AnadirAlCarrito(){
       GestorCarrito gc = new GestorCarrito(request,response);
-      gc.AnadirAlCarrito();
+      return gc.AnadirAlCarrito();
    }
-   public void EliminarDelCarrito(){
+   public boolean EliminarDelCarrito(){
       GestorCarrito gc = new GestorCarrito(request,response);
-      gc.EliminarDelCarrito();
+      return gc.EliminarDelCarrito();
    }
-   public void ConfirmarCompra(){
+   public boolean ConfirmarCompra(){
       GestorCarrito gc = new GestorCarrito(request,response);
-      gc.ConfirmarCompra();
+      return gc.ConfirmarCompra();
    }
 
-   public void ComprarYa(){
+   public String ComprarYa(){
       GestorCarrito gc = new GestorCarrito(request,response);
-      gc.ComprarYa();
+      return gc.ComprarYa();
    }
    //////////////////////////////////// USUARIOS ////////////////////////////////////
-   public String IniciarSesion(String email,String password){
+   public String IniciarSesion(){
       GestorUsuarios gu = new GestorUsuarios(request,response);
-      return gu.IniciarSesion(email,password);
+      return gu.IniciarSesion();
    }
    public void CerrarSesion(){
       GestorUsuarios gu = new GestorUsuarios(request,response);
       gu.CerrarSesion();
    }
 
-   public void CrearCuenta(){
+   public boolean CrearCuenta(){
       GestorUsuarios gu = new GestorUsuarios(request, response);
-      gu.CrearCuenta();
+      return gu.CrearCuenta();
    }
    public void MostrarUsuarios(){
       GestorUsuarios gu = new GestorUsuarios(request,response);
@@ -86,9 +86,9 @@ public class FachadaModelo{
       gu.insertarAdmin();
    }
    //////////////////////////////////// PRODUCTOS ////////////////////////////////////
-   public void VerCatalogo(){
+   public String VerCatalogo(){
       GestorProductos gp = new GestorProductos(request,response);
-      gp.VerCatalogo();
+      return gp.VerCatalogo();
    }
    public void VerProducto(){
       GestorProductos gp = new GestorProductos(request,response);

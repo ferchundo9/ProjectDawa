@@ -26,7 +26,9 @@ public class GestorUsuarios{
       }
    }
 
-   public String IniciarSesion(String email,String password){
+   public String IniciarSesion(){
+      String email=request.getParameter("emailLogin");
+      String password=request.getParameter("passwordLogin");
       try{
          if(fdao.ValidarInicioSesion(email,password)){
             if(fdao.ValidarClienteAdministrador(email).equals("cliente")){ //Comprobamos si el usuario que se registra es un cliente o un administrador
@@ -70,18 +72,12 @@ public class GestorUsuarios{
       try{
           HttpSession session = request.getSession(true);
           session.invalidate();
-
-          //obtencion de datos del catalogo
            HashMap<String, Item> catalogo = fdao.ObtenerProductos();
            request.setAttribute("catalogo", catalogo);
-
-           RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
-           vista.forward(request,response);
-
       }catch(Exception e){}
    }
 
-   public void CrearCuenta(){
+   public boolean CrearCuenta(){
       try{
          String nombreUsuario = request.getParameter("nombreRegistro");
          String email = request.getParameter("emailRegistro");
@@ -99,17 +95,13 @@ public class GestorUsuarios{
             //obtencion de datos del catalogo
             HashMap<String, Item> catalogo = fdao.ObtenerProductos();
             request.setAttribute("catalogo", catalogo);
-
-            RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
-            vista.forward(request,response);
-
+            return true;
          }else{
             request.setAttribute("registro", "incorrecto");
-
-            RequestDispatcher  vista = request.getRequestDispatcher("registro.jsp");
-            vista.forward(request,response);
+            return false;
          }
       }catch(Exception e){}
+      return false;
    }
    public void MostrarUsuarios(){
       try{
@@ -117,13 +109,9 @@ public class GestorUsuarios{
          request.setAttribute("usuarios", usuarios);
          HashMap<String, Usuario> admins=fdao.ObtenerAdmins();
          request.setAttribute("admins", admins);
-         RequestDispatcher  vista = request.getRequestDispatcher("AdminUsuarios.jsp");
-         vista.forward(request,response);
       }catch(Exception e){
          System.out.println(e);
       }
-
-
    }
    public void ActualizarContrasena(){
       String email=request.getParameter("email");

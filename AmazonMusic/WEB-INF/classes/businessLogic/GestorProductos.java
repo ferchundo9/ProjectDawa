@@ -13,14 +13,16 @@ public class GestorProductos{
       this.response = response;
       this.fdao = new FachadaDAO(request, response);
    }
-   public void VerCatalogo(){
+   public String VerCatalogo(){
       HashMap<String, Item> catalogo = fdao.ObtenerProductos();
       request.setAttribute("catalogo", catalogo);
-      try{
-         RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
-         vista.forward(request,response);
-      }catch(Exception e){
+      HttpSession session = request.getSession(true);
+      String email=(String)session.getAttribute("usuarioSesion");
+      if(email==null){
+         return "cliente";
       }
+      return fdao.ValidarClienteAdministrador(email);
+      
    }
    public void VerProducto(){
       Item producto = fdao.ObtenerProducto(request.getParameter("Referencia"));
@@ -69,10 +71,7 @@ public class GestorProductos{
          request.setAttribute("valoraciones", valoraciones);
          int stock = fdao.ObtenerStock(referencia);
          request.setAttribute("stock", stock);
-         RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
-         vista.forward(request,response);
       }catch(Exception e){
-            System.out.println(e);
       }
    }
    

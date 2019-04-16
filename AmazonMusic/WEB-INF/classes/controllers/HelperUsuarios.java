@@ -13,19 +13,60 @@ public class HelperUsuarios{
       this.response = response;
       this.fm = new FachadaModelo(request,response);
    }
-   public String IniciarSesion(String email,String password){
-      return fm.IniciarSesion(email,password);
+   public void IniciarSesion(){
+      String jsp = fm.IniciarSesion();
+      if(jsp.equals("cliente")){
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
+            vista.forward(request,response);
+         }catch(Exception e){
+         }
+      }else if(jsp.equals("admin")){
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("CatalogoAdmin.jsp");
+            vista.forward(request,response);
+         }catch(Exception e){
+         }
+      }else{
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("login.jsp");
+            vista.forward(request,response);
+         }catch(Exception e){
+         }
+      }
    }
    
    public void CrearCuenta(){
-      fm.CrearCuenta();
+      if(fm.CrearCuenta()){
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
+            vista.forward(request,response);
+         }catch(Exception e){
+         }
+      }else{
+         try{
+            RequestDispatcher  vista = request.getRequestDispatcher("registro.jsp");
+            vista.forward(request,response);
+         }catch(Exception e){
+            }
+      }
    }
    
    public void CerrarSesion(){
       fm.CerrarSesion();
+      try{
+         RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
+         vista.forward(request,response);
+      }catch(Exception e){
+      }
    }
    public void MostrarUsuarios(){
       fm.MostrarUsuarios();
+      try{
+         RequestDispatcher  vista = request.getRequestDispatcher("AdminUsuarios.jsp");
+         vista.forward(request,response);
+      }catch(Exception e){}
+
    }
    public void ActualizarContrasena(){
       fm.ActualizarContrasena();
@@ -34,8 +75,17 @@ public class HelperUsuarios{
       fm.EliminarUsuario();
    }
    
-   public String AdminCliente(){
-      return fm.AdminCliente();
+   public void AdminCliente(){
+      if(fm.AdminCliente().equals("admin")){
+            fm.FiltrarProductos();
+            try{
+               RequestDispatcher  vista = request.getRequestDispatcher("CatalogoAdmin.jsp");
+               vista.forward(request,response);
+            }catch(Exception e){}
+      }else{
+         HelperProductos hp = new HelperProductos(request, response);
+         fm.VerCatalogo();
+      }
    }
    public void actualizarUsuario(){
       fm.actualizarUsuario();

@@ -54,7 +54,6 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("CrearCuenta") != null){
          this.CrearCuenta();
       }
-
       if(request.getParameter("CerrarSesion") != null){
          this.CerrarSesion();
       }
@@ -77,7 +76,6 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("AnadirProducto") != null){
          this.AnadirProducto();
       }
-
       if(request.getParameter("AnadirComentario") != null){
          this.AnadirComentario();
       }
@@ -102,11 +100,13 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("insertarAdmin") != null){
          this.insertarAdmin();
       }
-
      }
-
-     //-----------------------------------------------------------------------------------------------//
-     //----------------METODOS DE REDIRECCION DIRECTA (no pasan por los helpers)----------------------//
+     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
+     
+     //----------------------------------------------------------------------------------------//
+     //--------------------METODOS DE GESTION DE REDIRECCION DIRECTA- -------------------------//
+     //----------------------------------------------------------------------------------------//
+     
      //Este metodo redirige directamente al index (para cuando el usuario clica en el icono de amazon)
      public void VolverHome(){
          try{
@@ -131,7 +131,7 @@ public class Controlador extends HttpServlet{
          }catch(Exception e){
          }
      }
-
+     //lleva directamente a la vista que permite a un administrador añadir un producto a la tienda
      public void AnadirProducto(){
          try{
             RequestDispatcher  vista = request.getRequestDispatcher("anadirProducto.jsp");
@@ -139,45 +139,29 @@ public class Controlador extends HttpServlet{
          }catch(Exception e){
          }
      }
+     //----------------------------------------------------------------------------------------//
 
-     //.....................................................................................................//
-
-
-     //--------------------------------------------------------------------------------//
-     //-----------------METODOS DE GESTION DE PRODUCTOS -------------------------------//
+     //----------------------------------------------------------------------------------------//
+     //-----------------------METODOS DE GESTION DE PRODUCTOS----------------------------------//
+     //----------------------------------------------------------------------------------------//
      /*Este metodo devuelve todos los items (cds) del catalogo sin filtrar*/
      public void VerCatalogo(){
-         HelperUsuarios hu = new HelperUsuarios(request,response);
-         if(hu.AdminCliente().equals("admin")){
-            VerCatalogoAdmin();
-         }else{
-            HelperProductos hp = new HelperProductos(request, response);
-            hp.VerCatalogo();
-         }
+         HelperProductos hp = new HelperProductos(request,response);
+         hp.VerCatalogo();
      }
      /*Este metodo devuelve la informacion de un producto (cuando el usuario clica en el
      desde el catalogo) en el atributo "producto" y tiene que devolver tambien un array
      list con las opiniones asociadas al mismo*/
      public void VerProducto(){
          HelperProductos hp = new HelperProductos(request, response);
-         hp.VerProducto();
-         try{
-            RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
-            vista.forward(request,response);
-         }catch(Exception e){
-         }
+         hp.VerProducto("cliente");
      }
      /*Este metodo devuelve un hashmap de productos filtrados de una busqueda de usuario
      los atributos que recibe del formulario son "nombreCD","autorCD","precioMaxCD",
      "anoCD" y pueden ser nulos*/
      public void FiltrarProductos(){
          HelperProductos hp = new HelperProductos(request, response);
-         hp.FiltrarProductos();
-         try{
-         RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
-         vista.forward(request,response);
-         }catch(Exception e){
-         }
+         hp.FiltrarProductos("cliente");    
      }
      /*Este metodo aï¿½ade un comentario y valoracion a un item; comprueba que el usuario
      haya comprado ese item. Actualiza la valoracion media del item.
@@ -187,33 +171,21 @@ public class Controlador extends HttpServlet{
          HelperProductos hp = new HelperProductos(request, response);
          hp.AnadirComentario();
      }
+     //----------------------------------------------------------------------------------------//
 
-     //..................................................................................//
 
-
-      //---------------------------------------------------------------------------------//
-     //-----------------METODOS DE GESTION DE USUARIOS- ---------------------------------//
+     //----------------------------------------------------------------------------------------//
+     //-------------------------METODOS DE GESTION DE USUARIOS---------------------------------//
+     //----------------------------------------------------------------------------------------//
+     
      /*Metodo para comprobar email y contraseï¿½a de un usuario devuelve un atributo de
      nombre "login" que puede tener de valor  "incorrecto" si el login se ha hecho con
      exito o no.
      Si se ha logueado correctamente crea una sesion con un atributo de sesion con nombre
      "usuarioSesion"*/
      public void IniciarSesion(){
-         String email=request.getParameter("emailLogin");
-         String password=request.getParameter("passwordLogin");
          HelperUsuarios hu = new HelperUsuarios(request, response);
-         try{
-            if(hu.IniciarSesion(email,password).equals("cliente")){
-                  RequestDispatcher  vista = request.getRequestDispatcher("Catalogo.jsp");
-                  vista.forward(request,response);
-            }else if(hu.IniciarSesion(email,password).equals("admin")){
-               RequestDispatcher  vista = request.getRequestDispatcher("CatalogoAdmin.jsp");
-               vista.forward(request,response);
-            }else if(hu.IniciarSesion(email,password).equals("false")){
-               RequestDispatcher  vista = request.getRequestDispatcher("login.jsp");
-               vista.forward(request,response);
-            }
-         }catch(Exception e){}
+         hu.IniciarSesion();
      }
      /*Metodo para eliminar la sesion actual que se creo cuando el usuario se logueo*/
      public void CerrarSesion(){
@@ -229,12 +201,12 @@ public class Controlador extends HttpServlet{
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.CrearCuenta();
      }
-
-     //..................................................................................//
+     //----------------------------------------------------------------------------------//
 
 
      //---------------------------------------------------------------------------------//
-     //-----------------METODOS DE GESTION DEL CARRITO- --------------------------------//
+     //--------------------METODOS DE GESTION DEL CARRITO-------------------------------//
+     //---------------------------------------------------------------------------------//
      /*Metodo que aï¿½ade el item seleccionado al carrito del usuario; tiene que comprobar
      si el usuario ha iniciado sesion; si lo ha hecho aï¿½ade el item al carrito y lo
      redirige al catalogo; aï¿½ade un atributo "itemAnadido" con valor "correcto" o "incorrecto"
@@ -243,98 +215,78 @@ public class Controlador extends HttpServlet{
          HelperCarrito hc = new HelperCarrito(request, response);
          hc.AnadirAlCarrito();
      }
-
-     /*Este metodo solo se deberia llamar cuando el usuario ya ha iniciado sesion*/
-      public void VerCarrito(){
+     public void VerCarrito(){ //Muestra el carrito del cliente
          HelperCarrito hc = new HelperCarrito(request, response);
          hc.ComprobarUsuarioVip();
-         try{
-            RequestDispatcher  vista = request.getRequestDispatcher("carrito.jsp");
-            vista.forward(request,response);
-         }catch(Exception e){
-         }
      }
-     public void EliminarDelCarrito(){
+     public void EliminarDelCarrito(){ //Elimina un producto almacenado en carrito
          HelperCarrito hc = new HelperCarrito(request, response);
          hc.EliminarDelCarrito();
      }
-     public void ConfirmarCompra(){
+     public void ConfirmarCompra(){ //Realiza el pago de los productos del carrito y muestra la factura
          HelperCarrito hc = new HelperCarrito(request, response);
          hc.ConfirmarCompra();
      }
-
-     public void ComprarYa(){
+     public void ComprarYa(){ //Envia directamente a la factura
          HelperCarrito hc = new HelperCarrito(request, response);
          hc.ComprarYa();
      }
-     //.................................................................................//
+     //---------------------------------------------------------------------------------------//
+     
+     //---------------------------------------------------------------------------------------//
+     //-----------------------------METODOS DEL ADMINISTRADOR---------------------------------//
+     //---------------------------------------------------------------------------------------//
 
-
-
-     public void IntroducirProducto(){
+     public void IntroducirProducto(){ //Permite añadir un producto a la base de datos
          HelperProductos hp = new HelperProductos(request, response);
          hp.IntroducirProducto();
          VerCatalogoAdmin();
      }
-
-     public void EliminarProducto(){
+     public void EliminarProducto(){ //Elimina un producto de la base de datos
          HelperProductos hp = new HelperProductos(request, response);
          hp.EliminarProducto();
          VerCatalogoAdmin();
      }
-
-     public void MostrarUsuarios(){
+     public void MostrarUsuarios(){ //Realiza una consula y muestra los usuarios de la aplicacion (clientes y admins)
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.MostrarUsuarios();
      }
-     public void EliminarUsuario(){
+     public void EliminarUsuario(){ //Elimina a un cliente de la aplicacion
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.EliminarUsuario();
      }
-     public void ActualizarContrasena(){
+     public void ActualizarContrasena(){ //Modifica los datos de la contraseá del cliente
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.ActualizarContrasena();
      }
-
      public void VerProductoAdmin(){ //Abre la ventaja de productos del administrador
          HelperProductos hp = new HelperProductos(request, response);
-         hp.VerProducto();
-         try{
-            RequestDispatcher  vista = request.getRequestDispatcher("itemAdmin.jsp");
-            vista.forward(request,response);
-         }catch(Exception e){
-         }
+         hp.VerProducto("admin");
      }
-     public void VerCatalogoAdmin(){
+     public void VerCatalogoAdmin(){ //Muestra el catalogo desde el punto de vista de un administrador
          HelperProductos hp = new HelperProductos(request, response);
-         hp.FiltrarProductos();
-         try{
-            RequestDispatcher  vista = request.getRequestDispatcher("CatalogoAdmin.jsp");
-            vista.forward(request,response);
-         }catch(Exception e){
-
-         }
+         hp.FiltrarProductos("admin");
      }
-     public void actualizarUsuario(){
+     public void actualizarUsuario(){ //Actualiza los datos almacenados en la BD del cliente
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.actualizarUsuario();
          this.MostrarUsuarios();
      }
-     public void borrarUsuario(){
+     public void borrarUsuario(){ //Similar a Eliminar Usuario, y posteriormente mostrar los restantes
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.borrarUsuario();
          this.MostrarUsuarios();
      }
-     public void actualizarAdmin(){
+     public void actualizarAdmin(){ //Actualiza los datos de algun admin
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.actualizarAdmin();
          this.MostrarUsuarios();
      }
-     public void borrarAdmin(){
+     public void borrarAdmin(){ //Permite borrar administradores de la base de datos
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.borrarAdmin();
      }
-     public void insertarAdmin(){
+     public void insertarAdmin(){ //Permite introducir un administrador en la base de datos
          HelperUsuarios hu = new HelperUsuarios(request, response);
          hu.insertarAdmin();
          this.MostrarUsuarios();
