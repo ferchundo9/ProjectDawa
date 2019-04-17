@@ -127,7 +127,7 @@
 				</form>
 				<form method="POST" action="Controlador" class="Controlador">
 					<input type="hidden" name="EliminarProducto" value=1/>
-					<input type="hidden" name="Referencia" value=${entry.value.referencia}/>
+					<input type="hidden" name="Referencia" value=${entry.value.referencia} ></input>
 					<input type="submit" class=eliminarCdCatalogo value="Eliminar CD"/>
 				</form>
 			</div>
