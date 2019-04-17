@@ -147,7 +147,16 @@
 						<input type="hidden" name="EliminarProducto" value=1></input>
 						<button type="submit" class=botonAnadir>  Eliminar producto</button>
 					</form>
-					<!-- Formulario para añadir al carrito y ir al carrito directamente --->
+					<!-- Formulario para añadir stock --->
+					<form method="POST" action="Controlador" class="Controlador">
+						<p ng-bind="cantidadCompra"></p>
+						<input type="hidden" name=Cantidad type=number value=1>
+						<input type="hidden" name="AnadirStock" value=1></input>
+						<input type=hidden name=Referencia value=${producto.referencia}></input>
+						<input type="hidden" name="ReferenciaStock" value=${producto.referencia}></input>
+						<input type="number" name="CantidadStock"  ></input>
+						<button type="submit" class="botonAnadir botonComprar"> Añadir Stock</button>
+					</form>
 				</div>
 			<!-------------------------->
 			<p class=notaZoom > Pasa el ratón por encima de la imagen para ampliarla </p>

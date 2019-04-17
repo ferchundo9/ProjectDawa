@@ -99,6 +99,9 @@ public class Controlador extends HttpServlet{
       if(request.getParameter("insertarAdmin") != null){
          this.insertarAdmin();
       }
+      if(request.getParameter("AnadirStock") != null){
+         this.AnadirStock();
+      }
      }
      //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
      
@@ -291,7 +294,10 @@ public class Controlador extends HttpServlet{
          this.MostrarUsuarios();
      }
 
-
+     public void AnadirStock(){
+         HelperProductos hp = new HelperProductos(request,response);
+         hp.AnadirStock();
+     }
 
 
 

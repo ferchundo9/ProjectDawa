@@ -261,4 +261,17 @@ public class DAOInventario{
             
             }
         }
+        
+        public void AnadirStock(String referencia, Integer cantidad){
+            try{
+               sentencia = conexion.prepareStatement("UPDATE inventario SET Stock=? WHERE Referencia = ?");
+               sentencia.setInt(1,cantidad);
+               sentencia.setString(2,referencia);
+               sentencia.executeUpdate();
+               
+               
+            }catch(Exception e){
+               System.out.println("Fallo al añadir cantidades" + e.getMessage());
+            }
+        }
 }
