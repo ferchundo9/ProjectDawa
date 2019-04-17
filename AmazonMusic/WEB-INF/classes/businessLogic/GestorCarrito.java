@@ -97,13 +97,12 @@ public class GestorCarrito{
                message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 
                message.setSubject("Factura compra");
-               message.setText("Mensajito con Java Mail" + "de los buenos." + "poque si");
+               message.setText(generarEmail(carrito,email,fechaCompra));
 
                // Lo enviamos.
                Transport t = session.getTransport("smtp");
                t.connect("noreply.amazonmusic@gmail.com", "amazonmusic1234");
                t.sendMessage(message, message.getAllRecipients());
-              // t.send(message);
                // Cierre.
                t.close();
                return true;
@@ -113,6 +112,21 @@ public class GestorCarrito{
       }else{
          return false;
       }
+   }
+   public String generarEmail(Carrito carrito, String email, String fecha){
+      Cliente cliente = (Cliente) fdao.ObtenerUsuarios().get(email);
+      String mensaje = "Gracias por realizar el pedido, " + cliente.getNombre() + ".\nA continuación se muestra información sobre la compra realizada:\n";
+      mensaje = mensaje + "Dirección de envío: " + cliente.getDireccion() + "\n";
+      mensaje = mensaje + "Precio total: " + carrito.getPrecio().toString() +" euros\n";
+      mensaje = mensaje + "Fecha de compra: " + fecha + "\n";
+      mensaje = mensaje + "---------------------------------------------------------------------------------\n";
+      for (Map.Entry<String, ItemPedido> entry : carrito.getItems().entrySet()) {
+         mensaje = mensaje + " -Referencia: " + entry.getKey() + " -Cantidad: x" + entry.getValue().getCantidad() + " (" + entry.getValue().getItem().getPrecio() + " euros)\n";
+         Cd cd = (Cd) entry.getValue().getItem();
+         mensaje = mensaje + " -Datos producto: '" + cd.getTitulo() + "' (" + cd.getAutor() + " - " + cd.getAno() + ")\n";
+         mensaje = mensaje + "------------------------------------------------------------------------------\n";
+      }
+      return mensaje;
    }
 
    public String ComprarYa(){

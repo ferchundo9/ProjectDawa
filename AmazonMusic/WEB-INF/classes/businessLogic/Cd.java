@@ -21,7 +21,7 @@ public class Cd extends Item{
       this.titulo = titulo;
    }
    public void setAutor(String autor){
-      this.titulo = titulo;
+      this.autor = autor;
    }
    public void setAno(String ano){
       this.ano = ano;
