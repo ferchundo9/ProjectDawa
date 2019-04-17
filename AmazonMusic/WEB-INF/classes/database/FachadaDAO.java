@@ -138,4 +138,9 @@ public class FachadaDAO{
       DAOUsuarios daoU = new DAOUsuarios(conexion);
       daoU.borrarAdmin(email);
    }
+   
+   public void AnadirStock(String referencia, Integer cantidad){
+      DAOInventario daoI = new DAOInventario(conexion);
+      daoI.AnadirStock(referencia,cantidad);
+   }
 }

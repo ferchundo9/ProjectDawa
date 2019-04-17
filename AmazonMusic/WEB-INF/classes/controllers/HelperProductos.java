@@ -39,8 +39,7 @@ public class HelperProductos{
             vista.forward(request,response);
          }catch(Exception e){
          }
-      }
-      else{
+      }else{
          try{
                RequestDispatcher  vista = request.getRequestDispatcher("item.jsp");
                vista.forward(request,response);
@@ -78,6 +77,16 @@ public class HelperProductos{
    
    public void EliminarProducto(){
       fm.EliminarProducto();
+   }
+   
+   public void AnadirStock(){
+      fm.AnadirStock();
+      fm.VerProducto();
+      try{
+            RequestDispatcher  vista = request.getRequestDispatcher("itemAdmin.jsp");
+            vista.forward(request,response);
+      }catch(Exception e){
+      }
    }
 
 }

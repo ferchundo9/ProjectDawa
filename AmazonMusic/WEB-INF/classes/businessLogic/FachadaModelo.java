@@ -110,6 +110,12 @@ public class FachadaModelo{
       GestorProductos gp = new GestorProductos(request, response);
       gp.EliminarProducto();
    }
+   
+   public void AnadirStock(){
+      GestorProductos gp = new GestorProductos(request, response);
+      gp.AnadirStock();
+   
+   }
 
 
 

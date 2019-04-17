@@ -80,6 +80,15 @@ public class GestorProductos{
       fdao.EliminarProducto(referencia);
    }
    
+   public void AnadirStock(){
+      String referencia = request.getParameter("ReferenciaStock");
+      if(request.getParameter("CantidadStock")==null){
+         return;
+      }else{
+         Integer cantidad = Integer.valueOf(request.getParameter("CantidadStock"));
+         fdao.AnadirStock(referencia,cantidad);
+      }
+   }
    
 
 }
