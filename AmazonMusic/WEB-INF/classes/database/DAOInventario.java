@@ -197,7 +197,9 @@ public class DAOInventario{
                sentencia.setString(1,referencia);
                sentencia.setString(2,referencia);
                sentencia.executeUpdate();
-            }catch(Exception e){}
+            }catch(Exception e){
+               System.out.println("Falla añadir valoracion " + e.getMessage());
+            }
        }
        
 
@@ -251,6 +253,10 @@ public class DAOInventario{
         
         public void EliminarProducto(String referencia){
             try{
+
+               sentencia = conexion.prepareStatement("DELETE FROM itemspedido WHERE Referencia = ?");
+               sentencia.setString(1,referencia);
+               sentencia.executeUpdate();
                sentencia = conexion.prepareStatement("DELETE FROM valoracion WHERE referencia = ?");
                sentencia.setInt(1, Integer.parseInt(referencia));
                sentencia.executeUpdate();
@@ -258,7 +264,7 @@ public class DAOInventario{
                sentencia.setInt(1, Integer.parseInt(referencia));
                sentencia.executeUpdate();
             }catch(Exception e){
-            
+               System.out.println("Falla la consulta de eliminarCD " + e.getMessage());
             }
         }
         

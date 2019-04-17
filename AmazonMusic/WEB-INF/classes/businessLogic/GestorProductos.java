@@ -57,7 +57,10 @@ public class GestorProductos{
       String referencia = request.getParameter("Referencia2");
       if(fdao.ComprobarPedidoUsuario(usuario, referencia)){
          String comentario = request.getParameter("opinion");
-         int puntuacion = Integer.parseInt(request.getParameter("estrellas"));
+         int puntuacion=1;
+         if(request.getParameter("estrellas")!=null){
+            puntuacion = Integer.parseInt(request.getParameter("estrellas"));
+         }
          Valoracion valoracion  = new Valoracion(puntuacion, comentario, usuario);
          fdao.AnadirValoracion(referencia, valoracion);
          request.setAttribute("comentario", "correcto");
