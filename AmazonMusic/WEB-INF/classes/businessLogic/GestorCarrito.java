@@ -4,7 +4,13 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.util.*;
 import java.text.SimpleDateFormat;
-
+import java.util.Properties;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class GestorCarrito{
    private HttpServletRequest request;
@@ -66,7 +72,6 @@ public class GestorCarrito{
          request.setAttribute("factura", carrito);
          request.setAttribute("fecha", fechaCompra);
          sesion.setAttribute("carrito", new Carrito());
-
          //ENVIAR CORREO
          try{
                Properties props = new Properties();
@@ -88,7 +93,7 @@ public class GestorCarrito{
               // Construimos el mensaje
                MimeMessage message = new MimeMessage(session);
                message.setFrom(new InternetAddress("noreply.amazonmusic@gmail.com"));
-               message.addRecipient(Message.RecipientType.TO, new InternetAddress("carlos.rial.calvo@gmail.com"));
+               message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
                message.setSubject("Factura compra");
                message.setText("Mensajito con Java Mail" + "de los buenos." + "poque si");
 

@@ -6,7 +6,7 @@ javac businessLogic/Usuario.java
 javac businessLogic/Cliente.java
 javac businessLogic/Valoracion.java
 javac businessLogic/Carrito.java
-javac businessLogic/GestorCarrito.java
+javac -cp javax.mail.jar; ./businessLogic/GestorCarrito.java
 javac businessLogic/GestorProductos.java
 javac businessLogic/GestorUsuarios.java
 javac businessLogic/FachadaModelo.java
