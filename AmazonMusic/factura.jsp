@@ -83,16 +83,17 @@
 				<div class=barraBlock>
 					<form  method="POST" action="Controlador" class="form barraBusquedaResponsive ">
 						<div id=boton class=opcionesBusqueda><img src="./img/iconoDesplegar.png" />Opciones busqueda </div>
-						<input class="barraBusqueda" type="text" name="nombreCD">
-						<input type="hidden" name="FiltrarProductos" value=1></input>
-						<button type="submit"> <img src="./img/iconoBuscar.png" /> </button>
+							<input class="barraBusqueda" type="text" name="nombreCD">
+							<input type="hidden" name="FiltrarProductos" value=1></input>
+							<button type="submit"> <img src="./img/iconoBuscar.png" /> </button>
+						</div>
+					</div>
 						<div id=target class=otrasOpciones>
 							<label><p>Precio Máximo</p><input type="number" name="precioMaxCD" min=0 max=999></label>
 							<label><p>Autor</p><input type="text" name="autorCD"></label>
 							<label><p>Año</p><input type="number" name="anoCD" min=1900 max=2020></label>
 						</div>
 					</form>
-				</div>
 				<!-- ............................................... -->
 				
 			</nav>

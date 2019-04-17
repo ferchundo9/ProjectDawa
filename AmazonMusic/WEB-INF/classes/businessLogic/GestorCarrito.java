@@ -81,8 +81,8 @@ public class GestorCarrito{
          props.setProperty("mail.smtp.host", "smtp.gmail.com");
          props.setProperty("mail.smtp.starttls.enable", "true");
          props.setProperty("mail.smtp.port", "587");
-         props.setProperty("mail.smtp.user", "noreply.amazonmusic@gmail.com");
-         props.put("mail.smtp.password", "amazonmusic1234");
+       //  props.setProperty("mail.smtp.user", "noreply.amazonmusic@gmail.com");
+        // props.put("mail.smtp.password", "amazonmusic1234");
          props.setProperty("mail.smtp.auth", "true");
          
          // Preparamos la sesion
@@ -107,7 +107,7 @@ public class GestorCarrito{
            t.send(message);
 
             // Cierre.
-            t.close();
+           // t.close();
             }catch(Exception e){}
          return true;
       }else{
