@@ -21,7 +21,7 @@ public class GestorCarrito{
          if(sesion.getAttribute("usuarioSesion")!=null){
             if(fdao.RestarStock(request.getParameter("Referencia"), Integer.parseInt(request.getParameter("Cantidad")))){
                request.setAttribute("itemAnadido", "correcto");
-               HttpSession session = request.getSession(true); 
+               HttpSession session = request.getSession(true);
                Carrito carrito = (Carrito) session.getAttribute("carrito");
                Item item = fdao.ObtenerProducto(request.getParameter("Referencia"));
                ItemPedido itemPedido = new ItemPedido(item, Integer.parseInt(request.getParameter("Cantidad")));
@@ -42,7 +42,7 @@ public class GestorCarrito{
       try{
           HttpSession sesion = request.getSession();
           if(sesion.getAttribute("carrito")!=null){
-               HttpSession session = request.getSession(true); 
+               HttpSession session = request.getSession(true);
                Carrito carrito = (Carrito) session.getAttribute("carrito");
                int cantidad = carrito.getItems().get(request.getParameter("Referencia")).getCantidad();
                carrito.eliminarItem(request.getParameter("Referencia"));
@@ -66,20 +66,56 @@ public class GestorCarrito{
          request.setAttribute("factura", carrito);
          request.setAttribute("fecha", fechaCompra);
          sesion.setAttribute("carrito", new Carrito());
+
+         //ENVIAR CORREO
+         try{
+               Properties props = new Properties();
+               props.setProperty("mail.smtp.host", "smtp.gmail.com");
+               props.setProperty("mail.smtp.starttls.enable", "true");
+               props.setProperty("mail.smtp.port", "587");
+               props.setProperty("mail.smtp.user", "noreply.amazonmusic@gmail.com");
+               props.put("mail.smtp.password", "amazonmusic1234");
+               props.setProperty("mail.smtp.auth", "true");
+
+               // Preparamos la sesion
+               Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
+                  protected PasswordAuthentication getPasswordAuthentication() {
+                      return new PasswordAuthentication("noreply.amazonmusic@gmail.com", "amazonmusic1234");
+                  }
+               });
+
+
+              // Construimos el mensaje
+               MimeMessage message = new MimeMessage(session);
+               message.setFrom(new InternetAddress("noreply.amazonmusic@gmail.com"));
+               message.addRecipient(Message.RecipientType.TO, new InternetAddress("carlos.rial.calvo@gmail.com"));
+               message.setSubject("Factura compra");
+               message.setText("Mensajito con Java Mail" + "de los buenos." + "poque si");
+
+               // Lo enviamos.
+               Transport t = session.getTransport("smtp");
+               t.connect("noreply.amazonmusic@gmail.com", "amazonmusic1234");
+               t.sendMessage(message, message.getAllRecipients());
+               t.send(message);
+               // Cierre.
+               t.close();
+            }catch(Exception e){
+               return true;
+            }
          return true;
       }else{
          return false;
       }
    }
-   
+
    public String ComprarYa(){
       try{
          HttpSession sesion = request.getSession();
          if(sesion.getAttribute("usuarioSesion")!=null){
             if(fdao.RestarStock(request.getParameter("ReferenciaComprarYa"), Integer.parseInt(request.getParameter("CantidadComprarYa")))){
-               HttpSession session = request.getSession(true); 
+               HttpSession session = request.getSession(true);
                Carrito carrito = (Carrito) session.getAttribute("carrito");
-               
+
                Item item = fdao.ObtenerProducto(request.getParameter("ReferenciaComprarYa"));
                ItemPedido itemPedido = new ItemPedido(item, Integer.parseInt(request.getParameter("CantidadComprarYa")));
                carrito.addItem(itemPedido);
@@ -92,12 +128,12 @@ public class GestorCarrito{
                request.setAttribute("catalogo", catalogo);
                return "Catalogo";
             }
-            
+
          }else{
             return "login";
          }
       }catch(Exception e){}
       return "Catalogo";
    }
-   
+
 }
