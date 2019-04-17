@@ -71,7 +71,6 @@ public class Controlador extends HttpServlet{
       }
       if(request.getParameter("ActualizarContrasena") != null){
          this.ActualizarContrasena();
-
       }
       if(request.getParameter("AnadirProducto") != null){
          this.AnadirProducto();
