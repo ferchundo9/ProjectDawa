@@ -77,39 +77,41 @@ public class GestorCarrito{
          
          //ENVIAR CORREO
          try{
-         Properties props = new Properties();
-         props.setProperty("mail.smtp.host", "smtp.gmail.com");
-         props.setProperty("mail.smtp.starttls.enable", "true");
-         props.setProperty("mail.smtp.port", "587");
-       //  props.setProperty("mail.smtp.user", "noreply.amazonmusic@gmail.com");
-        // props.put("mail.smtp.password", "amazonmusic1234");
-         props.setProperty("mail.smtp.auth", "true");
-         
-         // Preparamos la sesion
-         Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("noreply.amazonmusic@gmail.com", "amazonmusic1234");
+
+               Properties props = new Properties();
+               props.setProperty("mail.smtp.host", "smtp.gmail.com");
+               props.setProperty("mail.smtp.starttls.enable", "true");
+               props.setProperty("mail.smtp.port", "587");
+               props.setProperty("mail.smtp.user", "noreply.amazonmusic@gmail.com");
+               props.put("mail.smtp.password", "amazonmusic1234");
+               props.setProperty("mail.smtp.auth", "true");
+               
+               // Preparamos la sesion
+               Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
+                  protected PasswordAuthentication getPasswordAuthentication() {
+                      return new PasswordAuthentication("noreply.amazonmusic@gmail.com", "amazonmusic1234");
+                  }
+               });
+      
+            
+              // Construimos el mensaje
+               MimeMessage message = new MimeMessage(session);
+               message.setFrom(new InternetAddress("noreply.amazonmusic@gmail.com"));
+               message.addRecipient(Message.RecipientType.TO, new InternetAddress("raquel.rodriguez.vilas@rai.usc.es"));
+               message.setSubject("Factura compra");
+               message.setText("Mensajito con Java Mail" + "de los buenos." + "poque si");
+   
+               // Lo enviamos.
+               Transport t = session.getTransport("smtp");
+               t.connect("noreply.amazonmusic@gmail.com", "amazonmusic1234");
+               t.sendMessage(message, message.getAllRecipients());
+              // t.send(message);
+               // Cierre.
+               t.close();
+               return true;
+            }catch(Exception e){
+               return false;
             }
-        });
-
-         
-           // Construimos el mensaje
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("noreply.amazonmusic@gmail.com"));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress("raquelvilas18@gmail.com"));
-            message.setSubject("Factura compra");
-            message.setText("Mensajito con Java Mail" + "de los buenos." + "poque si");
-
-            // Lo enviamos.
-            Transport t = session.getTransport("smtp");
-           // t.connect("noreply.amazonmusic@gmail.com", "amazonmusic1234");
-           // t.sendMessage(message, message.getAllRecipients());
-           t.send(message);
-
-            // Cierre.
-           // t.close();
-            }catch(Exception e){}
-         return true;
       }else{
          return false;
       }
