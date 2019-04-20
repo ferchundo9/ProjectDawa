@@ -146,7 +146,7 @@
 			<hr class=linea>
 			<div class=tablaCarrito >
 				<p class=derecha> Subtotal(${sessionScope.carrito.numItems} productos): </p>
-				<p class=precioDer>EUR <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${sessionScope.carrito.precio}"/> </p>
+				<p class=precioDer>EUR <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${sessionScope.carrito.precio * 0.8}"/> </p>
 				
 			</div>
 			</c:if>

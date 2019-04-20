@@ -106,8 +106,8 @@
 			<div class=cuadroFactura>
 				<div class=cabeceraFactura>
 					<div class=ancho><p style="color:#4A4A4A;">PEDIDO REALIZADO</p><p>${fecha}</p></div>
-					<c:if test="${sessionScope.tipoUsuario == 'VIP'}"><div class=ancho><p style="color:#4A4A4A;">TOTAL</p><p>EUR ${factura.precio * 0.8}</p></div></c:if>
-					<c:if test="${sessionScope.tipoUsuario != 'VIP'}"><div class=ancho><p style="color:#4A4A4A;">TOTAL</p><p>EUR ${factura.precio}</p></div></c:if>
+					<c:if test="${sessionScope.tipoUsuario == 'VIP'}"><div class=ancho><p style="color:#4A4A4A;">TOTAL</p><p>EUR <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${factura.precio * 0.8}"/></p></div></c:if>
+					<c:if test="${sessionScope.tipoUsuario != 'VIP'}"><div class=ancho><p style="color:#4A4A4A;">TOTAL</p><p>EUR <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${factura.precio}"/></p></div></c:if>
 					<div class=ancho><p style="color:#4A4A4A;">FACTURA ENVIADA A</p><p>${sessionScope.usuarioSesion}</p></div>
 				</div>
 					<!----------- ITEM INDIVIDUAL DEL  CARRITO ---------->
@@ -120,13 +120,13 @@
 								<img class="c1 imagenCarrito" src="./img/${entry.value.item.urlImagen}">
 								<p class="c2 tituloCarrito"> ${entry.value.item.titulo} </p>
 								<p class="c3 cantidad" >x${entry.value.cantidad}uds </p>
-								<p class="c4 precio"> EUR ${entry.value.item.precio} </p>
+								<p class="c4 precio"> EUR <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${entry.value.item.precio}"/> </p>
 								<input type=hidden name=Referencia value=${entry.value.item.referencia}>
 							</form>
 						</c:forEach>
 					</div>
 					<div class=derechaFactura>
-						<p class=c1>Total pedido:</p><p class=c2> ${factura.precio}</p>
+						<p class=c1>Total pedido:</p><p class=c2> <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${factura.precio}"/></p>
 						<c:if test="${sessionScope.tipoUsuario == 'VIP'}">
 						<p class=c1>Descuento aplicado: </p><p class=c2> 20%</p>
 						<p class=c1>Precio final: </p><p class=c2> ${factura.precio * 0.8}</p>
