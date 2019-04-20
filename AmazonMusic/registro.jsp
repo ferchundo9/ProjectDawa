@@ -19,6 +19,12 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<!--................................  -->
 	
+	<!-- Librerias para manejo de datos del servlet --------------------------->
+	<%@ page language="java" import="java.util.*" %>
+	<%@ page language="java" import="businessLogic.*" %>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@page isELIgnored="false" %>
+	<!-- .....................................................................-->
 	
     <body class=bodyLogin>
 	<!-- Gif que se muestra mientras carga la pagina -->

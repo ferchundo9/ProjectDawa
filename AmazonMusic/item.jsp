@@ -152,7 +152,7 @@
 				<div class=cuadroCompra ng-app="" ng-init="campoCantidad='1'" >
 					<p class=precioItem> EUR ${producto.precio}€ </p>
 					<img class=imagenEnvio src="./img/imagenEnvio.PNG" />
-					<p class=enStock> En Stock </p>
+					<c:if test="${stock > 0}"><p class=enStock> En Stock </p></c:if>
 					<!-- Formulario para añadir al carrito  -->
 					<form method="POST" action="Controlador" class="Controlador">
 						<input type=hidden name=Referencia value=${producto.referencia}></input>
