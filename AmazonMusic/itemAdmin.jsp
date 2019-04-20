@@ -139,7 +139,7 @@
 			<!--------------------------->
 			<!-- cuadro de la derecha para añadir al carrito --------->
 				<div class=cuadroCompra >
-					<p class=precioItem> EUR ${producto.precio}€ </p>
+					<p class=precioItem> EUR <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${producto.precio}"/>€ </p>
 					<img class=imagenEnvio src="./img/imagenEnvio.PNG" />
 					<p class=enStock> En Stock </p>
 					<!-- Formulario para añadir al carrito  -->
