@@ -106,7 +106,8 @@
 			<div class=cuadroFactura>
 				<div class=cabeceraFactura>
 					<div class=ancho><p style="color:#4A4A4A;">PEDIDO REALIZADO</p><p>${fecha}</p></div>
-					<div class=ancho><p style="color:#4A4A4A;">TOTAL</p><p>EUR ${factura.precio}</p></div>
+					<c:if test="${sessionScope.tipoUsuario == 'VIP'}"><div class=ancho><p style="color:#4A4A4A;">TOTAL</p><p>EUR ${factura.precio * 0.8}</p></div></c:if>
+					<c:if test="${sessionScope.tipoUsuario != 'VIP'}"><div class=ancho><p style="color:#4A4A4A;">TOTAL</p><p>EUR ${factura.precio}</p></div></c:if>
 					<div class=ancho><p style="color:#4A4A4A;">FACTURA ENVIADA A</p><p>${sessionScope.usuarioSesion}</p></div>
 				</div>
 					<!----------- ITEM INDIVIDUAL DEL  CARRITO ---------->
@@ -126,8 +127,14 @@
 					</div>
 					<div class=derechaFactura>
 						<p class=c1>Total pedido:</p><p class=c2> ${factura.precio}</p>
+						<c:if test="${sessionScope.tipoUsuario == 'VIP'}">
+						<p class=c1>Descuento aplicado: </p><p class=c2> 20%</p>
+						<p class=c1>Precio final: </p><p class=c2> ${factura.precio * 0.8}</p>
+						</c:if>
+						<c:if test="${sessionScope.tipoUsuario != 'VIP'}">
 						<p class=c1>Descuento aplicado: </p><p class=c2> 0%</p>
 						<p class=c1>Precio final: </p><p class=c2> ${factura.precio}</p>
+						</c:if>
 					</div>
 				</div>
 			</div>
