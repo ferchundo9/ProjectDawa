@@ -40,7 +40,7 @@
 	<!-- ---------------------   ENCABEZADO  ------------------------------ -->
 		<header>
 			<!-- Barra superior de navegacion -->
-						<nav>
+			<nav>
 				<!-- logo de amazon que redirige al index -->
 
 				<form method="POST" action="Controlador" class="logoResponsive">

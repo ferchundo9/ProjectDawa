@@ -30,6 +30,7 @@
 	<%@ page language="java" import="java.util.*" %>
 	<%@ page language="java" import="businessLogic.*" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%@page isELIgnored="false" %>
 	<!-- .....................................................................-->
 	
@@ -106,14 +107,14 @@
 			</div>
 			<div class=cuadroDerecha>
 				<h2> Subtotal ( ${sessionScope.carrito.numItems} productos): </h2>
-				<p class=c1>Precio pedido</p> <p class="c2 precio">   EUR ${sessionScope.carrito.precio} </p>
+				<p class=c1>Precio pedido</p> <p class="c2 precio">   EUR <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${sessionScope.carrito.precio}"/> </p>
 				<c:if test="${sessionScope.tipoUsuario == 'VIP'}">
 					<p class=c1>Descuento aplicado</p> <p class="c2 precio">   20%(VIP) </p>
-					<p class=c1>Precio final</p> <p class="c2 precio">   EUR ${sessionScope.carrito.precio * 0.8} </p>
+					<p class=c1>Precio final</p> <p class="c2 precio">  EUR <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${sessionScope.carrito.precio * 0.8}"/> </p>
 				</c:if>
 				<c:if test="${sessionScope.tipoUsuario != 'VIP'}">
 					<p class=c1>Descuento aplicado</p> <p class="c2 precio">   0% </p>
-					<p class=c1>Precio final</p> <p class="c2 precio">   EUR ${sessionScope.carrito.precio} </p>
+					<p class=c1>Precio final</p> <p class="c2 precio">   EUR  <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${sessionScope.carrito.precio}"/> </p>
 				</c:if>
 				<form method="POST" action="Controlador" class="Controlador">
 					<input type=hidden name=ConfirmarCompra value=1></input>
@@ -145,7 +146,7 @@
 			<hr class=linea>
 			<div class=tablaCarrito >
 				<p class=derecha> Subtotal(${sessionScope.carrito.numItems} productos): </p>
-				<p class=precioDer>EUR ${sessionScope.carrito.precio} </p>
+				<p class=precioDer>EUR <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${sessionScope.carrito.precio}"/> </p>
 				
 			</div>
 			</c:if>
