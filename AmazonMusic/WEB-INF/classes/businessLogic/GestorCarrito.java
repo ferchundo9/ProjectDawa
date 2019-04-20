@@ -117,7 +117,8 @@ public class GestorCarrito{
       Cliente cliente = (Cliente) fdao.ObtenerUsuarios().get(email);
       String mensaje = "Gracias por realizar el pedido, " + cliente.getNombre() + ".\nA continuación se muestra información sobre la compra realizada:\n";
       mensaje = mensaje + "Dirección de envío: " + cliente.getDireccion() + "\n";
-      mensaje = mensaje + "Precio total: " + carrito.getPrecio().toString() +" euros\n";
+      if(fdao.ComprobarUsuarioVip(email))carrito.setPrecio(carrito.getPrecio() * 0.8);
+      mensaje = mensaje + "Precio total: " + (new Float(carrito.getPrecio())).toString() +" euros\n";
       mensaje = mensaje + "Fecha de compra: " + fecha + "\n";
       mensaje = mensaje + "---------------------------------------------------------------------------------\n";
       for (Map.Entry<String, ItemPedido> entry : carrito.getItems().entrySet()) {
