@@ -38,6 +38,7 @@
 	<%@ page language="java" import="java.util.*" %>
 	<%@ page language="java" import="businessLogic.*" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%@page isELIgnored="false" %>
 	<!-- .....................................................................-->
 	
@@ -126,7 +127,7 @@
 					<c:forEach begin="1" end="${5 - entry.value.valoracion}" var="i">
 						<img class=estrella src="img/iconoEstrellaVacia.png" />
 					</c:forEach>
-					<p class=precio> ${entry.value.precio} € </p>
+					<p class=precio> <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${entry.value.precio}"/> € </p>
 					<!-- Campos ocultos para enviar datos al servlet -->
 					<input type="hidden" name="VerProducto" value=1></input>
 					<input type="hidden" name="Referencia" value=${entry.value.referencia}></input>

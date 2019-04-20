@@ -30,6 +30,7 @@
 	<%@ page language="java" import="java.util.*" %>
 	<%@ page language="java" import="businessLogic.*" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%@page isELIgnored="false" %>
 	<!-- .....................................................................-->
 	
@@ -129,11 +130,11 @@
 						<p class=c1>Total pedido:</p><p class=c2> <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${factura.precio}"/></p>
 						<c:if test="${sessionScope.tipoUsuario == 'VIP'}">
 						<p class=c1>Descuento aplicado: </p><p class=c2> 20%</p>
-						<p class=c1>Precio final: </p><p class=c2> ${factura.precio * 0.8}</p>
+						<p class=c1>Precio final: </p><p class=c2> <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${factura.precio * 0.8}"/></p>
 						</c:if>
 						<c:if test="${sessionScope.tipoUsuario != 'VIP'}">
 						<p class=c1>Descuento aplicado: </p><p class=c2> 0%</p>
-						<p class=c1>Precio final: </p><p class=c2> ${factura.precio}</p>
+						<p class=c1>Precio final: </p><p class=c2> <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${factura.precio}"/></p>
 						</c:if>
 					</div>
 				</div>

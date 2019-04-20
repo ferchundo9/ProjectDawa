@@ -132,7 +132,7 @@
 						<img class=estrellaItem src="img/iconoEstrellaVacia.png" />
 				</c:forEach>
 				<p class=autorItem > de ${producto.autor} (${producto.ano})</p>
-				<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR ${producto.precio}€ </span></p> 
+				<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${producto.precio}"/>€ </span></p> 
 				<p class=StockItem > Stock disponible: ${stock} uds</p>
 			</div>	
 			<!--------------------------->

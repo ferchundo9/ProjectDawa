@@ -56,6 +56,7 @@
 	<%@ page language="java" import="java.util.*" %>
 	<%@ page language="java" import="businessLogic.*" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%@page isELIgnored="false" %>
 	<!-- AngularJS-->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8.min.js"></script>
@@ -144,13 +145,13 @@
 						<img class=estrellaItem src="img/iconoEstrellaVacia.png" />
 				</c:forEach>
 				<p class=autorItem > de ${producto.autor} (${producto.ano})</p>
-				<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR ${producto.precio}€ </span></p> 
+				<p class=etiquetaPrecio>Precio: <span class=precioItem> EUR <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${producto.precio}"/>€ </span></p> 
 				<p class=StockItem > Stock disponible: ${stock} uds</p>
 			</div>	
 			<!--------------------------->
 			<!-- cuadro de la derecha para añadir al carrito --------->
 				<div class=cuadroCompra ng-app="" ng-init="campoCantidad='1'" >
-					<p class=precioItem> EUR ${producto.precio}€ </p>
+					<p class=precioItem> EUR <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${producto.precio}"/>€ </p>
 					<img class=imagenEnvio src="./img/imagenEnvio.PNG" />
 					<c:if test="${stock > 0}"><p class=enStock> En Stock </p></c:if>
 					<!-- Formulario para añadir al carrito  -->

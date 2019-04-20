@@ -116,7 +116,7 @@
 					<c:forEach begin="1" end="${5 - entry.value.valoracion}" var="i">
 						<img class=estrella src="img/iconoEstrellaVacia.png" />
 					</c:forEach>
-					<p class=precio> ${entry.value.precio} € </p>
+					<p class=precio> <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${entry.value.precio}"/> € </p>
 					<!-- Campos ocultos para enviar datos al servlet -->
 					<input type="hidden" name="VerProductoAdmin" value=1></input>
 					<input type="hidden" name="Referencia" value=${entry.value.referencia}></input>
