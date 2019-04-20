@@ -235,13 +235,14 @@ nav .form button img{
 .mas{
 	text-decoration: underline;
 	display: block;
-	width: 5vw;
+	width: 6vw;
 	margin: 0px;
 	background-color: white;
 	border: 0px;
 	cursor: pointer;
 	font-size: 1.1em;
 	text-align: left;
+	float:left;
 }
 
 .mas:hover{
@@ -250,8 +251,8 @@ nav .form button img{
 
 .eliminarCdCatalogo{
 	text-decoration: underline;
-	display: block;
-	position:relative;
+	display: inline-block;
+	float:left;
 	width: 8vw;
 	margin: 0px;
 	background-color: white;
@@ -259,8 +260,7 @@ nav .form button img{
 	cursor: pointer;
 	font-size: 1.1em;
 	text-align: center;
-	bottom:2.5vw;
-	left:3vw;
+	top:0vw;
 	
 }
 
@@ -275,6 +275,10 @@ nav .form button img{
 	margin: auto;
 }
 
+@media only screen and (orientation: landscape){
+	.imagenItem{	height: 14vw;}
+		
+}
 .estrella{
 	width: 1vw;
 	height: 1vw;
@@ -292,6 +296,102 @@ nav .form button img{
 
 .titulo{font-weight: bold;align-self: left;text-align: left;height:1vw;margin: 0px;}
 .autor{color:#606060;text-align: left;height:1vw;margin: 0px;}
+
+@media only screen and (min-width : 600px) and (max-width : 1100px) {
+	.item{
+		display: block;
+		width: 25vw;
+		max-height: 35vw;
+		height: 35vw;
+		padding: 1vw;
+	}
+	.imagenItem{
+		max-width: 22vw;
+		width: 22vw;
+		max-height: 22vw;
+		height: 22vw;
+	}
+	.titulo, .autor, .estrella{height: 3vh;display:block;margin-top: 5px;}
+	.estrella{width: 3vh;}
+}
+
+@media only screen and (max-width : 800px) and (orientation : landscape){
+	.item{
+		display: block;
+		width: 40vw;
+		max-height: 50vw;
+		height: 50vw;
+		padding: 1vw;
+	}
+	.imagenItem{
+		max-width: 33vw;
+		width: 33vw;
+		max-height: 33vw;
+		height: 33vw;
+	}
+	.titulo, .autor, .estrella{height: 3vh;display:block;margin-top: 5px;}
+	.autor{margin:0vw;padding:0vw;}
+	.precio{width: 45%;}
+	.estrella{width: 3vh;}
+	.mas{ font-size: 1em; top:5vw; width:15vw;display:inline-block;}
+	.eliminarCdCatalogo{font-size: 1em; width:15vw; display:inline-block;}
+}
+
+@media only screen and (orientation: portrait){
+	/*Formato de los items del catalogo para moviles */
+	.item{
+		display: block;
+		width: 90%;
+		max-height: 40vh;
+		padding: 1vw;
+		margin: 2vh;
+	}
+	.imagenItem{
+		max-width: 50%;
+		width: 50%;
+		max-height: 40vh;
+		float: left;
+	}
+	.titulo, .autor, .estrella{height: 3vh;display:block;margin-top: 5px;float: left; width: 45%; font-size: 0.8em;}
+	.mas{width: 45%; float: left;font-size: 0.8em;}
+	.eliminarCdCatalogo{width: 40%; float: right;font-size: 0.8em;}
+	.autor{ margin-top: 5vh;}
+	.precio{width: 45%; font-size: 0.8em; font-size: 0.8em;}
+	.estrella{width: 3vh;}
+	
+	/*Formato de la barra nav para moviles */
+	nav .form input{height:3vh;display: block; width: 80%; margin-left: 2%; }
+	nav .form button{height:3vh;width: 3vh;display: block; }
+	nav .form button img{max-height:2vh;max-width:2vh;display: block;}
+	nav span{
+		margin: 5px;
+		font-size: 0.6em;
+	}
+	.botonInvisible{
+		max-width: 100%;
+		max-height: 100%;
+	}
+	
+	.logoResponsive{
+		max-width: 30%;
+		display: block;
+		float: left;
+	}
+	.logoResponsive2{
+		max-width: 30%;
+		display: block;
+		float: right;
+	}
+	.barraBusquedaResponsive{
+		max-height: 3vh;width: 80%;display: block;overflow: hidden;
+	}
+	.opcionesBusqueda{max-height: 100%; height: 100%; max-width: 20%; width: 10%;font-size: 0.2em;display: inline-block; float: left;border-radius: 0px;}
+	.opcionesBusqueda img{ max-height: 90%; max-width: 90%;}
+	.barraBlock{width: 90%; display: block;margin-top: 5%;}
+	
+
+}
+
 
 
 /*-----Formato de item individual al clicar en el catalogo---------------*/
